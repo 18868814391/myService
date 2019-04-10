@@ -1,5 +1,4 @@
 <?php
-//http://118.31.62.251/syf/php/upload/upload/pptzzxxu.jpg
 $relpath=dirname(__FILE__);
 $handler = opendir('upload');
 $arr1=array();
