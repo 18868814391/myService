@@ -1,0 +1,12 @@
+腾讯地图密匙：4DPBZ-2PZ66-RFPS6-EPJGK-AGJRV-KFF7Q
+
+微信公众号  开发者ID(AppID)    wx3352249676449b29
+
+百度AK  1SF7Y7xGDf6cXIESGc2iqTrRHBSVY5Qt
+
+git@gitee.com:tiansongbo/react-antd-manager.git
+
+小程序 appid  wx98f4a642140ec9c1     QQ号：1731275720   appsecret密匙 f8b8e61c04a6a4c5617f35f62a03f4e9 
+
+阿里云实例  root  Syf86010547   网页远程连接密码105739
+Mysql密码  syf
