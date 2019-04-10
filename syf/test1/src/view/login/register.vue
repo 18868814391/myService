@@ -3,7 +3,7 @@
     <div class="rebox">
       <van-field v-model="admin" placeholder="请输入账户" />
       <van-field v-model="Thename" placeholder="请输入昵称" />
-      <van-field v-model="code" placeholder="请输入登陆密码" type="password"/>
+      <van-field v-model="code" placeholder="请输入登陆密码" type="password"/> 
     </div>
     <van-button type="primary" @click="submit">提交</van-button>
   </div>
