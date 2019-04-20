@@ -1,8 +1,11 @@
 <template>
   <div id="app" class="app-page">
-    <div class="app-head">
+    <div class="app-head" v-if="!admin">
       <div @click="goLogin">login</div>
       <div @click="goRegister">register</div>      
+    </div>
+    <div class="app-head" v-if="admin">
+       欢迎你啊！{{Thename}}
     </div>
 
       <!-- <keep-alive >
@@ -13,15 +16,18 @@
 </template>
 
 <script>
+import { getThename,getadmin} from '@/utils/auth'
 export default {
   name: 'app',
   data(){
     return{
-
+      admin:getadmin(),
+      Thename:getThename(),
     }
   },
   created(){
-
+    this.admin=this.$store.state.user.admin
+    this.Thename=this.$store.state.user.Thename
   },
   methods:{
     goLogin(){

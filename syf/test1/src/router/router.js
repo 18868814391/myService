@@ -38,6 +38,14 @@ const routes = [
     }
   },
   {
+    path: '/level',
+    name: 'level',
+    component: () => import('@/view/login/level'),
+    meta: {
+      title: '权限'
+    }
+  },  
+  {
     path: '/index',
     name: 'index',
     component: () => import('@/view/index'),

@@ -11,6 +11,7 @@
 import { Icon, Toast,Dialog,Field } from 'vant';
 import { loginIN } from '@/api';
 import md5 from 'js-md5'
+import Cookies from 'js-cookie'
 // Vue.use(Dialog);
 export default {
   components: {
@@ -26,7 +27,9 @@ export default {
     }
   },
   created(){
-
+    if(Cookies.get('Thename')){
+      this.$router.push({ path: '/index' });
+    }
   },
   methods:{
     submit(){
@@ -38,8 +41,12 @@ export default {
         console.log(d.data)
         if(d.data.errcode==0){
           let Thename=d.data.data.Thename
+          Cookies.set('admin', self.admin,{expires:60})
+          Cookies.set('Thename', d.data.data.Thename,{expires:60})
+          self.$store.commit('SET_ADMIN',d.data.data.adm);
+          self.$store.commit('SET_NAME', d.data.data.Thename);          
           Toast(`${Thename}，欢迎`)
-          self.$router.push({ path: '/index' });        
+          window.location.reload();      
         }else{
           Toast(d.data.errmsg)
         }
