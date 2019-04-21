@@ -2,6 +2,7 @@ import request from '@/utils/request'
 
 export function register(params) { return request({ url: '/login/register.php', method: 'post', data: params }) }// 注册
 export function loginIN(params) { return request({ url: '/login/login.php', method: 'post', data: params }) }// 登陆
+export function levelGet(params) { return request({ url: '/login/level.php', method: 'post', data: params }) }// 权限
 export function UploadTxt(params) { return request({ url: '/upload/fileUpload.php', method: 'post', data: params }) }// 文件上传
 export function getFile(params) { return request({ url: '/upload/getFile.php', method: 'post', data: params }) }// 文件下载
 export function UploadRichTxt(params) { return request({ url: '/upload/richTxtUpload.php', method: 'post', data: params }) }// 富文本上传

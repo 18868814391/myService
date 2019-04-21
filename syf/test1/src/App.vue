@@ -5,7 +5,7 @@
       <div @click="goRegister">register</div>      
     </div>
     <div class="app-head" v-if="admin">
-       欢迎你啊！{{Thename}}
+       欢迎你啊！{{Thename}}&nbsp;&nbsp;&nbsp;&nbsp;<span @click="golevel">更多权限</span>
     </div>
 
       <!-- <keep-alive >
@@ -36,6 +36,9 @@ export default {
     goRegister(){
       this.$router.push({path: '/register'});        
     },
+    golevel(){
+      this.$router.push({path: '/level'});        
+    }
   },
 }
 </script>
