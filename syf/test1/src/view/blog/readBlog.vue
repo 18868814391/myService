@@ -1,11 +1,12 @@
 <template>
   <div class="Myread">
     <h2>{{con.title}}</h2>
-    <div v-html="con.content"></div>
+    <div class="ql-editor" v-html="con.content"></div>
   </div>
 </template>
 <script>
 import { blogDetail } from '@/api';
+import { quillEditor } from 'vue-quill-editor'
 export default {
   data(){
     return{
