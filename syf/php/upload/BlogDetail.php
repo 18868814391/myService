@@ -21,7 +21,7 @@ $arr = array (
     'errmsg'=>urlencode('获取成功'),
     'data'=>array(
         'title'=>$row['title'],
-        'content'=>$row['content'],
+        'content'=>stripslashes($row['content']),
         'updatatime'=>$row['updataTime'],
     )
 );

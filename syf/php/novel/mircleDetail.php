@@ -22,7 +22,7 @@ $arr = array (
     'errmsg'=>urlencode('获取成功'),
     'data'=>array(
         'title'=>$row['paragraphTitle'],
-        'content'=>$row['content']
+        'content'=>stripslashes($row['content']),
     )
 );
 echo urldecode(json_encode($arr));

@@ -13,6 +13,7 @@ mysqli_query($connect,'SET NAMES UTF8');
 $command =  isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : file_get_contents("php://input");
 $j =json_decode( $command,true);
 $title=$j['title'];
+$content=$j['content'];
 
 $search=mysqli_query($connect,"select * from blog where title='$title'");
 
@@ -31,9 +32,9 @@ $title=$j['title'];
 $content=$j['content'];
 $updataTime=$j['updataTime'];
 $state=$j['state'];
+$content=addslashes($content);
 
-mysqli_query($connect,"INSERT INTO blog (title,content,updataTime,state) VALUES ('$title','$content', '$updataTime','$state')");
-
+$flag=mysqli_query($connect,"INSERT INTO blog (title,content,updataTime,state) VALUES ('$title','$content', '$updataTime','$state')");
     $arr = array (
         'errcode'=>0,
         'errmsg'=>urlencode('创建成功'),

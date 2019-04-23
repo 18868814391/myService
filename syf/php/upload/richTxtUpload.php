@@ -41,7 +41,7 @@ if($chapterTitle){
         'errmsg'=>urlencode('创建成功'),
         'data'=>array(
             'title'=>$title,
-            'content'=>$content
+            'content'=>addslashes($content),
         )
     );
     echo urldecode(json_encode($arr));
@@ -53,7 +53,7 @@ if($chapterTitle){
         'errmsg'=>urlencode('创建成功'),
         'data'=>array(
             'title'=>$title,
-            'content'=>$content
+            'content'=>addslashes($content),
         )
     );
     echo urldecode(json_encode($arr));
