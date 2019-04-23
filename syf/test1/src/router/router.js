@@ -62,6 +62,30 @@ const routes = [
     }
   }, 
   {
+    path: '/blogUpload',
+    name: 'blogUpload',
+    component: () => import('@/view/blog/blogUpload'),
+    meta: {
+      title: 'BLOG上传'
+    }
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: () => import('@/view/blog/blog'),
+    meta: {
+      title: 'BLOG'
+    }
+  }, 
+  {
+    path: '/readBlog',
+    name: 'readBlog',
+    component: () => import('@/view/blog/readBlog'),
+    meta: {
+      title: 'MyBLOG'
+    }
+  },    
+  {
     path: '/myfile',
     name: 'myfile',
     component: () => import('@/view/index/myfile'),

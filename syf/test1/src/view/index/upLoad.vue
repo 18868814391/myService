@@ -26,6 +26,7 @@
 import { Icon, Toast,Dialog,Field,Progress,Popup } from 'vant';
 import { quillEditor } from 'vue-quill-editor'
 import { UploadTxt,UploadRichTxt } from '@/api';
+import moment from 'moment'
 export default {
   components: {
     [Icon.name]: Icon,
@@ -52,21 +53,17 @@ export default {
     },
   methods:{
     update(e){
-      const self=this;
-      this.show=true;
-      // Toast.loading({
-      //   mask: true,
-      //   message: '上传中...'
-      // });     
+      const self=this;    
       let file = e.target.files[0];
       self.size=file.size/1024;
-      if(self.size>=2048){
-        alert('上传文件不能操过2M')
+      if(self.size>=50000){
+        alert('上传文件不能操过50M')
         return false;
       }else if(self.size==0){
         alert('请勿上传空文件')
         return false;
       }
+      this.show=true;
       self.loding=true;
       let param = new FormData(); //创建form对象
       param.append('file',file);//通过append向form对象添加数据
@@ -104,6 +101,7 @@ export default {
     },
     uploadRich(){
       const self=this;
+      let ddd=moment().format('MMMM Do YYYY, h:mm:ss a'); 
       if(!self.novelName){
         Toast('请输入名字')
       }else if(!self.content){
@@ -114,7 +112,7 @@ export default {
           'content':self.content,
           'chapterTitle':self.chapterTitle,
           'paragraphTitle':self.paragraphTitle,
-          'updataTime':'那个时候啊',
+          'updataTime':ddd,
         }).then((d)=>{
           console.log(d)
         }).catch(()=>{
