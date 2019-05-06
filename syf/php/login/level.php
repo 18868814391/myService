@@ -17,7 +17,7 @@ if(mysqli_fetch_array($search)){
     if($myname!='沈怡帆'){
         $arr = array (
             'errcode'=>99,
-            'errmsg'=>urlencode('姓名错误'),
+            'errmsg'=>urlencode('输入错误'),
             'data'=>array(
                 'adm'=>$j['adm'],
             )

@@ -23,6 +23,7 @@ $arr = array (
         'title'=>$row['title'],
         'content'=>stripslashes($row['content']),
         'updatatime'=>$row['updataTime'],
+        'adm'=>$row['state'],
     )
 );
 echo urldecode(json_encode($arr));

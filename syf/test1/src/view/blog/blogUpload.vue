@@ -1,7 +1,8 @@
 <template>
     <div class="uploadPage">
-      <div>富文本上传</div>
-      <van-field v-model="novelName" placeholder="名字" />
+      <br>
+      <van-field v-model="novelName" placeholder="标题" />
+      <br>
       <quill-editor
         v-model="content" 
         ref="myQuillEditor" 
@@ -16,6 +17,7 @@
 import { Icon, Toast,Dialog,Field,Progress,Popup } from 'vant';
 import { quillEditor } from 'vue-quill-editor'
 import { BlogRichTxt } from '@/api';
+import Cookies from 'js-cookie'
 import moment from 'moment'
 export default {
   components: {
@@ -39,7 +41,11 @@ export default {
         kb:0,
         timeObj:'',
         loding:false,
+        adm:'',
       }
+    },
+    created(){
+      this.adm=Cookies.get('admin')
     },
   methods:{    
     onEditorBlur(){//失去焦点事件
@@ -58,16 +64,24 @@ export default {
         Toast('请输入名字')
       }else if(!self.content){
         Toast('请输入内容')
+      }else if(!self.adm){
+        Toast('未获取到用户身份')
       }else{
         BlogRichTxt({
+          'adm':self.adm,
           'title':self.novelName,
           'content':self.content,
           'updataTime':ddd,
           'state':'',
         }).then((d)=>{
-          console.log(d)
-        }).catch(()=>{
-
+          if(d.data.errcode==0){
+            Toast('上传成功')
+            self.$router.push({ path: '/blog' });
+          }else{
+            Toast(d.data.errmsg)
+          }
+        }).catch((d)=>{
+          Toast(d.data.errmsg)
         })        
       }
     }

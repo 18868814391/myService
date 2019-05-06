@@ -1,12 +1,12 @@
 .trunk, .trunk div {
     background: #136086;
     /*border-radius:$w;*/
-    width: 100px;
-    height: 10px;
+    width: 50px;
+    height: 5px;
     position: absolute;
-    left:50%;
-    top:70%;
-    margin-left: -10px;
+    left:20%;
+    bottom:0%;
+    margin-left: -5px;
     -webkit-animation-name: rot;
             animation-name: rot;
     -webkit-animation-duration: 2.02s;
@@ -15,16 +15,16 @@
             animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
             animation-direction: alternate;
-    -webkit-transform-origin: 5px 5px;
-        -ms-transform-origin: 5px 5px;
-            transform-origin: 5px 5px;
+    -webkit-transform-origin: 2.5px 2.5px;
+        -ms-transform-origin: 2.5px 2.5px;
+            transform-origin: 2.5px 2.5px;
     -webkit-animation-timing-function: ease-in-out;
             animation-timing-function: ease-in-out;
 
 }
 .trunk.trunk, .trunk div.trunk {
     bottom: 0;
-    left: 50%;
+    left: 20%;
     -webkit-animation-name: rot-root;
             animation-name: rot-root;
     -webkit-animation-duration: 2.5s;
@@ -33,7 +33,7 @@
 .trunk > div, .trunk div > div {
     /*opacity:0.9;*/
     top: 0;
-    left: 100px;
+    left: 50px;
     -webkit-animation-duration: calc(inherit / 2);
             animation-duration: calc(inherit / 2);
     /* don't works  */

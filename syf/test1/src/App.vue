@@ -5,7 +5,7 @@
       <div @click="goRegister">register</div>      
     </div>
     <div class="app-head" v-if="admin">
-       欢迎你啊！{{Thename}}&nbsp;&nbsp;&nbsp;&nbsp;<span @click="golevel">更多权限</span>
+       欢迎你啊！{{Thename}}<span @click="golevel">更多权限</span>
     </div>
 
       <!-- <keep-alive >
@@ -43,18 +43,27 @@ export default {
 }
 </script>
 <style lang="less">
-*{
-  margin: 0;
-  padding: 0;
+body {
+  font-size: 14px;
+  background-color: #f2f2f2;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  height: 100%;
 }
 .app-page{
+  width: 100%;
+  height: 100%;
+  background: #f2f2f2;
   .app-head{
     width: 100%;
     height: 50px;
-    background: lavender;
+    background:linear-gradient(305deg,rgba(75,142,254,1) 0%,rgba(46,192,254,1) 100%);
     display: flex;
     align-items: center;
     justify-content: space-around;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: white;
   }  
 }
 </style>

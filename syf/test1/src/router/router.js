@@ -124,7 +124,15 @@ const routes = [
     meta: {
       title: '浏览'
     }
-  },    
+  },
+  {
+    path: '/im',
+    name: 'im',
+    component: () => import('@/view/im'),
+    meta: {
+      title: 'im'
+    }
+  },   
 ];
 
 const router=new Router({

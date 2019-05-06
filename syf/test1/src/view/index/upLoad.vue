@@ -8,7 +8,7 @@
       <div>文件上传</div>
       <input class="file" name="file" type="file"  @change="update"/>
       <br/><br/><hr/><br/><br/>
-      <div>富文本上传</div>
+      <!-- <div>富文本上传</div>
       <van-field v-model="novelName" placeholder="名字" />
       <van-field v-model="chapterTitle" placeholder="大章节名（选填）" />
       <van-field v-model="paragraphTitle" placeholder="小章节名（选填）" />
@@ -19,7 +19,7 @@
         @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
         @change="onEditorChange($event)">
       </quill-editor>
-      <button @click="uploadRich">上传富文本</button>
+      <button @click="uploadRich">上传富文本</button> -->
     </div>
 </template> 
 <script>
@@ -56,8 +56,8 @@ export default {
       const self=this;    
       let file = e.target.files[0];
       self.size=file.size/1024;
-      if(self.size>=50000){
-        alert('上传文件不能操过50M')
+      if(self.size>=5000){
+        alert('上传文件不能操过5M')
         return false;
       }else if(self.size==0){
         alert('请勿上传空文件')
@@ -114,6 +114,11 @@ export default {
           'paragraphTitle':self.paragraphTitle,
           'updataTime':ddd,
         }).then((d)=>{
+          if(d.data.errcode==0){
+            Toast('上传成功')
+            self.content='';
+            self.paragraphTitle="";
+          }
           console.log(d)
         }).catch(()=>{
 

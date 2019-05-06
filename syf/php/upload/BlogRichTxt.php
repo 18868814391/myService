@@ -14,6 +14,7 @@ $command =  isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA
 $j =json_decode( $command,true);
 $title=$j['title'];
 $content=$j['content'];
+$adm=$j['adm'];
 
 $search=mysqli_query($connect,"select * from blog where title='$title'");
 
@@ -24,14 +25,30 @@ if(mysqli_fetch_array($search)){
     );
     echo urldecode(json_encode($arr));
     die();
-}else{
-
 };
+
+$search=mysqli_query($connect,"select * from user where adm='$adm'");
+$row=mysqli_fetch_array($search);
+if(!($row)){
+    $arr = array (
+        'errcode'=>99,
+        'errmsg'=>urlencode('不存在该用户')
+    );
+    echo urldecode(json_encode($arr));
+    die();
+}else if($row['level']!=1){
+    $arr = array (
+        'errcode'=>99,
+        'errmsg'=>urlencode('用户权限不足')
+    );
+    echo urldecode(json_encode($arr));
+    die();
+}
 
 $title=$j['title'];
 $content=$j['content'];
 $updataTime=$j['updataTime'];
-$state=$j['state'];
+$state=$j['adm'];
 $content=addslashes($content);
 
 $flag=mysqli_query($connect,"INSERT INTO blog (title,content,updataTime,state) VALUES ('$title','$content', '$updataTime','$state')");

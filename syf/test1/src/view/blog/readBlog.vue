@@ -1,6 +1,10 @@
 <template>
-  <div class="Myread">
-    <h2>{{con.title}}</h2>
+  <div class="MyBread">
+    <h2 class="MB-tit">{{con.title}}</h2>
+    <div class="MB-time">
+      由用户{{con.adm}}在
+      {{con.updatatime}}上传
+    </div>
     <div class="ql-editor" v-html="con.content"></div>
   </div>
 </template>
@@ -31,7 +35,15 @@ export default {
 }
 </script>
 <style lang="scss">
-.Myread{
-
+.MyBread{
+  .MB-tit{
+    text-indent: 10px;
+  }
+  .MB-time{
+    text-indent: 10px;
+    color: #999999;
+    font-size: 12px;
+    margin-bottom:10px; 
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="Myread">
-    <h2>{{con.title}}</h2>
-    <div class="ql-editor" v-html="con.content"></div>
+    <h2 class="myr-h2">{{con.title}}</h2>
+    <div class="ql-editor myr-con" v-html="con.content"></div>
   </div>
 </template>
 <script>
@@ -32,7 +32,14 @@ export default {
 </script>
 <style lang="scss">
 .Myread{
-
+  .myr-h2{
+    text-align: center;
+  }
+  .myr-con{
+    line-height: 50px;
+    text-indent: 50px;
+    font-size: 20px;
+  }
 }
 </style>
 

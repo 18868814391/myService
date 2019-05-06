@@ -5,10 +5,10 @@
 
     <div class="test-con">
       <div class="test-con-ques">
-        请问该网站的站长是谁？
+        天王盖地虎
       </div>
       <div class="test-con-tit">
-        <van-field class="input-item" v-model="myname" placeholder="请输入姓名" />
+        <van-field class="input-item" v-model="myname" placeholder="请输入下一句" />
       </div>
       <van-button class="butt-item" type="primary" @click="submit">提交</van-button>
     </div>

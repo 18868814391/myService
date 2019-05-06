@@ -1,9 +1,9 @@
 <template>
   <div class="mircleMenu">
     <div v-for="(item,index) in titleData" :key="index" class="mircleMenu-t1">
-      {{item}}
+      <div class="mircleMenu-t3">{{item}}</div>
       <div v-for="(ite,ind) in conData[index]" :key="ind" class="mircleMenu-t2" @click="goMircle(item,ite)">
-        {{ite}}
+        <span>{{ite}}</span>
       </div>
     </div>
   </div>
@@ -45,11 +45,26 @@ export default {
 </script>
 <style lang="scss">
 .mircleMenu{
-  &-t1{
+  .mircleMenu-t1{
     font-size: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top:20px; 
   }
-  &-t2{
-    font-size: 14px;
+  .mircleMenu-t2{
+    font-size:12px;
+    width:33%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing:border-box;
+    padding-right:5px;
+    padding-top:10px;
+    padding-bottom:10px;  
   }
+  .mircleMenu-t3{
+    width: 100%;
+  }  
 }
 </style>

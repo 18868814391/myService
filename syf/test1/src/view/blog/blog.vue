@@ -1,6 +1,6 @@
 <template>
-  <div class="read-page">
-    <div v-for="(item,index) in list" :key="index" @click="goRead(item.id)">
+  <div class="blog-page">
+    <div class="blp-item" v-for="(item,index) in list" :key="index" @click="goRead(item.id)">
       {{item.title}}
     </div>
   </div>
@@ -32,8 +32,12 @@ export default {
 }
 </script>
 <style lang="scss">
-.read-page{
-
+.blog-page{
+  .blp-item{
+    font-size: 20px;
+    line-height: 35px;
+    color: #1D1E1F;
+  }
 }
 </style>
 

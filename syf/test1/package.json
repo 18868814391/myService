@@ -31,7 +31,13 @@
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "node-sass": "^4.9.2",
+    "postcss-aspect-ratio-mini": "0.0.2",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-px-to-viewport": "0.0.3",
+    "postcss-viewport-units": "^0.1.6",
+    "postcss-write-svg": "^3.0.1",
     "sass-loader": "^7.0.3",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.5.21"
   },
@@ -51,7 +57,13 @@
   },
   "postcss": {
     "plugins": {
-      "autoprefixer": {}
+      "autoprefixer": {},
+      "postcss-cssnext": {},
+      "postcss-px-to-viewport": {
+        "viewportWidth": 375,
+        "minPixelValue": 1,
+        "unitPrecision": 3
+      }
     }
   },
   "browserslist": [
