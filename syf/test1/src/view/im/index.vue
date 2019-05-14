@@ -1,14 +1,93 @@
 <template>
-  <div>222</div>
+  <div class="IM-page">
+		<div class="IM-Nav">
+			<div @click="changeNav(1)">最近会话</div>
+			<div @click="changeNav(2)">通讯录</div>
+			<div @click="changeNav(3)">设置</div>
+		</div>
+		
+	<div v-show="navType==1">
+    <div class="IM-sessions" v-for="(item,index) in data.sessions" :key="index" @click="goChat(item.id,item)" v-show="!chating">
+			<div v-if="item.scene=='p2p'">
+        <div class="IM-sessions-t1">{{item.to}}</div>
+				<div class="IM-sessions-t2" v-if="item.lastMsg.type=='text'"> {{item.lastMsg.text}}</div>
+				<div class="IM-sessions-t2" v-if="item.lastMsg.type!='text'"> [{{item.lastMsg.type}}]</div>	
+			</div>
+			<div v-if="item.scene=='team'">
+        <div class="IM-sessions-t1">群消息</div>
+				<div class="IM-sessions-t2" v-if="item.lastMsg.type=='text'"> {{item.lastMsg.fromNick}}：{{item.lastMsg.text}}</div>
+				<div class="IM-sessions-t2" v-if="item.lastMsg.type!='text'"> [{{item.lastMsg.type}}]</div>			
+			</div>
+				<div class="IM-sessions-t3">{{timeString(item.updateTime)}}</div>
+    </div>
+
+		<button v-show="chating" @click="chating=!chating" class="backButton">后退</button>
+		<div class="chat-rom" v-show="chating">
+			<div class="chat-List" v-for="(item,index) in chatData" :key="index" :class="item.flow=='out'?'chat-List-r':''">
+				<div class="chat-List-t">{{item.fromNick}}</div>
+				<div class="chat-List-c" :class="item.flow=='out'?'chat-List-c-r':''">{{item.text}}</div>
+			</div>
+		</div>
+		<div class="chat-input" v-show="chating">
+			<input type="text" name="" id="" v-model="sendMsg">
+			<button @click="send">发送</button>
+		</div>
+		<div style="height:100px;"></div>
+	</div>
+
+	<div v-show="navType==2">
+		<div class="album-b1">
+			<button>添加好友/群</button>
+			<button>创建组/群</button>
+		</div>
+		<div class="album-b2">
+			<div>群</div>
+			<div v-for="(item,index) in data.teams" :key="index">
+				{{item.name}}
+			</div>
+			<hr>
+		</div>
+		<div class="album-b2">
+			<div>好友列表</div>
+			<div v-for="(item,index) in data.users" :key="index">
+				{{item.nick}}
+			</div>
+			<hr>					
+		</div>
+		<div class="album-b2">
+			<div>机器人</div>
+			<hr>
+		</div>
+		<div class="album-b2">
+			<div>黑名单</div>
+			<hr>
+		</div>		
+	</div>
+
+  </div>
 </template>
 <script>
+import { timeString } from '@/utils/auth.js';
 export default {
   data(){
     return{
-      data:{},
-      nim:null,
+		navType:2,
+    chating:false,//正在开启会话栏中  
+    data:{},
+    nim:null,
+    timer:null,
+    openChatRoom:false,
+	  chatItem:'',//聊天对象OBJ
+	  chatId:'',//聊天对象id
+	  chatAdmin:'',//聊天对象账户
+	  chatData:null,//聊天内容
+	  sendMsg:'',
     }
   },
+	beforeDestroy(){
+		const self=this;
+		clearInterval(self.timer);
+	},
   created(){
     const self=this;
     var nim = SDK.NIM.getInstance({
@@ -38,7 +117,7 @@ export default {
         // 机器人列表的回调
         onrobots: self.onRobots,
         // 群组
-        onteams: self.onTeams,
+        onteams:self.onTeams,
         onsynccreateteam: self.onCreateTeam,
         onUpdateTeam: self.onUpdateTeam,
         onteammembers: self.onTeamMembers,
@@ -68,19 +147,77 @@ export default {
         onsyncdone: self.onSyncDone
     });
     this.nim=nim
-    // var msg = this.nim.sendText({
-    //   scene: 'p2p',
-    //   to: 'pptvvx2',
-    //   text: 'hello',
-    //   done: function sendMsgDone (error, msg) {
-    //     // ...
-    //   }
-    // })
   },
   methods:{
+		changeNav(d){
+			this.navType=d;
+		},
+		timeString(stamp){
+			return new Date(parseInt(stamp)).toLocaleString().substr(0,22) 
+		},
+		goChat(d,i){
+            this.chating=true;
+            if(i.scene=='p2p'){
+                this.chatId=d;
+                this.chatItem=i;
+                if(i&&i.to){
+                    this.chatAdmin=i.to;
+                }
+                this.chatData=this.data.msgs[i.id];
+            }else if(i.scene=='team'){
+                this.chatId=i.to;
+                this.chatItem=i;
+                if(i&&i.to){
+                    this.chatAdmin=i.to;
+                }
+                console.log(22222222,this.data.msgs)
+                console.log(11111,d)
+                this.chatData=this.data.msgs[i.id];
+                console.log(333333,this.chatData)
+            }
+            setTimeout(function(){
+                document.documentElement.scrollTop=document.documentElement.scrollHeight;
+            },10)
+
+		},
+		send(){
+            if(this.chatItem.scene=='p2p'){
+                const self=this;
+                var msg = self.nim.sendText({
+                        scene: 'p2p',
+                        to:self.chatAdmin ,
+                        text: self.sendMsg,
+                        done: self.sendMsgDone,
+                });
+                console.log('正在发送消息',self.sendMsg,'发送对象',self.chatAdmin);
+                // self.pushMsg(msg);
+                // self.sendMsgDone(error, msg);
+            }else if(this.chatItem.scene=='team'){
+                const self=this;
+                var msg = self.nim.sendText({
+                        scene: 'team',
+                        to:self.chatAdmin ,
+                        text: self.sendMsg,
+                        done: self.sendMsgDone,
+                });
+                console.log('正在发送消息',self.sendMsg,'发送对象',self.chatAdmin);
+                // self.pushMsg(msg);
+                // self.sendMsgDone(error, msg);
+            }
+		},
+		sendMsgDone(error, msg){
+			console.log(error);
+			console.log(msg);
+            console.log('发送' + msg.scene + ' ' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient);
+            this.sendMsg='';
+            this.pushMsg(msg);
+            console.log(123456789,this.chatId,this.chatItem)
+            this.goChat(this.chatId,this.chatItem);
+            
+		},
     onConnect() {
         console.log('连接成功');
-        console.log(this.nim);
+        console.log('nim实例',this.nim);
     },
     onWillReconnect(obj) {
         // 此时说明 `SDK` 已经断开连接, 请开发者在界面上提示用户连接已断开, 而且正在重新建立连接
@@ -293,14 +430,16 @@ export default {
     },
 
     onSessions(sessions) {
+				const self=this;
         console.log('收到会话列表', sessions);
         this.data.sessions = this.nim.mergeSessions(this.data.sessions, sessions);
-        this.updateSessionsUI();
+				this.updateSessionsUI();				
     },
     onUpdateSession(session) {
         console.log('会话更新了', session);
         this.data.sessions = this.nim.mergeSessions(this.data.sessions, session);
         this.updateSessionsUI();
+        console.log('data更新',this.data)
     },
     updateSessionsUI() {
       //window.location.reload();
@@ -316,7 +455,11 @@ export default {
     },
     onMsg(msg) {
         console.log('收到消息', msg.scene, msg.type, msg);
-        this.pushMsg(msg);
+                this.pushMsg(msg);
+                if(this.chating){
+                    this.goChat(this.chatId,this.chatItem);	
+                }
+        console.log('data更新',this.data)        			
     },
     onBroadcastMsg(msg) {
         console.log('收到广播消息', msg);
@@ -368,40 +511,100 @@ export default {
 
     onSyncDone() {
         console.log('同步完成',this.data);
-    },    
-    fun2(){
-      var msg = nim.sendText({
-        scene: 'p2p',
-        to: 'account',
-        text: 'hello',
-        done: function sendMsgDone (error, msg) {
-          // ...
-        }
-      })      
-
-      // 委托通知示例
-      var nim = NIM.getInstance({
-        // ... 此处省略其他配置
-        onmsg: function (msg) {
-          // 此处为委托消息事件，消息发送成功后，成功消息也在此处处理
-        }
-      })
-      // 回调通知示例
-      var msg = nim.sendText({
-        scene: 'p2p',
-        to: 'account',
-        text: 'hello',
-        done: function sendMsgDone (error, msg) {
-          // 此处为回调消息事件，仅仅通知开发者，消息是否发送成功
-        }
-      })  
-
+		this.timeOBJ();
     },
+		timeOBJ(){
+			const self=this;
+			this.timer=setTimeout(function(){
+				let ddd=JSON.stringify(self.data);
+				self.data=null;
+				self.data=JSON.parse(ddd);
+			},100)
+		}, 
   },
 }
 </script>
 <style lang="scss">
-
+.IM-page{
+	width: 100%;
+	padding-bottom:300px;
+	.IM-Nav{
+		width: 100%;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+  .IM-sessions{
+		width: 100%;
+		height: 60px;
+		display: flex;
+		padding:5px 15px;
+		box-sizing:border-box;
+		background: lavender;
+		margin: 3px 0;
+		align-items: center;
+		justify-content: space-between;
+		.IM-sessions-t1{
+			font-size:16px; 
+			color: #333;
+		}
+		.IM-sessions-t2{
+			font-size: 13px;
+			color: #999;
+		}
+		.IM-sessions-t3{
+			font-size: 14px;
+			color:#333;
+		}
+	}
+	.chat-rom{
+		width: 100%;
+		min-height: 300px;
+		background: lightblue;
+		.chat-List{
+			width:100%;
+			display: flex;
+			.chat-List-t{
+				width: 40px;
+				height: 40px;
+				word-break: break-all;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			.chat-List-c{
+				width: 200px;
+			}
+		}
+		.chat-List-r{
+			display: flex;
+			flex-direction: row-reverse;
+			.chat-List-c-r{
+				text-align: right;
+			}
+		}
+	}
+	.chat-input{
+		width: 100%;
+		height: 50px;
+		position: fixed;
+		bottom:0;
+		background: lawngreen;
+	}
+    .backButton{
+        position: fixed;
+        top:0px;
+        left:0;
+    }
+	.album-b1{
+		width: 100%;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}	
+}
 </style>
 
 
