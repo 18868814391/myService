@@ -11,6 +11,8 @@
     <br/>
     <div @click="goBlogUpload">blog upload</div>
     <br/>
+    <div @click="goIM">网易im接入demo</div>
+    <p>---------------</p>
     <div @click="goUpload">上传页面</div>
     <p>---------------</p>
     <div @click="goCommon">公共文件夹</div>
@@ -44,6 +46,9 @@ export default {
     },
     goBlog(){
       this.$router.push({ path: '/blog' });
+    },
+    goIM(){
+      this.$router.push({ path: '/session' });
     },
   }
 }

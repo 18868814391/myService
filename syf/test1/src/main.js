@@ -11,6 +11,10 @@ import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import store from './store'
 
+import VueTouch from './plugins/touchEvent'
+Vue.use(VueTouch)
+require('./utils/polyfill')
+
 Vue.use(VueQuillEditor)
 Vue.use(VueResource)
 Vue.use(Vant);
