@@ -10,6 +10,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import store from './store'
+import './permission'
 
 import VueTouch from './plugins/touchEvent'
 Vue.use(VueTouch)

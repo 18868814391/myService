@@ -2,7 +2,7 @@
   .forward-enter-active, .forward-leave-active {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 0px;
     transition: all 0.5s;
     z-index: 0;
   }
@@ -23,7 +23,7 @@
   .backward-enter-active, .backward-leave-active {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 0px;
     transition: all 0.5s;
     z-index: 0;
   }
@@ -39,3 +39,46 @@
   .backward-enter-to {
     transform: translate3d(0, 0, 0);
   }
+
+
+    /* 进入切页动画，可根据开发这需要自由开发 */
+    .fade-enter-active, .fade-leave-active {
+      position: absolute;
+      left: 0;
+      top: 50px;
+      transition: all 0.5s;
+      z-index: 0;
+    }
+    .fade-leave {
+      transform: translate3d(0, 0, 0);
+    }
+    .fade-leave-to {
+      transform: translate3d(-100%, 0, 0);
+    }
+    .fade-enter {
+      transform: translate3d(100%, 0, 0);
+    }
+    .fade-enter-to {
+      transform: translate3d(0, 0, 0);
+    }
+  
+    /* 离开切页动画，可根据开发这需要自由开发 */
+    .fade-enter-active, .fade-leave-active {
+      position: absolute;
+      left: 0;
+      top:50px;
+      transition: all 0.5s;
+      z-index: 0;
+    }
+    .fade-leave {
+      transform: translate3d(0, 0, 0);
+    }
+    .fade-leave-to {
+      transform: translate3d(100%, 0, 0);
+    }
+    .fade-enter {
+      transform: translate3d(-100%, 0, 0);
+    }
+    .fade-enter-to {
+      transform: translate3d(0, 0, 0);
+    }

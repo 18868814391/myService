@@ -163,6 +163,7 @@ export default {
   },
   methods: {
     sendTextMsg () {
+      // if (0) {
       if (this.invalid) {
         this.$toast(this.invalidHint)
         return

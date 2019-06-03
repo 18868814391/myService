@@ -1,20 +1,27 @@
 <template>
   <div id="app" class="app-page">
-    <!-- <div class="app-head" v-if="!admin">
+    <!-- 我的nav与路由 -->
+    <div class="app-head" v-if="!admin&&(this.$store.state.user.showTabNav)">
       <div @click="goLogin">login</div>
       <div @click="goRegister">register</div>      
     </div>
-    <div class="app-head" v-if="admin">
+    <div class="app-head" v-if="admin&&(this.$store.state.user.showTabNav)">
        欢迎你啊！{{Thename}}<span @click="golevel">更多权限</span>
-    </div> -->
+    </div>
+    <transition name="fade">        
+        <router-view v-if="$route.meta.noAnima"></router-view>
+    </transition>
 
-      <!-- <keep-alive >
-        <router-view v-if="$route.meta.keepAlive"></router-view>
-      </keep-alive> -->
+<!-- 网易云信的nav与路由 -->
       <nav-bar v-show="showNav"></nav-bar>
     <transition :name="transitionName">
-      <router-view></router-view>
-    </transition>   
+      <router-view v-if="!$route.meta.noAnima"></router-view>
+    </transition> 
+
+
+    <div class="app-home" @click="$router.push('/index')" id="pic">
+      <div>首页</div>
+    </div>      
   </div>
 </template>
 
@@ -33,7 +40,9 @@ export default {
     return{
       admin:getadmin(),
       Thename:getThename(),
-      transitionName: 'forward'
+      transitionName: 'forward',
+      position: { x: 0, y: 0 },
+      nx: '', ny: '', dx: '', dy: '', xPum: '', yPum: '',x:'',y:'',         
     }
   },
   watch: {
@@ -84,6 +93,15 @@ export default {
     this.admin=this.$store.state.user.admin
     this.Thename=this.$store.state.user.Thename
   },
+  mounted() {
+    let moveDiv = document.querySelector("#pic");
+    this.w = document.documentElement.clientWidth || document.body.clientWidth;
+    this.h = document.documentElement.clientHeight || document.body.clientHeight;
+    this.x = moveDiv.offsetWidth;
+    this.y = moveDiv.offsetHeight;
+    moveDiv.addEventListener('touchstart', this.down, { passive: false })
+    moveDiv.addEventListener('touchmove', this.move, { passive: false })
+  },  
   methods:{
     goLogin(){
       this.$router.push({path: '/login'});  
@@ -93,37 +111,85 @@ export default {
     },
     golevel(){
       this.$router.push({path: '/level'});        
-    }
+    },
+    down(){
+      let moveDiv = document.querySelector("#pic");
+      var touch;
+      if(event.touches){
+         touch = event.touches[0];
+      }else {
+        touch = event;
+      }
+      this.position.x = touch.clientX;
+      this.position.y = touch.clientY;
+      this.dx = moveDiv.offsetLeft; //左偏移量
+      this.dy = moveDiv.offsetTop; //上移量
+    },
+    move(){
+      let moveDiv = document.querySelector("#pic")
+      var touch ;
+      if(event.touches){
+        touch = event.touches[0];
+      }else {
+        touch = event;
+      }
+      //组织默认事件，防止body滑动
+      event.preventDefault();
+      this.nx = touch.clientX - this.position.x;
+      this.ny = touch.clientY - this.position.y;
+      this.xPum = this.dx+this.nx;
+      this.yPum = this.dy+this.ny;
+      //边界判断
+      this.xPum = this.xPum>0?this.xPum:0;
+      this.yPum = this.yPum>0?this.yPum:0;
+      this.xPum = this.xPum>this.w-this.x?this.w-this.x:this.xPum;
+      this.yPum = this.yPum>this.h-this.y?this.h-this.y:this.yPum;
+
+      moveDiv.style.left = this.xPum+"px";
+      moveDiv.style.top = this.yPum +"px";
+    }      
   },
 }
 </script>
 <style lang="scss">
 @import './themes/theme.scss';
-// .msg-text{
-//   color: red;
-// }
-// body {
-//   font-size: 14px;
-//   background-color: #f2f2f2;
-//   -webkit-font-smoothing: antialiased;
-//   width: 100%;
-//   height: 100%;
-// }
-// .app-page{
-//   width: 100%;
-//   height: 100%;
-//   background: #f2f2f2;
-//   .app-head{
-//     width: 100%;
-//     height: 50px;
-//     background:linear-gradient(305deg,rgba(75,142,254,1) 0%,rgba(46,192,254,1) 100%);
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-around;
-//     box-sizing: border-box;
-//     overflow: hidden;
-//     color: white;
-//   }  
-// }
+body{
+  background: #f2f2f2;
+}
+.msg-text{
+  color: red;
+}
+.app-page{
+  width: 100%;
+  .app-head{
+    width: 100%;
+    height: 50px;
+    background:linear-gradient(305deg,rgba(75,142,254,1) 0%,rgba(46,192,254,1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: white;
+  }
+  .app-home {
+    position: fixed;
+    right: 28px;
+    bottom: 111px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    box-sizing: border-box;
+    background:linear-gradient(305deg,rgba(75,142,254,1) 0%,rgba(46,192,254,1) 100%);
+    z-index: 999;
+    box-shadow: 0 2px 2px 2px rgba(49, 49, 49, 0.2);
+    div {
+      color: #fff;
+      font-size: 8px;
+    }
+  }   
+}
 </style>
 

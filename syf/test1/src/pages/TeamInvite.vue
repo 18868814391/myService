@@ -1,16 +1,17 @@
 <template>
   <div class='g-inherit m-article p-teaminvite'>
-    <x-header class="m-tab" :left-options="{backText: ' '}">
-      <h1 class="m-tab-top">邀请成员</h1>
-      <a slot="left"></a>
-    </x-header>
+    <div class="teaminvite-head">
+      <van-icon name="arrow-left" color="#0091e4" @click="onClickBack" />
+      <span>邀请成员</span>
+      <div></div>
+    </div>
     <div class="m-list">
       <div v-for="group in friendsGroups" :key="group.letter" class='m-group'>
         <em>{{group.letter}}</em>
-        <cell v-for="friend in group.arr" :title="friend.alias" :key="friend.account" @click.native='itemClick(friend)'>
+        <van-cell v-for="friend in group.arr" :title="friend.alias" :key="friend.account" @click.native='itemClick(friend)'>
           <span ref='checkIcon' class='check-icon' slot='icon'  :class='friend.ingroup ? "checked-grey": (friend.checked ? "checked-blue": "unchecked")'></span>
           <img class="icon u-circle" slot="icon" width="25" height="25" :src="userInfos[friend.account].avatar">
-        </cell>
+        </van-cell>
       </div>
     </div>
     <div class='m-selected'>
@@ -18,16 +19,33 @@
         <img class='u-circle' v-for='friend in selected' :key='friend.account' width="30" height="30" :src='userInfos[friend.account].avatar' @click='unSelect(friend)'>
         <img width="30" height="30" src='http://yx-web.nos.netease.com/webdoc/h5/im/team_invite_dot_avatar.png'>
       </div>
-      <x-button class='btn' type="primary" :mini='true' action-type="button" @click.native='onNext'>{{`确认(${selected.length})`}}</x-button>
+      <van-button class='btn' type="primary" :mini='true' action-type="button" @click.native='onNext'>{{`确认(${selected.length})`}}</van-button>
     </div>
+
+    <van-popup v-model="showActionSheet" position="bottom">
+      <div class="teamInvite-items" @click="onActionClick('menu1')">创建讨论组</div>
+      <div class="teamInvite-items" @click="onActionClick('menu2')">创建高级群</div>
+      <div class="teamInvite-items" @click="showActionSheet=!showActionSheet">取消</div>
+    </van-popup>
+
+
     <action-sheet v-model="showActionSheet" :menus="menus" @on-click-menu="onActionClick" show-cancel></action-sheet>
+
   </div>
 </template>
 
 <script>
 import {getPinyin} from '../utils/pinyin'
-
+import { Cell, CellGroup,Dialog,Button,Icon,Popup } from 'vant';
 export default {
+  components: {
+    [Cell.name]: Cell,
+    [CellGroup.name]:CellGroup,
+    [Dialog.name]:Dialog,
+    [Button.name]:Button,
+    [Icon.name]:Icon,
+    [Popup.name]:Popup,
+  },   
   data() {
     return {
       selected: [],
@@ -91,6 +109,9 @@ export default {
     },
   },
   methods: {
+    onClickBack(){
+      window.history.go(-1);
+    },
     itemClick(friend) {
       if (!friend.ingroup) {
         friend.checked = !friend.checked
@@ -195,12 +216,24 @@ export default {
   }
 }
 </script>
-
-<style scoped>
+<style lang="scss" scoped>
   .p-teaminvite {
     display: flex;
     flex-direction: column;
     padding-top: 0;
+    .teaminvite-head{
+      width: 100%;
+      height: 50px;
+      background: #e5f4ff;
+      color: #0091e4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 9999;      
+    }
     .m-tab {
       position: relative;
     }
@@ -290,6 +323,13 @@ export default {
         left: 15;
         right: 15;
       }
+    }
+    .teamInvite-items{
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      border-bottom:3px solid #eee; 
     }
   }
 </style>

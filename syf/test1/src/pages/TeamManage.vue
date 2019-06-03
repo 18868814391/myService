@@ -1,19 +1,19 @@
 <template>
   <div class='g-inherit m-article p-teammanager'>
-    <x-header class="m-tab" :left-options="{backText: ' '}">
+    <!-- <x-header class="m-tab" :left-options="{backText: ' '}">
       <h1 class="m-tab-top">群设置</h1>
       <a slot="left"></a>
-    </x-header>
+    </x-header> -->
     <div class='m-body'>
       <template v-if="teamInfo && teamInfo.type==='normal'">
         <team-member :teamId='teamId'></team-member>
-        <group class='m-group' >
-          <cell title="讨论组名称" :value="teamName" @click.native="()=>onEditItemClick('修改讨论组名称', 'text', 'name')" is-link></cell>
-          <x-button mini type="warn" @click.native='leaveTeam' >退出讨论组</x-button>
-        </group>
+        <van-cell-group class='m-group' >
+          <van-cell title="讨论组名称" :value="teamName" @click.native="()=>onEditItemClick('修改讨论组名称', 'text', 'name')" is-link></van-cell>
+          <van-button mini type="warn" @click.native='leaveTeam' >退出讨论组</van-button>
+        </van-cell-group>
       </template>
       <template v-if="teamInfo && teamInfo.type==='advanced'">
-        <cell is-link @click.native='onTeamAvatarClick'>
+        <van-cell is-link @click.native='onTeamAvatarClick'>
           <div class='m-teaminfo' slot='icon'>
             <img class='avatar u-circle' :src='teamAvatar'>
             <div class='u-info'>
@@ -24,27 +24,27 @@
           <form>
             <input type='file' accept="image/*" ref='input' style="display: none;" @change='onFileSelected'>
           </form>
-        </cell>
-        <group class='m-group'>
-          <cell title="群成员" :value="`共${teamMemberNum}人`" is-link :link='`/teammembers/${teamId}`'></cell>
+        </van-cell>
+        <van-cell-group class='m-group'>
+          <van-cell title="群成员" :value="`共${teamMemberNum}人`" is-link :link='`/teammembers/${teamId}`'></van-cell>
           <team-member :teamId='teamId' :advanced="true"></team-member>
-        </group>
-        <group class='m-group'>
-          <cell title="群名称" :value="teamName" @click.native="()=>onEditItemClick(hasEditPermission?'修改群名称':'群名称', 'text', 'name')" is-link></cell>
-          <cell title="群昵称" :value="nickName" @click.native="()=>onEditItemClick('修改群昵称', 'text', 'nickInTeam', true)" is-link></cell>
-          <cell title="群介绍" :value="teamInfo.intro || '未设置'" @click.native="()=>onEditItemClick(hasEditPermission?'修改群介绍':'群介绍', 'textarea', 'intro')" is-link></cell>
-        </group>
-        <group class='m-group' v-if='hasManagePermission'>
-          <cell title="身份验证" :value="getTeamInfo('joinMode')" @click.native="()=>onEditItemClick('身份验证', 'select', 'joinMode')" is-link></cell>
-        </group>
-        <group class='m-group'>
+        </van-cell-group>
+        <van-cell-group class='m-group'>
+          <van-cell title="群名称" :value="teamName" @click.native="()=>onEditItemClick(hasEditPermission?'修改群名称':'群名称', 'text', 'name')" is-link></van-cell>
+          <van-cell title="群昵称" :value="nickName" @click.native="()=>onEditItemClick('修改群昵称', 'text', 'nickInTeam', true)" is-link></van-cell>
+          <van-cell title="群介绍" :value="teamInfo.intro || '未设置'" @click.native="()=>onEditItemClick(hasEditPermission?'修改群介绍':'群介绍', 'textarea', 'intro')" is-link></van-cell>
+        </van-cell-group>
+        <van-cell-group class='m-group' v-if='hasManagePermission'>
+          <van-cell title="身份验证" :value="getTeamInfo('joinMode')" @click.native="()=>onEditItemClick('身份验证', 'select', 'joinMode')" is-link></van-cell>
+        </van-cell-group>
+        <van-cell-group class='m-group'>
           <template v-if='hasManagePermission'>
-            <cell title="邀请他人权限" :value="getTeamInfo('inviteMode')" @click.native="()=>onEditItemClick('邀请他人权限', 'select', 'inviteMode')" is-link></cell>
-            <cell title="群资料修改权限" :value="getTeamInfo('updateTeamMode')" @click.native="()=>onEditItemClick('群资料修改权限', 'select', 'updateTeamMode')" is-link></cell>
-            <cell title="被邀请人身份验证" :value="getTeamInfo('beInviteMode')" @click.native="()=>onEditItemClick('被邀请人身份验证', 'select', 'beInviteMode')" is-link></cell>
+            <van-cell title="邀请他人权限" :value="getTeamInfo('inviteMode')" @click.native="()=>onEditItemClick('邀请他人权限', 'select', 'inviteMode')" is-link></van-cell>
+            <van-cell title="群资料修改权限" :value="getTeamInfo('updateTeamMode')" @click.native="()=>onEditItemClick('群资料修改权限', 'select', 'updateTeamMode')" is-link></van-cell>
+            <van-cell title="被邀请人身份验证" :value="getTeamInfo('beInviteMode')" @click.native="()=>onEditItemClick('被邀请人身份验证', 'select', 'beInviteMode')" is-link></van-cell>
           </template>
           <x-button mini type="warn" @click.native='()=> isOwner ? dismissTeam() : leaveTeam()'>{{isOwner?'解散群聊':'退出高级群'}}</x-button>
-        </group>
+        </van-cell-group>
       </template>
     </div>
   </div>
@@ -54,7 +54,7 @@
 import config from '../configs'
 import Utils from '../utils'
 import TeamMember from './components/TeamMember.vue'
-
+import { Cell, CellGroup,Dialog,Button,Icon,Popup } from 'vant';
 export default {
   data() {
     return {
@@ -63,6 +63,14 @@ export default {
       hasSearched: false
     }
   },
+  components: {
+    [Cell.name]: Cell,
+    [CellGroup.name]:CellGroup,
+    [Dialog.name]:Dialog,
+    [Button.name]:Button,
+    [Icon.name]:Icon,
+    [Popup.name]:Popup,
+  },  
   computed:{
     teamId() {
       return this.$route.params.teamId
@@ -214,7 +222,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .g-window .m-article.p-teammanager {
     display:flex;
     background-color: #e6ebf0;

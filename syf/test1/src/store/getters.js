@@ -1,5 +1,6 @@
 const getters = {
-  Thename: state => state.app.Thename,
-  admin: state => state.app.admin,
+  Thename: state => state.user.Thename,
+  admin: state => state.user.admin,
+  showTabNav: state => state.users.showTabNav,
 }
 export default getters

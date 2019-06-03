@@ -6,14 +6,15 @@ Vue.use(Router);
 const routes = [
   {
     path: '*',
-    redirect: '/index'
+    redirect: '/index',
+    meta: { title: '商品结算', noAnima: true }
   },  
   {
     path: '/login',
     name: 'login',
     component: () => import('@/view/login'),
     meta: {
-      title: '登录'
+      title: '登录', noAnima: true
     }
   },
   {
@@ -21,7 +22,7 @@ const routes = [
     name: 'register',
     component: () => import('@/view/login/register'),
     meta: {
-      title: '注册'
+      title: '注册', noAnima: true
     }
   },
   {
@@ -29,7 +30,7 @@ const routes = [
     name: 'level',
     component: () => import('@/view/login/level'),
     meta: {
-      title: '权限'
+      title: '权限', noAnima: true
     }
   },  
   {
@@ -37,7 +38,7 @@ const routes = [
     name: 'index',
     component: () => import('@/view/index'),
     meta: {
-      title: 'syf'
+      title: 'syf', noAnima: true
     }
   },
   {
@@ -45,7 +46,7 @@ const routes = [
     name: 'upLoad',
     component: () => import('@/view/index/upLoad'),
     meta: {
-      title: '上传'
+      title: '上传', noAnima: true
     }
   }, 
   {
@@ -53,7 +54,7 @@ const routes = [
     name: 'blogUpload',
     component: () => import('@/view/blog/blogUpload'),
     meta: {
-      title: 'BLOG上传'
+      title: 'BLOG上传', noAnima: true
     }
   },
   {
@@ -61,7 +62,7 @@ const routes = [
     name: 'blog',
     component: () => import('@/view/blog/blog'),
     meta: {
-      title: 'BLOG'
+      title: 'BLOG', noAnima: true
     }
   }, 
   {
@@ -69,7 +70,7 @@ const routes = [
     name: 'readBlog',
     component: () => import('@/view/blog/readBlog'),
     meta: {
-      title: 'MyBLOG'
+      title: 'MyBLOG', noAnima: true
     }
   },    
   {
@@ -77,7 +78,7 @@ const routes = [
     name: 'myfile',
     component: () => import('@/view/index/myfile'),
     meta: {
-      title: '文件夹'
+      title: '文件夹', noAnima: true
     }
   },   
   {
@@ -85,7 +86,7 @@ const routes = [
     name: 'read',
     component: () => import('@/view/index/read'),
     meta: {
-      title: '浏览'
+      title: '浏览', noAnima: true
     }
   }, 
   {
@@ -93,7 +94,7 @@ const routes = [
     name: 'readPage',
     component: () => import('@/view/index/readPage'),
     meta: {
-      title: '浏览'
+      title: '浏览', noAnima: true
     }
   },  
   {
@@ -101,7 +102,7 @@ const routes = [
     name: 'readPage2',
     component: () => import('@/view/index/readPage2'),
     meta: {
-      title: '浏览'
+      title: '浏览', noAnima: true
     }
   },
   {
@@ -109,7 +110,7 @@ const routes = [
     name: 'readPage3',
     component: () => import('@/view/index/readPage3'),
     meta: {
-      title: '浏览'
+      title: '浏览', noAnima: true
     }
   },
   {
@@ -120,6 +121,14 @@ const routes = [
       title: 'im'
     }
   },
+  {
+    path: '/map',
+    name: 'map',
+    component: () => import('@/view/map/map'),
+    meta: {
+      title: 'map'
+    }
+  },  
   {
     path: '/login2',
     name: 'login2',

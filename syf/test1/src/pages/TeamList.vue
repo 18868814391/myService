@@ -1,22 +1,31 @@
 <template>
-  <div class='g-inherit m-article p-teamlist'>
-    <x-header class="m-tab" :left-options="{backText: ' '}">
-      <h1 class="m-tab-top">{{pageTitle}}</h1>
-      <a slot="left"></a>
-    </x-header>
+  <div class='g-inherit m-article p-teamlist m-article2'>
+    <div class="teamList-head">
+      <van-icon name="arrow-left" color="#0091e4" @click="onClickBack" />
+      <span>{{teamType=='advanced'?'高级群':'讨论组'}}</span>
+      <div></div>
+    </div>
     <div class="m-list">
-      <group>
-        <cell v-for='team in teamList' :key='team.teamId' :title='team.name' is-link :link='`/chat/team-${team.teamId}`'>
+      <van-cell-group>
+        <van-cell v-for='team in teamList' :key='team.teamId' :title='team.name' is-link to='`/chat/team-${team.teamId}`'>
           <span class="icon icon-team-advanced" slot="icon"></span>
-        </cell>
-      </group>
+        </van-cell>
+      </van-cell-group>
     </div>
     <div class='empty-hint' v-if='!teamList || teamList.length<1'>暂无内容</div>
   </div>
 </template>
 
 <script>
+import { Cell, CellGroup,Dialog,Button,Icon } from 'vant';
 export default {
+  components: {
+    [Cell.name]: Cell,
+    [CellGroup.name]:CellGroup,
+    [Dialog.name]:Dialog,
+    [Button.name]:Button,
+    [Icon.name]:Icon,
+  },  
   mounted () {
     this.$nextTick(() => {
       this.teamType = this.$route.params.teamType
@@ -36,22 +45,39 @@ export default {
     pageTitle: function () {
       return this.teamType === 'advanced' ? '高级群' : '讨论组'
     }
+  },
+  methods: {
+    onClickBack () {
+      window.history.go(-1)
+    },
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.m-article2{
+  padding-top:0!important; 
+}
   .p-teamlist {
-    .m-list {
-      padding-top: 3.6rem;
-    }
     .empty-hint{
       position: absolute;
       left: 0;
       right: 0;
-      top: 5rem;  
       margin: auto;
       text-align: center;
+    }
+    .teamList-head{
+      width: 100%;
+      height: 50px;
+      background: #e5f4ff;
+      color: #0091e4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 9999;
     }
   }
 </style>

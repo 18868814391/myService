@@ -5,7 +5,7 @@
       由用户{{con.adm}}在
       {{con.updatatime}}上传
     </div>
-    <div class="ql-editor" v-html="con.content"></div>
+    <div class="ql-editor BlogrichTxt" v-html="richText"></div>
   </div>
 </template>
 <script>
@@ -16,6 +16,7 @@ export default {
     return{
       id:'',
       con:'',
+      richText:'',
     }
   },
   created(){
@@ -24,7 +25,19 @@ export default {
     blogDetail({
       'id':self.id
     }).then((d)=>{
-      self.con=d.data.data
+      
+      self.con=d.data.data;
+      self.richText=self.con.content;
+
+      // self.richText=self.richText.replace(new RegExp(' ','g'),"+");
+      console.log(self.richText)
+      // var patt =/src(\S*)=">/;
+      // var patt =/(?<=url\(").+(?="\))/;
+      // console.log(self.richText.match(patt));
+      // self.richText=self.richText.replace(/\ +/g, "");
+      // self.richText=self.richText.replace(/[ ]/g, "");
+      // self.richText=self.richText.replace(/[\r\n]/g, ""); //去掉回车换行
+      // console.log(self.richText)
     }).catch(()=>{
 
     })
@@ -44,6 +57,11 @@ export default {
     color: #999999;
     font-size: 12px;
     margin-bottom:10px; 
+  }
+  .BlogrichTxt{
+    img{
+      width: 100%;
+    }
   }
 }
 </style>

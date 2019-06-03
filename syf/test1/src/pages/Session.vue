@@ -30,9 +30,6 @@
           ></span>
       </van-cell>
     </van-cell-group>
-    <div class="backIndex" @click="backIndex">
-      回到首页
-    </div>
   </div>
 </template>
 

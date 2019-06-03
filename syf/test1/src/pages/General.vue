@@ -1,46 +1,53 @@
 <template>
   <div class="g-inherit m-main p-general" v-if="myInfo.account">
-    <group class="u-card">
-      <cell :title="myInfo.nick" :inline-desc="'帐号: ' + myInfo.account">
+    <van-cell-group class="u-card">
+      <van-cell :title="myInfo.nick" :inline-desc="'帐号: ' + myInfo.account">
         <img class="icon" slot="icon" width="20" :src="myInfo.avatar">
-      </cell>
-    </group>
-    <group class="u-card">
-      <cell title="昵称">{{myInfo.nick || ''}}</cell>
-      <cell title="性别">{{myInfo.gender}}</cell>
-      <cell title="生日">{{myInfo.birth}}</cell>
-      <cell title="手机">{{myInfo.tel}}</cell>
-      <cell title="邮箱">{{myInfo.email}}</cell>
-      <cell title="签名">{{myInfo.sign}}</cell>
-    </group>
+      </van-cell>
+    </van-cell-group>
+    <van-cell-group class="u-card">
+      <van-cell title="昵称">{{myInfo.nick || ''}}</van-cell>
+      <van-cell title="性别">{{myInfo.gender}}</van-cell>
+      <van-cell title="生日">{{myInfo.birth}}</van-cell>
+      <van-cell title="手机">{{myInfo.tel}}</van-cell>
+      <van-cell title="邮箱">{{myInfo.email}}</van-cell>
+      <van-cell title="签名">{{myInfo.sign}}</van-cell>
+    </van-cell-group>
     <div>
-      <x-button type="warn" action-type="button" @click.native="logout">注销</x-button>
+      <van-button type="warn"  @click.native="logout">注销</van-button>
     </div>
   </div>
 </template>
 
 <script>
-// import { Group, Cell } from 'vux'
-
+import { Cell, CellGroup,Dialog,Button } from 'vant';
 export default {
   components: {
-    Group,
-    Cell
+    [Cell.name]: Cell,
+    [CellGroup.name]:CellGroup,
+    [Dialog.name]:Dialog,
+    [Button.name]:Button,
   },
   computed: {
     myInfo () {
       return this.$store.state.myInfo
     }
   },
+  created(){
+    console.log(123,this.$store.state.myInfo)
+  },
   methods: {
     logout () {
       let that = this
-      this.$vux.confirm.show({
-        title: '确定要注销帐号？',
-        onConfirm () {
-          that.$store.dispatch('logout')
-        }
-      })
+      Dialog.confirm({
+        title: '提示',
+        message: '确定要注销帐号？'
+      }).then(() => {
+        that.$store.dispatch('logout')
+      }).catch(() => {
+        // on cancel
+      });      
+
     }
   }
 }

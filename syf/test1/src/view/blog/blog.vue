@@ -33,10 +33,18 @@ export default {
 </script>
 <style lang="scss">
 .blog-page{
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
   .blp-item{
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius:5px; 
     font-size: 20px;
     line-height: 35px;
     color: #1D1E1F;
+    margin-top:10px;
+    box-shadow: 0 2px 2px 2px rgba(49, 49, 49, 0.2);
   }
 }
 </style>

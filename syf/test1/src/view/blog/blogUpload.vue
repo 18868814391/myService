@@ -67,6 +67,8 @@ export default {
       }else if(!self.adm){
         Toast('未获取到用户身份')
       }else{
+        console.log(self.content)
+        self.content=self.content.replace(new RegExp('\\+','g'),"%2B");
         BlogRichTxt({
           'adm':self.adm,
           'title':self.novelName,
