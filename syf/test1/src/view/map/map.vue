@@ -19,6 +19,7 @@ export default {
    var map = new AMap.Map('container',{
         zoom:11,//级别 
         resizeEnable: true,
+        center: [120.235754, 30.275334],
    });
     var trafficLayer = new AMap.TileLayer.Traffic({
         zIndex: 10

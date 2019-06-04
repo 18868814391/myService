@@ -25,25 +25,19 @@ export default {
     blogDetail({
       'id':self.id
     }).then((d)=>{
-      
       self.con=d.data.data;
       self.richText=self.con.content;
-
-      // self.richText=self.richText.replace(new RegExp(' ','g'),"+");
-      console.log(self.richText)
-      // var patt =/src(\S*)=">/;
-      // var patt =/(?<=url\(").+(?="\))/;
-      // console.log(self.richText.match(patt));
-      // self.richText=self.richText.replace(/\ +/g, "");
-      // self.richText=self.richText.replace(/[ ]/g, "");
-      // self.richText=self.richText.replace(/[\r\n]/g, ""); //去掉回车换行
-      // console.log(self.richText)
+      console.log(self.richText);
+      self.goTop();
     }).catch(()=>{
 
     })
   },
   methods:{
-
+    goTop() {
+      document.documentElement.scrollTop=0
+      document.body.scrollTop=0
+    },
   }
 }
 </script>

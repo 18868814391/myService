@@ -13,3 +13,5 @@ export function lightNovelList(params) { return request({ url: '/novel/lightNove
 export function getlightNovel(params) { return request({ url: '/novel/getNovel.php', method: 'post', data: params }) }// 获取轻小说内容
 export function getheavyNovel(params) { return request({ url: '/novel/heavyNovelList.php', method: 'post', data: params }) }// 获取重小说章节
 export function getMircleDetail(params) { return request({ url: '/novel/mircleDetail.php', method: 'post', data: params }) }// 获取重小说内容
+export function getMusic(params) { return request({ url: '/media/music.php', method: 'post', data: params }) }// 获取音乐名字
+export function getAnime(params) { return request({ url: '/media/anime.php', method: 'post', data: params }) }// 获取动画

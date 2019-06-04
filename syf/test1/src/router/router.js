@@ -128,7 +128,31 @@ const routes = [
     meta: {
       title: 'map'
     }
+  },
+  {
+    path: '/music',
+    name: 'music',
+    component: () => import('@/view/music/music'),
+    meta: {
+      title: 'music'
+    }
+  }, 
+  {
+    path: '/anime',
+    name: 'anime',
+    component: () => import('@/view/anime'),
+    meta: {
+      title: 'anime'
+    }
   },  
+  {
+    path: '/animeDetail',
+    name: 'animeDetail',
+    component: () => import('@/view/anime/animeDetail'),
+    meta: {
+      title: 'animeDetail'
+    }
+  },      
   {
     path: '/login2',
     name: 'login2',

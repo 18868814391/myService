@@ -1,10 +1,10 @@
 <template>
   <div class="register-page">
     <div class="rebox">
-      <van-field v-model="admin" placeholder="请输入账户" />
-      <van-field v-model="code" placeholder="请输入登陆密码" type="password"/>
+      <van-field class="login-inp" v-model="admin" placeholder="请输入账户" />
+      <van-field class="login-inp" v-model="code" placeholder="请输入登陆密码" type="password"/>
     </div>
-    <van-button type="primary" @click="submit">提交</van-button>
+    <van-button class="login-inp" type="primary" @click="submit">提交</van-button>
   </div>
 </template>
 <script>
@@ -61,6 +61,9 @@ export default {
 .register-page{
   .rebox{
     
+  }
+  .login-inp{
+    margin-top:10px; 
   }
 }
 </style>

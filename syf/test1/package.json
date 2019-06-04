@@ -14,10 +14,12 @@
     "moment": "^2.24.0",
     "vant": "^1.6.11",
     "vue": "^2.6.6",
+    "vue-aplayer": "^1.6.1",
     "vue-cookies": "^1.5.13",
     "vue-quill-editor": "^3.0.6",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.2",
+    "vue-video-player": "^5.0.2",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
@@ -55,20 +57,7 @@
       "parser": "babel-eslint"
     }
   },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {},
-      "postcss-cssnext": {},
-      "postcss-px-to-viewport": {
-        "viewportWidth": 375,
-        "minPixelValue": 1,
-        "unitPrecision": 3
-      }
-    }
-  },
-  "postcss":{
-
-  },
+  "postcss": {},
   "browserslist": [
     "> 1%",
     "last 2 versions",
