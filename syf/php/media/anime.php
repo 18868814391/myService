@@ -27,8 +27,8 @@ if(!$id){//获取总目录列表
         }
     }
     closedir($handler);
+    sort($audioList);
 }
-
 
 
 $arr = array (

@@ -66,6 +66,7 @@ export default {
     }).then((d)=>{
       console.log(d.data.data);
       self.list=d.data.data;
+      self.list.sort();
       self.sele(self.list[0]);
     }).catch((d)=>{
 
@@ -101,7 +102,8 @@ export default {
       border-radius:3px;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap; 
+      white-space: nowrap;
+      margin:10px 0; 
     }
   }
   .video-player-box{

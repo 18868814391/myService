@@ -19,8 +19,9 @@ export default {
     getAnime({
       id:'',
     }).then((d)=>{
-      console.log(d.data.data)
-      d.data.data.forEach(function(v,i,a){
+      let ddd=d.data.data
+      console.log(ddd)      
+      ddd.forEach(function(v,i,a){
         let obj={id:'',img:''};
         obj.id=v;
         obj.img='http://118.31.62.251/syf/video/'+v+'.jpg';
