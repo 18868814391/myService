@@ -69,14 +69,13 @@ export default {
       self.list.sort();
       self.sele(self.list[0]);
     }).catch((d)=>{
-
+ 
     })
   },
   methods:{
     sele(d){
       this.playerOptions.sources[0].src='http://118.31.62.251/syf/video/'+this.id+'/'+d;
       console.log(this.playerOptions.sources[0].src)
-
     }
   }  
 }
