@@ -27,7 +27,7 @@ export default {
   },
   created(){
      const self=this;   
-      let toast = Toast.loading({
+      const toast = Toast.loading({
         duration: 0,       // 持续展示 toast
         forbidClick: true, // 禁用背景点击
         loadingType: 'spinner',
@@ -35,17 +35,17 @@ export default {
       });
       let second = 3;
 
-      let timer = setInterval(() => {
+      const timer = setInterval(() => {
         second--;
         if (second>=0) {
-          self.toast.message = `loading... ${second} 秒`;
+          toast.message = `loading... ${second} 秒`;
         } else if(second<0&&second>=-3){
-          self.toast.message = `好吧，我的服务器是捡来的`;
+          toast.message = `好吧，我的服务器是捡来的`;
         }else if(second<-3&&second>-6){
-          self.toast.message = `或许是你的网络问题，我关掉了嗷`;
+          toast.message = `或许是你的网络问题，我关掉了嗷`;
         }else if(second<=-6){
           Toast.clear();
-          clearInterval(self.timer);          
+          clearInterval(timer);          
         }
       }, 1000);      
       
@@ -54,14 +54,14 @@ export default {
       'id':self.id
     }).then((d)=>{
       Toast.clear();
-      clearInterval(self.timer);  
+      clearInterval(timer);  
       self.con=d.data.data;
       self.richText=self.con.content;
       console.log(self.richText);
       self.goTop();
     }).catch(()=>{
       Toast.clear();
-      clearInterval(self.timer);  
+      clearInterval(timer);  
     })
   },
   methods:{
