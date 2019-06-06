@@ -24,7 +24,7 @@ export default {
       ddd.forEach(function(v,i,a){
         let obj={id:'',img:''};
         obj.id=v;
-        obj.img='http://118.31.62.251/syf/video/'+v+'.jpg';
+        obj.img='/apis/syf/video/'+v+'.jpg';
         self.animeList.push(obj)
       })
       console.log(self.animeList);
