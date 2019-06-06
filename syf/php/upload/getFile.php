@@ -6,7 +6,7 @@ $arr2=array();
 while( ($filename = readdir($handler)) !== false ) {
     if($filename != "." && $filename != ".."){
         array_push($arr1,$filename);
-        array_push($arr2,'http://118.31.62.251/syf/php/upload/upload'.'/'.$filename);
+        array_push($arr2,'/apis/syf/php/upload/upload'.'/'.$filename);
     }
 }
 closedir($handler);

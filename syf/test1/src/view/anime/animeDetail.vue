@@ -73,8 +73,9 @@ export default {
     })
   },
   methods:{
+    //http://118.31.62.251:8081
     sele(d){
-      this.playerOptions.sources[0].src='http://118.31.62.251:81/syf/video/'+this.id+'/'+d;
+      this.playerOptions.sources[0].src='/apis/syf/video/'+this.id+'/'+d;
       console.log(this.playerOptions.sources[0].src)
     }
   }  
