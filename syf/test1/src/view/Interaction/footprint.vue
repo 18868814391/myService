@@ -1,5 +1,13 @@
 <template>
   <div class="foot-page">
+
+  <van-list
+    v-model="loading"
+    :finished="finished"
+    :immediate-check="false"
+    finished-text="不要划拉划拉啦，已经没有了"
+    @load="onLoad"
+  > 
     <div class="foot-page-list" v-for="(item,index) in footList" :key="index">
       <div class="foot-page-list-head">
         <span class="foot-page-list-head-t1" @click="seleOne(item)">
@@ -9,8 +17,20 @@
       </div>
       <div class="foot-page-list-con">
         <div>{{item.content}}</div>
+        <div class="foot-page-list-con-box" v-for="(itm,ind) in item.child" :key="ind" v-if="item.child[0]">
+          <div>
+            <span style="color:blue" @click="seleOne2(itm,item)">{{itm.Thename}}</span>
+            对
+            <span style="color:blue" @click="seleOne2(itm,item)">{{itm.talkTo}}</span>
+            说：
+          </div>
+          <div>{{itm.content.replace(/(^\s*)|(\s*$)/g, "")}}</div>
+        </div>
       </div>
     </div>
+  </van-list>  
+
+
     <div class="inp-box">
       <textarea v-model="content" class="inp-box-txt"></textarea>
       <div class="inp-box-buttons">
@@ -20,17 +40,24 @@
   </div>
 </template>
 <script>
+import { Toast,List } from 'vant';
 import {sendFoot,getFoot} from '@/api';
 import moment from 'moment'
 export default {
+  components: {
+    [Toast.name]: Toast,
+    [List.name]: List,   
+  },  
   data(){
     return{
+      loading:false,
+      finished:false, 
       footList:[],
       content:'',
       admin:'',
       Thename:'',
       start_page:0,
-      pages:10,
+      pages:7,
       talkName:'',
       talkTo:'',
       belong:'',
@@ -45,7 +72,11 @@ export default {
       start_page:self.start_page,
       pages:self.pages,
     }).then((d)=>{
-      self.footList=d.data.data;
+      self.start_page++;
+      self.footList=self.footList.concat(d.data.data);
+        if(self.footList.length*1>=d.data.total_page*1){
+          self.finished=true;
+        }      
     }).catch((d)=>{
 
     })
@@ -53,15 +84,43 @@ export default {
   methods:{
     seleOne(d){
       this.talkName=d.Thename;
-      this.talkTo=d.admin;
+      this.talkTo=d.Thename;
       this.belong=d.id;
       this.content='你对'+this.talkName+'说：'+'  '+this.content
     },
+    seleOne2(d,i){
+      this.talkName=d.Thename;
+      this.talkTo=d.Thename;
+      this.belong=i.id;
+      this.content='你对'+this.talkName+'说：'+'  '+this.content
+    },
+    onLoad() {
+      const self=this;
+      getFoot({
+        start_page:self.start_page,
+        pages:self.pages,
+      }).then((d)=>{
+        self.start_page++;
+        self.loading=false;
+        self.footList=self.footList.concat(d.data.data);
+          if(self.footList.length*1>=d.data.total_page*1){
+            self.finished=true;
+          }      
+      }).catch((d)=>{
+
+      })
+    },   
     confirm(){
+      if(!this.admin){
+        Toast('老铁，看到首页顶上那个蓝蓝的登陆注册按钮了吗？先去整一下吧。')
+        return false;
+      }
       const self=this;
       let ddd=moment().format('MMMM Do YYYY, h:mm:ss a');
-      let stArr=self.content.split('说：');
-      self.content=stArr[1];
+      if(this.talkTo){
+        let stArr=self.content.split('说：');
+        self.content=stArr[1];
+      }
       sendFoot({
         admin:self.admin,
         Thename:self.Thename,
@@ -70,7 +129,7 @@ export default {
         talkTo:self.talkTo,
         belong:self.belong,
       }).then((d)=>{
-
+        window.location.reload();
       }).catch((d)=>{
 
       })
@@ -82,10 +141,17 @@ export default {
 .foot-page{
   padding-bottom:150px;
   .foot-page-list{
-    width: 100%;
+    width: 90%;
     min-height: 50px;
     box-sizing: border-box;
     margin-bottom:15px; 
+    border-radius:4px; 
+    overflow: hidden;
+    box-shadow: 0 2px 2px 2px rgba(49, 49, 49, 0.2);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top:5px; 
     .foot-page-list-head{
       width: 100%;
       height: 20px;
@@ -93,6 +159,8 @@ export default {
       justify-content: space-between;
       align-items: center;
       background: lemonchiffon;
+      padding: 0 5px;
+      box-sizing: border-box;
       .foot-page-list-head-t1{
         font-size: 14px;
       }
@@ -104,9 +172,17 @@ export default {
     .foot-page-list-con{
       width: 100%;
       min-height: 40px;
-      background: lightblue;
+      background: rgb(180, 219, 233);
       padding: 0 10px;
       box-sizing: border-box;
+      font-size: 14px;
+      .foot-page-list-con-box{
+        width: 80%;
+        min-height:20px;
+        background: rgb(193, 223, 233);
+        margin-left:20px; 
+        font-size: 13px;
+      }
     }
   }
   .inp-box{

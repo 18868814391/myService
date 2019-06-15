@@ -54,6 +54,7 @@ export default {
           Cookies.set('Thename', self.Thename,{expires:60})
           self.$store.commit('SET_ADMIN',self.admin);
           self.$store.commit('SET_NAME', self.Thename);
+          localStorage.setItem("isReg",'1');
           // alert(self.$store.state.user.admin)
           // alert(self.$store.state.user.Thename)
           Dialog.confirm({

@@ -2,11 +2,13 @@
   <div id="app" class="app-page">
     <!-- 我的nav与路由 -->
     <div class="app-head" v-if="!admin&&(this.$store.state.user.showTabNav)">
-      <div @click="goLogin">login</div>
-      <div @click="goRegister">register</div>      
+      <div @click="goLogin">登陆</div>
+      <div @click="goRegister">注册</div>      
     </div>
-    <div class="app-head" v-if="admin&&(this.$store.state.user.showTabNav)">
-       欢迎你啊！{{Thename}}<span @click="golevel">更多权限</span>
+    <div class="app-head" v-if="admin&&(this.$store.state.user.showTabNav)" style="fontSize:14px;">
+       欢迎你啊！{{Thename}}
+       <span @click="golevel" style="fontSize:12px;">更多权限</span>
+       <span style="fontSize:12px;" @click="logOut">退出</span>
     </div>
     <transition name="fade">        
         <router-view v-if="$route.meta.noAnima"></router-view>
@@ -32,6 +34,7 @@ import FullscreenImg from './pages/components/FullscreenImg'
 import Vue from 'vue'
 import NavBar from './pages/components/NavBar'
 import cookie from './utils/cookie'
+import Cookies from 'js-cookie'
 import pageUtil from './utils/page'
 const sessionHistory = window.sessionStorage
 export default {
@@ -111,6 +114,11 @@ export default {
     },
     golevel(){
       this.$router.push({path: '/level'});        
+    },
+    logOut(){
+      Cookies.set('admin', '',{expires:-1})
+      Cookies.set('Thename', ''.Thename,{expires:-1})   
+      window.location.reload();   
     },
     down(){
       let moveDiv = document.querySelector("#pic");

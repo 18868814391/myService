@@ -32,7 +32,15 @@ const routes = [
     meta: {
       title: '留言板', noAnima: true
     }
-  },   
+  },  
+  {
+    path: '/aboutMe',
+    name: 'aboutMe',
+    component: () => import('@/view/index/aboutMe'),
+    meta: {
+      title: '关于本站', noAnima: true
+    }
+  },    
   {
     path: '/level',
     name: 'level',

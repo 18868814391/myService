@@ -4,6 +4,16 @@
   <div><div><div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div></div><div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div></div></div><div><div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div></div><div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div></div></div></div><div><div><div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div></div><div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div></div></div><div><div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div></div><div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div><div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div><div><div><div><div></div><div></div></div><div><div></div><div></div></div></div><div><div><div></div><div></div></div><div><div></div><div></div></div></div></div></div></div></div></div>
 </div> -->
   <div class="index-item">
+    <div class="liuyanban" @click="gofootprint">
+      <img src="../../img/liuyanban.png" alt="">
+      <div class="liuyanban-t">留言板</div>    
+    </div>
+    <div class="liuyanban2" @click="gochatRoom">
+      <img src="../../img/liuyanban.png" alt="">
+      <div class="liuyanban-t">聊天室</div>    
+    </div>
+
+
     <br/>
     <div @click="goBlog">
       blog
@@ -27,18 +37,29 @@
     <p>---------------</p>
     <div @click="gofootprint">留言板</div>
     <p>---------------</p>
+    <div @click="aboutMe">关于本站</div>
+    <p>---------------</p>
    </div> 
   </div>
 </template>
 <script>
+import { Toast} from 'vant';
+import { getThename,getadmin} from '@/utils/auth'
 export default {
+  components: {
+    [Toast.name]: Toast, 
+  },   
   data(){
     return{
-
+      admin:getadmin(),
+      Thename:getThename(),      
     }
   },
   created(){
-
+    if(localStorage.getItem("isReg")){
+      localStorage.removeItem("isReg");
+      window.location.reload();
+    }
   },
   methods:{
     goUpload(){
@@ -71,6 +92,12 @@ export default {
     gofootprint(){
       this.$router.push({ path: '/footprint' });       
     },
+    aboutMe(){
+      this.$router.push({ path: '/aboutMe' });          
+    },
+    gochatRoom(){
+      Toast('别戳了，还没做好......')
+    },
   }
 }
 </script>
@@ -83,6 +110,50 @@ export default {
     display:flex;
     flex-direction: column;
     align-items: center;    
+  }
+  .liuyanban2{
+    width: 100px;
+    position: absolute;
+    top:50px;
+    right:10px;
+    height: 75px;
+    img{
+      width: 100px;
+      position: absolute;
+      top:0;
+      left: 0;
+    }
+    .liuyanban-t{
+      text-align: center;
+      margin-top:40px; 
+      position: relative;
+      z-index: 10;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+    }    
+  }
+  .liuyanban{
+    width: 100px;
+    position: absolute;
+    top:50px;
+    left:10px;
+    height: 75px;
+    img{
+      width: 100px;
+      position: absolute;
+      top:0;
+      left: 0;
+    }
+    .liuyanban-t{
+      text-align: center;
+      margin-top:40px; 
+      position: relative;
+      z-index: 10;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+    }
   }
 }
 </style>
