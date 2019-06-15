@@ -7,7 +7,7 @@
                   >
     </video-player>
     <div v-if="list[0]" class="animeDetail-tip">
-      &nbsp;&nbsp;&nbsp;↑↑↑↑如果手机浏览器给你省流量，请手动点击播放
+      &nbsp;&nbsp;&nbsp;↑↑↑↑如果手机浏览器给你省流量，请手动点击播放。还有，带宽就100K，要多等会儿的。
     </div>
     <div class="ans-box" v-if="list[0]">
       <div class="ans-box-item" v-for="(item,index) in list" :key="index" @click="sele(item)">
