@@ -5,7 +5,7 @@
                   :options="playerOptions"
                   :playsinline="true"
                   >
-    </video-player>
+    </video-player> 
     <div v-if="list[0]" class="animeDetail-tip">
       &nbsp;&nbsp;&nbsp;↑↑↑↑如果手机浏览器给你省流量，请手动点击播放。还有，带宽就100K，要多等会儿的。
     </div>
