@@ -25,6 +25,9 @@ export default {
       timer:'',
     }
   },
+  beforeDestroy() {
+    window.scrollTo(0,0);  
+  },
   created(){
      const self=this;   
       const toast = Toast.loading({

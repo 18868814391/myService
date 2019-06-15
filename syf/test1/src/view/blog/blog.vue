@@ -28,6 +28,7 @@ export default {
       pages:25,
       loading:false,
       finished:false,
+      firstEnter:false,
     }
   },
   created(){
@@ -43,6 +44,7 @@ export default {
         if(self.list.length*1>=d.data.total_page*1){
           self.finished=true;
         }
+        self.firstEnter=true;
       }).catch(()=>{
 
       })   
@@ -52,21 +54,24 @@ export default {
       this.$router.push({ path: '/readBlog',query:{id:d} }); 
     },
     onLoad(){
-      const self=this;
-      BlogList({
-        start_page:self.start_page,
-        pages:self.pages,
-      }).then((d)=>{
-        self.start_page++;
-        self.loading=false;
-        self.list=self.list.concat(d.data.data);
-        console.log('拼接后的数组',self.list)
-        if(self.list.length*1>=d.data.total_page*1){
-          self.finished=true;
-        }
-      }).catch(()=>{
+      if(this.firstEnter){
+        const self=this;
+        BlogList({
+          start_page:self.start_page,
+          pages:self.pages,
+        }).then((d)=>{
+          self.start_page++;
+          self.loading=false;
+          self.list=self.list.concat(d.data.data);
+          console.log('拼接后的数组',self.list)
+          if(self.list.length*1>=d.data.total_page*1){
+            self.finished=true;
+          }
+        }).catch(()=>{
 
-      })
+        })
+      }
+
     },
   }
 }
