@@ -25,6 +25,8 @@
     <p>---------------</p>
     <div @click="goCommon">公共文件夹</div>
     <p>---------------</p>
+    <div @click="gofootprint">留言板</div>
+    <p>---------------</p>
    </div> 
   </div>
 </template>
@@ -65,7 +67,10 @@ export default {
     },
     goAnime(){
       this.$router.push({ path: '/anime' });       
-    },  
+    },
+    gofootprint(){
+      this.$router.push({ path: '/footprint' });       
+    },
   }
 }
 </script>

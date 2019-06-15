@@ -9,7 +9,7 @@ $pages=$j['pages'];
 
 mysqli_query($connect,'SET NAMES UTF8');
 
-$result=mysqli_query($connect,"select * from blog order by id desc");
+$result=mysqli_query($connect,"select * from footprint order by id desc");
 
 $arr=array();
 //echo ($result);
@@ -17,9 +17,18 @@ $total=0;
 for($i=0;$i<mysqli_num_rows($result);$i++){
     $total++;
     $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+    
     $arr[$i]=array(
         'id'=>urlencode($row['id']),
-        'title'=>urlencode($row['title']),
+        'admin'=>urlencode($row['admin']),
+        'Thename'=>urlencode($row['Thename']),
+        'content'=>urlencode($row['content']),
+        'talkTo'=>urlencode($row['talkTo']),
+        'belong'=>urlencode($row['belong']),
+        'state'=>urlencode($row['state']),
+        'state1'=>urlencode($row['state1']),
+        'state2'=>urlencode($row['state2']),
+        'updataTime'=>urlencode($row['updataTime']),
     );
 //    $arr[$i]=urlencode($row['title']);
 }

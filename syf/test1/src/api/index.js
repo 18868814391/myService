@@ -15,3 +15,5 @@ export function getheavyNovel(params) { return request({ url: '/novel/heavyNovel
 export function getMircleDetail(params) { return request({ url: '/novel/mircleDetail.php', method: 'post', data: params }) }// 获取重小说内容
 export function getMusic(params) { return request({ url: '/media/music.php', method: 'post', data: params }) }// 获取音乐名字
 export function getAnime(params) { return request({ url: '/media/anime.php', method: 'post', data: params }) }// 获取动画
+export function sendFoot(params) { return request({ url: '/interaction/footprint.php', method: 'post', data: params }) }// 发送留言
+export function getFoot(params) { return request({ url: '/interaction/footList.php', method: 'post', data: params }) }// 获取留言

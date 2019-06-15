@@ -26,6 +26,14 @@ const routes = [
     }
   },
   {
+    path: '/footprint',
+    name: 'footprint',
+    component: () => import('@/view/Interaction/footprint'),
+    meta: {
+      title: '留言板', noAnima: true
+    }
+  },   
+  {
     path: '/level',
     name: 'level',
     component: () => import('@/view/login/level'),
