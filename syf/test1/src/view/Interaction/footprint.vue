@@ -83,12 +83,20 @@ export default {
   },
   methods:{
     seleOne(d){
+      if(this.content.indexOf('说：')!=-1){
+        let stArr=this.content.split('说：');
+        this.content=stArr[1];        
+      }
       this.talkName=d.Thename;
       this.talkTo=d.Thename;
       this.belong=d.id;
       this.content='你对'+this.talkName+'说：'+'  '+this.content
     },
     seleOne2(d,i){
+      if(this.content.indexOf('说：')!=-1){
+        let stArr=this.content.split('说：');
+        this.content=stArr[1];        
+      }      
       this.talkName=d.Thename;
       this.talkTo=d.Thename;
       this.belong=i.id;
