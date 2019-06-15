@@ -115,6 +115,10 @@ export default {
         Toast('老铁，看到首页顶上那个蓝蓝的登陆注册按钮了吗？先去整一下吧。')
         return false;
       }
+      if(!this.content){
+        Toast('老铁，随便说点啥呗');
+        return false;
+      }
       const self=this;
       let ddd=moment().format('MMMM Do YYYY, h:mm:ss a');
       if(this.talkTo){
