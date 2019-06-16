@@ -1,4 +1,5 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const webpack = require('webpack')
 module.exports = {
   devServer: {
     // http://lantian-api.lanland.vip
@@ -38,6 +39,19 @@ module.exports = {
           }
       })
     ]
-    }
+    },
+       plugins: [
+
+            new webpack.ProvidePlugin({
+      
+              $:"jquery",
+      
+              jQuery:"jquery",
+      
+              "windows.jQuery":"jquery"
+      
+            })
+      
+          ]  
   }
 }

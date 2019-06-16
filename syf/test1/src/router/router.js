@@ -40,7 +40,15 @@ const routes = [
     meta: {
       title: '关于本站', noAnima: true
     }
-  },    
+  },
+  {
+    path: '/test1',
+    name: 'test1',
+    component: () => import('@/view/test/test1.vue'),
+    meta: {
+      title: '关于本站', noAnima: true
+    }
+  },   
   {
     path: '/level',
     name: 'level',

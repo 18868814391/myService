@@ -168,11 +168,11 @@ body{
   color: red;
 }
 .app-page{
-  width: 100%;
+  width: 100%;   
   .app-head{
     width: 100%;
     height: 50px;
-    background:linear-gradient(305deg,rgba(75,142,254,1) 0%,rgba(46,192,254,1) 100%);
+    background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -190,7 +190,7 @@ body{
     text-align: center;
     line-height: 40px;
     box-sizing: border-box;
-    background:linear-gradient(305deg,rgba(75,142,254,1) 0%,rgba(46,192,254,1) 100%);
+    background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
     z-index: 999;
     box-shadow: 0 2px 2px 2px rgba(49, 49, 49, 0.2);
     div {
