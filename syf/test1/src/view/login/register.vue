@@ -1,11 +1,11 @@
 <template>
   <div class="register-page">
-    <div class="rebox">
+    <div class="rebox2">
       <van-field class="input-item" v-model="admin" placeholder="请输入账户" />
       <van-field class="input-item" v-model="Thename" placeholder="请输入昵称" />
       <van-field class="input-item" v-model="code" placeholder="请输入登陆密码" type="password"/> 
+      <van-button class="butt-item" type="primary" @click="submit">提交</van-button>
     </div>
-    <van-button class="butt-item" type="primary" @click="submit">提交</van-button>
   </div>
 </template>
 <script>
@@ -82,7 +82,13 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;  
-  .rebox{
+  .rebox2{
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
     .input-item{
       margin-top:10px; 
     }

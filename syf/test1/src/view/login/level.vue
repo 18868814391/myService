@@ -1,8 +1,6 @@
 <template>
   <div class="levelPage">
-    <!-- <div class="test-head">权限获取只能进行一次，进认真作答哦~ ~</div> -->
     <br>
-
     <div class="test-con">
       <div class="test-con-ques">
         天王盖地虎
@@ -10,6 +8,7 @@
       <div class="test-con-tit">
         <van-field class="input-item" v-model="myname" placeholder="请输入下一句" />
       </div>
+      <div class="reg-tip">你尽管猜，猜对了算我输.</div>
       <van-button class="butt-item" type="primary" @click="submit">提交</van-button>
     </div>
   
@@ -68,9 +67,12 @@ export default {
     text-align: center;
   }
   .test-con{
-    .test-con-ques{
-
-    }
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .test-con-tit{
       width: 100%;
       display: flex;
@@ -78,7 +80,17 @@ export default {
       align-items: center;
       margin-top:20px;
       justify-content: space-between;  
+      margin-top:10px; 
     }
+  }
+  .butt-item{
+    margin-top:10px; 
+  }
+  .reg-tip{
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
   }
 }
 </style>

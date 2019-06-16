@@ -1,7 +1,7 @@
 <template>
   <div class="aboutMe-page">
     <div>后端基于：Nginx/MySQL/PHP</div>
-    <div style="color:blue;fontSize:12px;">(lnmp无人值守（不动脑子）一键装机版本,写的还全都是原生php7)</div>
+    <div style="color:blue;fontSize:12px;">(lnmp无人值守（不动脑子）一键装机版本,写的还全都是原生php7,凑合倒也都能用)</div>
     <br>
     <div>服务器基于：阿里云ECS，centos_7镜像</div>
     <div style="color:blue;fontSize:12px;">(平摊下来一个月16块钱,8毛钱一个G的乞丐版。真·从牙缝里省下来的服务器)</div>

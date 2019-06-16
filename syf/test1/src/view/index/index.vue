@@ -1,6 +1,9 @@
 <template>
   <div class="indexPage">
+
+ 
   <canvas id="testCanvas" width="550" height="500" @click="closeCaven" v-if="cavenFlag"></canvas>
+
 
   <div class="index-item" v-if="!cavenFlag">
     <div class="liuyanban" @click="gofootprint">
@@ -32,21 +35,23 @@
     <p>---------------</p>
     <div @click="goCommon">公共文件夹</div>
     <p>---------------</p>
-    <div @click="gofootprint">留言板</div>
-    <p>---------------</p>
+    <!-- <div @click="gofootprint">留言板</div> -->
+
     <div @click="aboutMe">关于本站</div>
     <p>---------------</p>
    </div> 
 
-
+    <jumpBox class="jumpBox" v-if="!cavenFlag"></jumpBox>
   </div>
 </template>
 <script>
 import { Toast} from 'vant';
 import { getThename,getadmin} from '@/utils/auth'
+import jumpBox from '@/components/jumpBox.vue'
 export default {
   components: {
     [Toast.name]: Toast, 
+    [jumpBox.name]: jumpBox,
   },   
   data(){
     return{
@@ -127,12 +132,13 @@ export default {
   .index-item{
     display:flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
+    position: relative;    
   }
   .liuyanban2{
     width: 100px;
     position: absolute;
-    top:50px;
+    top:0px;
     right:10px;
     height: 75px;
     img{
@@ -154,7 +160,7 @@ export default {
   .liuyanban{
     width: 100px;
     position: absolute;
-    top:50px;
+    top:0px;
     left:10px;
     height: 75px;
     img{
@@ -172,6 +178,11 @@ export default {
       font-size: 18px;
       font-weight: 600;
     }
+  }
+  .jumpBox{
+    position: fixed;
+    bottom: 0;
+    left: 0;
   }
 }
 </style>

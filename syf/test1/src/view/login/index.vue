@@ -3,8 +3,10 @@
     <div class="rebox">
       <van-field class="login-inp" v-model="admin" placeholder="请输入账户" />
       <van-field class="login-inp" v-model="code" placeholder="请输入登陆密码" type="password"/>
+      <div class="login-tip">非常抱歉，懒得写忘记密码功能，忘了就再去注册个呗</div>
+      <van-button class="login-inp2" type="primary" @click="submit">提交</van-button>      
     </div>
-    <van-button class="login-inp" type="primary" @click="submit">提交</van-button>
+
   </div>
 </template>
 <script>
@@ -60,10 +62,26 @@ export default {
 <style lang="scss">
 .register-page{
   .rebox{
-    
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .login-inp{
     margin-top:10px; 
+  }
+  .login-inp2{
+    margin-top:10px;
+    position: relative;
+    margin:10px auto;
+  }
+  .login-tip{
+    margin-top:10px; 
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
   }
 }
 </style>
