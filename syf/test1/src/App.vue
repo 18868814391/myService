@@ -183,7 +183,7 @@ body{
   .app-home {
     position: fixed;
     right: 28px;
-    bottom: 111px;
+    bottom: 300px;
     width: 40px;
     height: 40px;
     border-radius: 50%;

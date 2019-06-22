@@ -76,6 +76,20 @@ export default {
       s.src = 'http://118.31.62.251/apis/syf/staticJS/clover.js';
       document.body.appendChild(s);
     }
+
+    L2Dwidget.init({
+      pluginRootPath: "../../../public/live2dw/",
+      pluginJsPath: "lib/",
+      pluginModelPath: "live2d-widget-model-wanko/assets/",
+      tagMode: false,
+      debug: false,
+      model: { jsonPath: "/live2dw/live2d-widget-model-wanko/assets/wanko.model.json" },
+      display: { position: "right", width: 150, height: 300 },
+      mobile: { show: true },
+      log: false
+    })
+
+
   },
   methods:{
     closeCaven(){

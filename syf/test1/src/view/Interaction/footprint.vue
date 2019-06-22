@@ -27,6 +27,7 @@
           <div>{{itm.content.replace(/(^\s*)|(\s*$)/g, "")}}</div>
         </div>
       </div>
+      <!-- <button class="for-del">删除</button> -->
     </div>
   </van-list>  
 
@@ -73,6 +74,7 @@ export default {
       pages:self.pages,
     }).then((d)=>{
       self.start_page++;
+      console.log(d.data)
       self.footList=self.footList.concat(d.data.data);
         if(self.footList.length*1>=d.data.total_page*1){
           self.finished=true;
@@ -163,7 +165,7 @@ export default {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top:5px; 
+    margin-top:5px;
     .foot-page-list-head{
       width: 100%;
       height: 20px;
@@ -220,6 +222,12 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+  }
+  .for-del{
+    font-size: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 }
 </style>

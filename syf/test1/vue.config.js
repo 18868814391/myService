@@ -6,6 +6,7 @@ module.exports = {
     // http://lantian-home-test.netmi.com.cn  /netmi-shop-h5/dist/
     //http://118.31.62.251/syf/php
     //http://localhost/phpdemo/syf/php
+    //http://118.31.62.251/apis/syf/php
     proxy: 'http://localhost/phpdemo/syf/php' 
   },
   outputDir: 'dist',
