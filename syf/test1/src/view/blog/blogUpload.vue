@@ -16,7 +16,7 @@
 <script>
 import { Icon, Toast,Dialog,Field,Progress,Popup } from 'vant';
 import { quillEditor } from 'vue-quill-editor'
-import { BlogRichTxt } from '@/api';
+import { BlogRichTxt,yiiBlogAdd } from '@/api';
 import Cookies from 'js-cookie'
 import moment from 'moment'
 export default {
@@ -69,7 +69,7 @@ export default {
       }else{
         console.log(self.content)
         self.content=self.content.replace(new RegExp('\\+','g'),"%2B");
-        BlogRichTxt({
+        yiiBlogAdd({
           'adm':self.adm,
           'title':self.novelName,
           'content':self.content,

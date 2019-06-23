@@ -3,17 +3,63 @@
 namespace app\controllers;
 
 use Yii;
-use app\Models\Blog;
+//use app\Models\Blog;
 use app\models\search\BlogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use app\models\Blog;//数据模型
+use app\models\User;//数据模型
+
 /**
  * BlogController implements the CRUD actions for Blog model.
  */
+
+
+
 class BlogController extends Controller
 {
+
+    public $enableCsrfValidation = false;
+    public function actionMore(){
+//        $body = @file_get_contents('php://input');//接受整个请求主体
+//        $body=json_decode($body)  ;//反序列化
+//        $id=$body->name;//获取欲取参数
+//        echo $id;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $postData = Yii::$app->request->post();
+        $model = new Blog();
+        $rest=Blog::find()->where(['title' => $postData['title']])->one();
+        if($rest){
+            return ['errcode'=>99,'errmsg'=>'存在重名文档'];
+            die();
+        }
+        $model2 = new User();
+        $rest2=User::find()->where(['adm' => $postData['adm']])->one();
+        if(!$rest2){
+            return ['errcode'=>99,'errmsg'=>'不存在该用户'];
+            die();
+        }
+        if($rest2['level']!=1){
+            return ['errcode'=>99,'errmsg'=>'用户权限不足'];
+            die();
+        }
+        $model->title = $postData['title'];
+        $model->content= $postData['content'];
+        $model->updataTime = $postData['updataTime'];
+        $model->state= $postData['adm'];
+        $model->save();
+        return ['errcode'=>0,'errmsg'=>'创建成功',
+            'data'=>array(
+            'title'=>$postData['title'],
+            'content'=>$postData['content']
+        )];
+
+    }
+    public function actionIndex2(){
+        echo "Blog/index2";
+    }
     /**
      * {@inheritdoc}
      */
