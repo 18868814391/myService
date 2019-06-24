@@ -1,6 +1,7 @@
 <?php
 
 // comment out the following two lines when deployed to production
+ini_set('display_errors' , 'yes');  // 开启错误提示
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
