@@ -23,6 +23,8 @@ class BlogController extends Controller
 
     public $enableCsrfValidation = false;
     public function actionMore(){
+        echo "123";
+        die();
 //        $body = @file_get_contents('php://input');//接受整个请求主体
 //        $body=json_decode($body)  ;//反序列化
 //        $id=$body->name;//获取欲取参数
