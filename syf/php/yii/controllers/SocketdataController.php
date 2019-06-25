@@ -25,7 +25,7 @@ class SocketdataController extends Controller
         $model->Thename = $postData['Thename'];
         $model->updataTime = $postData['updataTime'];
         $model->save();
-        return ['errcode'=>0,'errmsg'=>'注册成功'];
+        return ['errcode'=>0,'errmsg'=>'记录成功'];
 
     }
     /**
