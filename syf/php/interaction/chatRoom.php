@@ -7,7 +7,7 @@ class WS {
 
     function __construct($address, $port){
         $this->master=socket_create(AF_INET, SOCK_STREAM, SOL_TCP)     or die("socket_create() failed");
-        socket_set_option($this->master, SOL_SOCKET, SO_REUSEADDR, 1)  or die("socket_option() failed");
+        socket_set_option($this->master, SOL_SOCKET, SO_REUSEADDR, 1)  or die("socket_option() failed");//1表示接受所有的数据包
         socket_bind($this->master, $address, $port)                    or die("socket_bind() failed");
         socket_listen($this->master,20)                                or die("socket_listen() failed");
 
@@ -16,13 +16,26 @@ class WS {
         $this->say("Listening on   : ".$address." port ".$port);
         $this->say("Master socket  : ".$this->master."\n");
 
-        while(true){
+        while(true){//死循环，直到socket断开
             $socketArr = $this->sockets;
             $write = NULL;
             $except = NULL;
+            /*
+            //这个函数是同时接受多个连接的关键，我的理解它是为了阻塞程序继续往下执行。
+            socket_select ($sockets, $write = NULL, $except = NULL, NULL);
+            $sockets可以理解为一个数组，这个数组中存放的是文件描述符。当它有变化（就是有新消息到或者有客户端连接/断开）时，socket_select函数才会返回，继续往下执行。
+            $write是监听是否有客户端写数据，传入NULL是不关心是否有写变化。
+            $except是$sockets里面要被排除的元素，传入NULL是”监听”全部。
+            最后一个参数是超时时间
+            如果为0：则立即结束
+            如果为n>1: 则最多在n秒后结束，如遇某一个连接有新动态，则提前返回
+            如果为null：如遇某一个连接有新动态，则返回
+            */
             socket_select($socketArr, $write, $except, NULL);  //自动选择来消息的socket 如果是握手 自动选择主机
             foreach ($socketArr as $socket){
+                //如果有新的client连接进来，则
                 if ($socket == $this->master){  //主机
+                    //接受一个socket连接
                     $client = socket_accept($this->master);
                     if ($client < 0){
                         $this->log("socket_accept() failed");
@@ -30,7 +43,7 @@ class WS {
                     } else{
                         $this->connect($client);
                     }
-                } else {
+                } else {//否则1.为client断开socket连接，2.client发送信息
                     $bytes = @socket_recv($socket,$buffer,2048,0);
                     if ($bytes == 0){
                         $this->disConnect($socket);
@@ -45,8 +58,9 @@ class WS {
                             echo $buffer.PHP_EOL;
                             $key = array_search($socket, $this->sockets);
                             $arr = $this->sockets;
-                            array_shift($arr);
-                            foreach ($arr as $s){
+                            array_splice($arr, $key, 1);
+//                            array_shift($arr);
+                            foreach ($arr as $s){ //对池子里所有人依次广播
                                 $this->send($s, $buffer);
                             }
                         }
@@ -80,7 +94,7 @@ class WS {
         list($resource, $host, $origin, $key) = $this->getHeaders($buffer);
         $this->log("Handshaking...");
         $upgrade  = "HTTP/1.1 101 Switching Protocol\r\n" .
-            "Upgrade: websocket\r\n" .
+            "Upgrade: websocket\r\n" . //告诉服务器现在发送的是WebSocket协议
             "Connection: Upgrade\r\n" .
             "Sec-WebSocket-Accept: " . $this->calcKey($key) . "\r\n\r\n";  //必须以两个回车结尾
         $this->log($upgrade);

@@ -5,28 +5,32 @@
   </div>
 </template>
 <script>
+import { getThename,getadmin} from '@/utils/auth'
 export default {
   data(){
     return{
+      admin:getadmin(),
+      Thename:getThename(),       
       con:'',
+      ws:null,
     }
   },
   created(){
-    var ws = new WebSocket("ws://118.31.62.251:4000");
-    ws.onopen = function(){
+    this.ws=new WebSocket("ws://118.31.62.251:4000");
+    this.ws.onopen = function(){
       console.log("握手成功");
     };
-    ws.onmessage = function(e){
+    this.ws.onmessage = function(e){
       console.log("message:" + e.data);
     };
-    ws.onerror = function(){
+    this.ws.onerror = function(){
       console.log("error");
     }   
   },
   methods:{
     send(){
       const self=this;
-      ws.send(self.con);
+      this.ws.send(self.con);
     },
   },
 }
