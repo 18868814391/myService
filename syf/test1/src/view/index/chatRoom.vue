@@ -12,7 +12,7 @@ export default {
     }
   },
   created(){
-    var ws = new WebSocket("ws://localhost:4000");
+    var ws = new WebSocket("ws://118.31.62.251:4000");
     ws.onopen = function(){
       console.log("握手成功");
     };
