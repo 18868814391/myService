@@ -3,12 +3,14 @@
 namespace app\controllers;
 
 use Yii;
-use app\Models\User;
+//use app\Models\User;
 use app\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use app\models\Blog;//数据模型
+use app\models\User;//数据模型
 /**
  * UserController implements the CRUD actions for User model.
  */

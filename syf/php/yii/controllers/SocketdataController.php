@@ -3,12 +3,14 @@
 namespace app\controllers;
 
 use Yii;
-use app\Models\Socketdata;
+//use app\Models\Socketdata;
 use app\models\search\SocketdataSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use app\models\Socketdata;//数据模型
+use app\models\User;//数据模型
 /**
  * SocketdataController implements the CRUD actions for Socketdata model.
  */
