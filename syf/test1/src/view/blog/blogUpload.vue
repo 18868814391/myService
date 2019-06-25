@@ -64,7 +64,7 @@ export default {
         Toast('请输入名字')
       }else if(!self.content){
         Toast('请输入内容')
-      }else if(!self.adm){
+      }else if(0){
         Toast('未获取到用户身份')
       }else{
         console.log(self.content)
