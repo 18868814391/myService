@@ -58,9 +58,9 @@ class WS {
                             echo $buffer.PHP_EOL;
                             $key = array_search($socket, $this->sockets);
                             $arr = $this->sockets;
-                            array_splice($arr, $key, 1);
-//                            array_shift($arr);
-                            foreach ($arr as $s){ //对池子里所有人依次广播
+//                            array_splice($arr, $key, 1); //剔除自身后进行广播
+                            array_shift($arr);
+                            foreach ($arr as $s){ //对池子里剩下所有人依次广播
                                 $this->send($s, $buffer);
                             }
                         }

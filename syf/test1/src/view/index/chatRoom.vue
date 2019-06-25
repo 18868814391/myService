@@ -1,5 +1,6 @@
 <template>
   <div class="chat-page">
+
     <input type="text" name="" id="" v-model="con">
     <button @click="send">发送</button>
   </div>
@@ -30,7 +31,12 @@ export default {
   methods:{
     send(){
       const self=this;
-      this.ws.send(self.con);
+      let obj={
+        adm:getadmin(),
+        Thename:getThename(),
+        content:self.con,
+      }
+      this.ws.send(JSON.stringify(obj));
     },
   },
 }
