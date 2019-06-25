@@ -17,4 +17,6 @@ export function getMusic(params) { return request({ url: '/media/music.php', met
 export function getAnime(params) { return request({ url: '/media/anime.php', method: 'post', data: params }) }// 获取动画
 export function sendFoot(params) { return request({ url: '/interaction/footprint.php', method: 'post', data: params }) }// 发送留言
 export function getFoot(params) { return request({ url: '/interaction/footList.php', method: 'post', data: params }) }// 获取留言
-export function yiiBlogAdd(params) { return request({ url: '/yii/web/index.php?r=blog/more', method: 'post', data: params }) }// yii测试 新增博客
+export function yiiBlogAdd(params) { return request({ url: '/yii/web/index.php?r=blog/more', method: 'post', data: params }) }// yii新增博客
+export function yiiRegister(params) { return request({ url: '/yii/web/index.php?r=user/register', method: 'post', data: params }) }// yii注册
+export function yiiLogin(params) { return request({ url: '/yii/web/index.php?r=user/login', method: 'post', data: params }) }// yii登陆

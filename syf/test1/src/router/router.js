@@ -42,6 +42,14 @@ const routes = [
     }
   },
   {
+    path: '/chatRoom',
+    name: 'chatRoom',
+    component: () => import('@/view/index/chatRoom'),
+    meta: {
+      title: '聊天室', noAnima: true
+    }
+  },  
+  {
     path: '/test1',
     name: 'test1',
     component: () => import('@/view/test/test1.vue'),

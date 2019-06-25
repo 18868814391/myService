@@ -10,7 +10,7 @@
 </template>
 <script>
 import { Icon, Toast,Dialog,Field } from 'vant';
-import { register } from '@/api';
+import { register,yiiRegister} from '@/api';
 import md5 from 'js-md5'
 import Cookies from 'js-cookie'
 // Vue.use(Dialog);
@@ -40,7 +40,7 @@ export default {
         mask: true,
         message: '提交中...'
       });      
-      register({
+      yiiRegister({
         admin:self.admin,
         Thename:self.Thename,
         code:md5(self.code),

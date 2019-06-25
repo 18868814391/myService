@@ -11,7 +11,7 @@
 </template>
 <script>
 import { Icon, Toast,Dialog,Field } from 'vant';
-import { loginIN } from '@/api';
+import { loginIN,yiiLogin } from '@/api';
 import md5 from 'js-md5'
 import Cookies from 'js-cookie'
 // Vue.use(Dialog);
@@ -36,7 +36,7 @@ export default {
   methods:{
     submit(){
       const self=this;
-      loginIN({
+      yiiLogin({
         admin:self.admin,
         code:md5(self.code),
       }).then((d)=>{
@@ -47,8 +47,10 @@ export default {
           Cookies.set('Thename', d.data.data.Thename,{expires:60})
           self.$store.commit('SET_ADMIN',d.data.data.adm);
           self.$store.commit('SET_NAME', d.data.data.Thename);          
-          Toast(`${Thename}，欢迎`)
-          window.location.reload();      
+          Toast(`${Thename}，欢迎`);
+          setTimeout(function(){
+            window.location.reload();
+          },1000)
         }else{
           Toast(d.data.errmsg)
         }

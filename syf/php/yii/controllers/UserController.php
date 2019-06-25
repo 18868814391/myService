@@ -14,6 +14,51 @@ use yii\filters\VerbFilter;
  */
 class UserController extends Controller
 {
+    public $enableCsrfValidation = false;
+    public function actionRegister()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $postData = Yii::$app->request->post();
+        $model = new User();
+        $rest=User::find()->where(['adm' => $postData['admin']])->one();
+        if($rest){
+            return ['errcode'=>99,'errmsg'=>'用户名重名'];
+            die();
+        }
+        $model->adm = $postData['admin'];
+        $model->code= $postData['code'];
+        $model->Thename = $postData['Thename'];
+        $model->save();
+        return ['errcode'=>0,'errmsg'=>'注册成功',
+            'data'=>array(
+                'adm'=>$postData['admin'],
+                'Thename'=>$postData['Thename']
+            )];
+    }
+    public function actionLogin()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $postData = Yii::$app->request->post();
+        $model = new User();
+        $rest=User::find()->where(['adm' => $postData['admin']])->one();
+        if(!$rest){
+            return ['errcode'=>99,'errmsg'=>'不存在该用户'];
+            die();
+        }
+        if($rest['code']==$postData['code']){
+            return ['errcode'=>0,'errmsg'=>'登陆成功',
+                'data'=>array(
+                    'adm'=>$postData['admin'],
+                    'Thename'=>$rest['Thename'],
+                )];
+        }else{
+            return ['errcode'=>99,'errmsg'=>'密码错误',
+                'data'=>array(
+                    'adm'=>$postData['admin'],
+                    'Thename'=>$rest['Thename']
+                )];
+        }
+    }
     /**
      * {@inheritdoc}
      */

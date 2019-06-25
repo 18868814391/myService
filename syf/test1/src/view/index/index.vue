@@ -130,7 +130,8 @@ export default {
       this.$router.push({ path: '/aboutMe' });          
     },
     gochatRoom(){
-      Toast('别戳了，还没做好......')
+      this.$router.push({ path: '/chatRoom' });   
+      // Toast('别戳了，还没做好......')
     },
   }
 }
