@@ -13,12 +13,13 @@
   </div>
 </template>
 <script>
-import {yiiSocketIn} from '@/api';
+import {yiiSocketIn,yiiSocketmsg} from '@/api';
 import { getThename,getadmin} from '@/utils/auth'
 import moment from 'moment'
 export default {
   data(){
     return{
+      histortist:[],//历史信息，5条
       chatList:[],
       admin:getadmin(),
       Thename:getThename(),       
@@ -28,6 +29,7 @@ export default {
   },
   created(){
     const self=this;
+    self.getlatest();
     this.ws=new WebSocket("ws://118.31.62.251:4000");
     this.ws.onopen = function(){
       console.log("握手成功");
@@ -61,6 +63,15 @@ export default {
       })
       this.ws.send(JSON.stringify(obj));
 
+    },
+    getlatest(){
+      yiiSocketmsg({
+
+      }).then((d)=>{
+
+      }).catch((d)=>{
+
+      })
     },
   },
 }

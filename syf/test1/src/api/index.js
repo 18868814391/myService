@@ -21,3 +21,4 @@ export function yiiBlogAdd(params) { return request({ url: '/yii/web/index.php?r
 export function yiiRegister(params) { return request({ url: '/yii/web/index.php?r=user/register', method: 'post', data: params }) }// yii注册
 export function yiiLogin(params) { return request({ url: '/yii/web/index.php?r=user/login', method: 'post', data: params }) }// yii登陆
 export function yiiSocketIn(params) { return request({ url: '/yii/web/index.php?r=socketdata/addmessage', method: 'post', data: params }) }// yii socket消息存入
+export function yiiSocketmsg(params) { return request({ url: '/yii/web/index.php?r=socketdata/getmessage', method: 'post', data: params }) }// yii socket消息历史

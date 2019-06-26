@@ -28,7 +28,13 @@ class SocketdataController extends Controller
         $model->updataTime = $postData['updataTime'];
         $model->save();
         return ['errcode'=>0,'errmsg'=>'记录成功'];
-
+    }
+    public function actionGetmessage()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $model = new Socketdata();
+        $rest=Socketdata::findBySql("SELECT * FROM socketdata order by id desc limit 5")->asArray()->all();
+        return ['errcode'=>0,'errmsg'=>$rest];
     }
     /**
      * {@inheritdoc}
