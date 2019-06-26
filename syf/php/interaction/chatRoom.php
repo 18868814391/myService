@@ -61,7 +61,7 @@ class WS {
 //                            array_splice($arr, $key, 1); //剔除自身后进行广播
                             array_shift($arr);
                             foreach ($arr as $s){ //对池子里剩下所有人依次广播
-                                $this->send($s, $buffer);
+//                                $this->send($s, $buffer);
                                 $this->send($s, '123');
                             }
                         }
