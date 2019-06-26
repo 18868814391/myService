@@ -62,7 +62,7 @@ class WS {
                             array_shift($arr);
                             foreach ($arr as $s){ //对池子里剩下所有人依次广播
                                 $this->send($s, $buffer);
-                                $this->send($s, count($arr));
+                                $this->send($s, '123');
                             }
                         }
                     }
