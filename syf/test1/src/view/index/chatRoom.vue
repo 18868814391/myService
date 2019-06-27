@@ -3,23 +3,23 @@
     <div class="chat-page-head">当前在线人数{{num}}</div>
     <div class="chat-page-body" id="msg_box">
       <div v-for="(item,ind) in histortist" :key="ind" class="chatMsg">
-        <div class="chatMsg-t1" v-if="item.admin!=admin">{{item.Thename}}说：</div>
-        <div class="chatMsg-t2" v-if="item.admin!=admin">{{item.updataTime}}</div>
-        <div class="chatMsg-t3" v-if="item.admin!=admin">{{item.content}}</div>
+        <div class="chatMsg-t1" v-if="item.adm!=admin">{{item.Thename}}说：</div>
+        <div class="chatMsg-t2" v-if="item.adm!=admin">{{item.updataTime}}</div>
+        <div class="chatMsg-t3" v-if="item.adm!=admin">{{item.content}}</div>
 
-        <div class="chatMsg-t1 al gb" v-if="item.admin==admin">{{item.Thename}}说：</div>
-        <div class="chatMsg-t2 al gb" v-if="item.admin==admin">{{item.updataTime}}</div>
-        <div class="chatMsg-t3 al gb" v-if="item.admin==admin">{{item.content}}</div>
+        <div class="chatMsg-t1 al gb" v-if="item.adm==admin">{{item.Thename}}说：</div>
+        <div class="chatMsg-t2 al gb" v-if="item.adm==admin">{{item.updataTime}}</div>
+        <div class="chatMsg-t3 al gb" v-if="item.adm==admin">{{item.content}}</div>
       </div>
       <div>————历史纪录————</div>
       <div v-for="(item,index) in chatList" :key="index" class="chatMsg">
-        <div class="chatMsg-t1" v-if="item.admin!=admin">{{item.Thename}}说：</div>
-        <div class="chatMsg-t2" v-if="item.admin!=admin">{{item.updataTime}}</div>
-        <div class="chatMsg-t3" v-if="item.admin!=admin">{{item.content}}</div>
+        <div class="chatMsg-t1" v-if="item.adm!=admin">{{item.Thename}}说：</div>
+        <div class="chatMsg-t2" v-if="item.adm!=admin">{{item.updataTime}}</div>
+        <div class="chatMsg-t3" v-if="item.adm!=admin">{{item.content}}</div>
 
-        <div class="chatMsg-t1 al gb" v-if="item.admin==admin">{{item.Thename}}说：</div>
-        <div class="chatMsg-t2 al gb" v-if="item.admin==admin">{{item.updataTime}}</div>
-        <div class="chatMsg-t3 al gb" v-if="item.admin==admin">{{item.content}}</div>
+        <div class="chatMsg-t1 al gb" v-if="item.adm==admin">{{item.Thename}}说：</div>
+        <div class="chatMsg-t2 al gb" v-if="item.adm==admin">{{item.updataTime}}</div>
+        <div class="chatMsg-t3 al gb" v-if="item.adm==admin">{{item.content}}</div>
       </div>
     </div>
     <div class="chat-page-bottom">
@@ -95,7 +95,7 @@ export default {
           'updataTime':ddd,
         }
       self.ws.send(JSON.stringify(obj));
-    },1000)
+    },2000)
   },
   methods:{
     send(){
@@ -108,7 +108,7 @@ export default {
       let obj={
         adm:getadmin()?getadmin():'某匿名用户',
         Thename:getThename(),
-        content:self.con,
+        content:String(self.con),
         'updataTime':ddd,
       }
       yiiSocketIn({

@@ -54,7 +54,7 @@ class WS {
                             $this->doHandShake($socket, $buffer, $key);
                         }
                         else{
-                            $buffer = $this->decode($buffer);
+//                            $buffer = $this->decode($buffer);
                             echo $buffer.PHP_EOL;
                             $key = array_search($socket, $this->sockets);
                             $arr = $this->sockets;
