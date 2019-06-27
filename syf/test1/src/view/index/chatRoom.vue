@@ -62,6 +62,7 @@ export default {
       Thename:getThename(),       
       con:'',
       ws:null,
+      hub:'',//数据暂存,过长的数据socket会截断返回
     }
   },
   created(){
@@ -73,6 +74,8 @@ export default {
     };
     this.ws.onmessage = function(e){
       console.log("message:" + e.data);
+      // self.hub=self.hub+e.data
+
       if(JSON.parse(e.data).content){
         self.chatList.push(JSON.parse(e.data));
         self.$nextTick(function(){
@@ -82,6 +85,8 @@ export default {
       }else{
         self.num=e.data;
       }
+
+
     };
     this.ws.onerror = function(){
       console.log("error");

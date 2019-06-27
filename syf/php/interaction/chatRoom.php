@@ -143,15 +143,23 @@ class WS {
     }
 
     function frame($s){
-        $a = str_split($s, 125);
-        if (count($a) == 1){
-            return "\x81" . chr(strlen($a[0])) . $a[0];
+        $len=strlen($s);
+        if($len<=125){
+            return "\x81".chr($len).$s;
+        }else if($len<=65535){
+            return "\x81".chr(126).pack("n",$len).$s;
+        }else{
+            return "\x81".chr(127).pack("xxxxN",$len).$s;
         }
-        $ns = "";
-        foreach ($a as $o){
-            $ns .= "\x81" . chr(strlen($o)) . $o;
-        }
-        return $ns;
+//        $a = str_split($s, 125);
+//        if (count($a) == 1){
+//            return "\x81" . chr(strlen($a[0])) . $a[0];
+//        }
+//        $ns = "";
+//        foreach ($a as $o){
+//            $ns .= "\x81" . chr(strlen($o)) . $o;
+//        }
+//        return $ns;
     }
 
 
