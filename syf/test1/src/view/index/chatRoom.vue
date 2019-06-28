@@ -25,7 +25,7 @@
     <div class="chat-page-bottom">
       <textarea type="text" name="" id="" v-model="con"></textarea>
       <div class="sendop">
-        <div class="sendop-b1" @click="show=!show">表情</div>
+        <div class="sendop-b1" @click="show=!show">颜艺</div>
         <button @click="send">发送</button>          
       </div>
     </div>
@@ -74,8 +74,6 @@ export default {
     };
     this.ws.onmessage = function(e){
       console.log("message:" + e.data);
-      // self.hub=self.hub+e.data
-
       if(JSON.parse(e.data).content){
         self.chatList.push(JSON.parse(e.data));
         self.$nextTick(function(){
@@ -85,13 +83,12 @@ export default {
       }else{
         self.num=e.data;
       }
-
-
     };
     this.ws.onerror = function(){
       console.log("error");
     };
     setTimeout(function(){
+      
       let ddd=moment().format('MMMM Do YYYY, h:mm:ss a'); 
       let obj={
           adm:getadmin()?getadmin():'某匿名用户',
