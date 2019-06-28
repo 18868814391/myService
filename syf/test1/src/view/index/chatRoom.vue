@@ -1,6 +1,9 @@
 <template>
   <div class="chat-page">
-    <div class="chat-page-head">当前在线人数{{num}}</div>
+    <div class="chat-page-head">
+      当前在线人数{{num}}
+      <!-- <div class="ttips"></div> -->
+    </div>
     <div class="chat-page-body" id="msg_box">
       <div v-for="(item,ind) in histortist" :key="ind" class="chatMsg">
         <div class="chatMsg-t1" v-if="item.adm!=admin">{{item.Thename}}说：</div>
@@ -63,10 +66,24 @@ export default {
       con:'',
       ws:null,
       hub:'',//数据暂存,过长的数据socket会截断返回
+      noAdm:'',//匿名用户代号
     }
   },
+  beforeRouteLeave(to, from, next) {
+    this.ws.close();
+    next();
+  },  
   created(){
     const self=this;
+    if(!getadmin()){
+      Toast('您尚未登陆，将随机分配您的用户名')
+      let timestamp = (new Date()).valueOf();
+      console.log(String(timestamp))
+      this.noAdm='匿名用户'+String(timestamp).substr(7,10);
+      console.log(this.noAdm)
+      this.admin=this.noAdm
+      this.Thename=this.noAdm
+    }
     self.getlatest();
     this.ws=new WebSocket("ws://118.31.62.251:4000");
     this.ws.onopen = function(){
@@ -85,15 +102,15 @@ export default {
       }
     };
     this.ws.onerror = function(){
+      Toast('socket连接以断开，请刷新页面')
       console.log("error");
     };
     setTimeout(function(){
-      
       let ddd=moment().format('MMMM Do YYYY, h:mm:ss a'); 
       let obj={
-          adm:getadmin()?getadmin():'某匿名用户',
-          Thename:getThename(),
-          content:getadmin()+'加入了聊天室',
+          adm:self.admin,
+          Thename:self.Thename,
+          content:self.Thename+'加入了聊天室',
           'updataTime':ddd,
         }
       self.ws.send(JSON.stringify(obj));
@@ -108,15 +125,15 @@ export default {
       const self=this;
       let ddd=moment().format('MMMM Do YYYY, h:mm:ss a'); 
       let obj={
-        adm:getadmin()?getadmin():'某匿名用户',
-        Thename:getThename(),
+        adm:self.admin,
+        Thename:self.Thename,
         content:String(self.con),
         'updataTime':ddd,
       }
       yiiSocketIn({
-        'admin':getadmin()?getadmin():'某匿名用户',
+        'admin':self.admin,
         'content':self.con,
-        'Thename':getThename(),
+        'Thename':self.Thename,
         'updataTime':ddd,
       }).then((d)=>{
 
@@ -154,12 +171,20 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  .ttips{
+    width: 100%;
+    color: blue;
+    font-size: 10px;
+    text-align: center;
+  }
   .chat-page-head{
     width: 100%;
     height: 50px;
     text-align: center;
     line-height: 50px;
     background: lightblue;
+    position: relative;
+
   }
   .chat-page-bottom{
     width: 100%;
