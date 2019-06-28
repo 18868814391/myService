@@ -116,7 +116,7 @@ export default {
             ]
           });
         });
-      },400)
+      },1000)
       setTimeout(function(){
           $(document).ready(function() {
           $(".app-home").gradientify({
@@ -127,7 +127,7 @@ export default {
             ]
           });
         });
-      },400)      
+      },1000)      
 
 
 
