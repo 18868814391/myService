@@ -57,7 +57,9 @@ export default {
     return{
       admin:getadmin(),
       Thename:getThename(), 
-      cavenFlag:false,     
+      cavenFlag:false,
+      position: { x: 0, y: 0 },
+      nx: '', ny: '', dx: '', dy: '', xPum: '', yPum: '',x:'',y:'',            
     }
   },
   created(){
@@ -70,6 +72,7 @@ export default {
     } 
   },
   mounted(){
+    const self=this;
     if(!(sessionStorage.getItem('noClovers'))){
       const s = document.createElement('script');
       s.type = 'text/javascript';
@@ -84,12 +87,21 @@ export default {
       tagMode: false,
       debug: false,
       model: { jsonPath: "/live2dw/live2d-widget-model-wanko/assets/wanko.model.json" },
-      display: { position: "right", width: 150, height: 300 },
+      display: { position: "right", width: 120, height: 120 },
       mobile: { show: true },
       log: false
     })
 
-
+    setTimeout(function(){
+      let moveDiv = document.querySelector(".live2d-widget-container");
+      console.log(moveDiv)
+      self.w = document.documentElement.clientWidth || document.body.clientWidth;
+      self.h = document.documentElement.clientHeight || document.body.clientHeight;
+      self.x = moveDiv.offsetWidth;
+      self.y = moveDiv.offsetHeight;
+      moveDiv.addEventListener('touchstart', self.down, { passive: false })
+      moveDiv.addEventListener('touchmove', self.move, { passive: false })
+    },2000)
   },
   methods:{
     closeCaven(){
@@ -131,12 +143,51 @@ export default {
     },
     gochatRoom(){
       this.$router.push({ path: '/chatRoom' });   
-      // Toast('别戳了，还没做好......')
+    },
+    down(){
+      let moveDiv = document.querySelector(".live2d-widget-container");
+      var touch;
+      if(event.touches){
+         touch = event.touches[0];
+      }else {
+        touch = event;
+      }
+      this.position.x = touch.clientX;
+      this.position.y = touch.clientY;
+      this.dx = moveDiv.offsetLeft; //左偏移量
+      this.dy = moveDiv.offsetTop; //上移量
+    },
+    move(){
+      let moveDiv = document.querySelector(".live2d-widget-container")
+      var touch ;
+      if(event.touches){
+        touch = event.touches[0];
+      }else {
+        touch = event;
+      }
+      //组织默认事件，防止body滑动
+      event.preventDefault();
+      this.nx = touch.clientX - this.position.x;
+      this.ny = touch.clientY - this.position.y;
+      this.xPum = this.dx+this.nx;
+      this.yPum = this.dy+this.ny;
+      //边界判断
+      this.xPum = this.xPum>0?this.xPum:0;
+      this.yPum = this.yPum>0?this.yPum:0;
+      this.xPum = this.xPum>this.w-this.x?this.w-this.x:this.xPum;
+      this.yPum = this.yPum>this.h-this.y?this.h-this.y:this.yPum;
+
+      moveDiv.style.left = this.xPum+"px";
+      moveDiv.style.top = this.yPum +"px";
     },
   }
 }
 </script>
 <style lang="scss">
+.live2d-widget-container{
+  pointer-events: auto!important;
+  z-index: 100!important;
+}
 .indexPage{
   width:100%;
   box-sizing: border-box;

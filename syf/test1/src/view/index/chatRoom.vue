@@ -14,7 +14,7 @@
         <div class="chatMsg-t2 al gb" v-if="item.adm==admin">{{item.updataTime}}</div>
         <div class="chatMsg-t3 al gb" v-if="item.adm==admin">{{item.content}}</div>
       </div>
-      <div>————历史纪录————</div>
+      <div class="historyRecord">————历史纪录————</div>
       <div v-for="(item,index) in chatList" :key="index" class="chatMsg">
         <div class="chatMsg-t1" v-if="item.adm!=admin">{{item.Thename}}说：</div>
         <div class="chatMsg-t2" v-if="item.adm!=admin">{{item.updataTime}}</div>
@@ -194,6 +194,8 @@ export default {
     align-items: center;
     padding: 5px;
     box-sizing: border-box;
+    position: relative;
+    z-index: 101;
     textarea{
       height: 90px;
       width: 50%;
@@ -230,6 +232,10 @@ export default {
     width: 100%;
     background: lavender;
     margin: 5px 0;
+    box-sizing: border-box;
+    border-radius:4px; 
+    padding: 4px;
+    box-sizing: border-box;
     .chatMsg-t1{
       font-size: 15px;
       font-weight: 600;
@@ -240,7 +246,8 @@ export default {
       color: #999;
     }
     .chatMsg-t3{
-
+      padding: 0 10px;
+      box-sizing: border-box;
     }
   }
   .al{
@@ -262,6 +269,12 @@ export default {
       margin:20px 0;
       background: lavender;
     }
+  }
+  .historyRecord{
+    width: 100%;
+    text-align: center;
+    color: #999;
+    font-size: 10px;
   }
 }
 </style>

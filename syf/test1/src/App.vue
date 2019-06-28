@@ -97,6 +97,44 @@ export default {
     this.Thename=this.$store.state.user.Thename
   },
   mounted() {
+    const self=this;
+
+      const s1 = document.createElement('script');
+      s1.type = 'text/javascript';
+      s1.src = 'http://118.31.62.251/apis/syf/staticJS/jquery-2.1.1.min.js';
+      document.body.appendChild(s1);
+      const s2 = document.createElement('script');
+      s2.src = 'http://118.31.62.251/apis/syf/staticJS/jquery.gradientify.min.js';
+      document.body.appendChild(s2);
+      setTimeout(function(){
+          $(document).ready(function() {
+          $(".app-head").gradientify({
+            gradients: [
+              { start: [49,76,172], stop: [242,159,191] },
+              { start: [255,103,69], stop: [240,154,241] },
+              { start: [33,229,241], stop: [235,236,117] }
+            ]
+          });
+        });
+      },400)
+      setTimeout(function(){
+          $(document).ready(function() {
+          $(".app-home").gradientify({
+            gradients: [
+              { start: [49,76,172], stop: [242,159,191] },
+              { start: [255,103,69], stop: [240,154,241] },
+              { start: [33,229,241], stop: [235,236,117] }
+            ]
+          });
+        });
+      },400)      
+
+
+
+
+    // setInterval(function(){
+    //   self.changeColor();
+    // },5000)
     let moveDiv = document.querySelector("#pic");
     this.w = document.documentElement.clientWidth || document.body.clientWidth;
     this.h = document.documentElement.clientHeight || document.body.clientHeight;
@@ -155,6 +193,19 @@ export default {
 
       moveDiv.style.left = this.xPum+"px";
       moveDiv.style.top = this.yPum +"px";
+    },
+    changeColor(){
+      let r=Math.floor(Math.random()*255);
+      let g=Math.floor(Math.random()*255);
+      let b=Math.floor(Math.random()*255);
+      let rgb=r.toString(16)+g.toString(16)+b.toString(16); 
+      let r2=Math.floor(Math.random()*255);
+      let g2=Math.floor(Math.random()*255);
+      let b2=Math.floor(Math.random()*255);
+      let rgb2=r2.toString(16)+g2.toString(16)+b2.toString(16);      
+      document.body.style.backgroundImage=`linear-gradient( 135deg, #${rgb} 10%, #${rgb2} 100%)`;
+      console.log(rgb)
+
     }      
   },
 }
@@ -162,6 +213,7 @@ export default {
 <style lang="scss">
 @import './themes/theme.scss';
 body{
+  // transition: all 5s;
   background: #f2f2f2;
 }
 .msg-text{
@@ -191,7 +243,7 @@ body{
     line-height: 40px;
     box-sizing: border-box;
     background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
-    z-index: 999;
+    z-index: 999999;
     box-shadow: 0 2px 2px 2px rgba(49, 49, 49, 0.2);
     div {
       color: #fff;
