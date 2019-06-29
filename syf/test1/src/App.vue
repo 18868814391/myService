@@ -107,7 +107,7 @@ export default {
         const s2 = document.createElement('script');
         s2.src = 'http://118.31.62.251/apis/syf/staticJS/jquery.gradientify.min.js';
         document.body.appendChild(s2);
-      },3000)
+      },1000)
       setTimeout(function(){
           $(document).ready(function() {
           $(".app-head").gradientify({
@@ -118,7 +118,7 @@ export default {
             ]
           });
         });
-      },5000)
+      },1000)
       setTimeout(function(){
           $(document).ready(function() {
           $(".app-home").gradientify({
@@ -129,7 +129,7 @@ export default {
             ]
           });
         });
-      },5000)      
+      },1000)      
 
     let moveDiv = document.querySelector("#pic");
     this.w = document.documentElement.clientWidth || document.body.clientWidth;
