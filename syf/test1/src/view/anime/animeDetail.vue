@@ -4,6 +4,7 @@
                   ref="videoPlayer"
                   :options="playerOptions"
                   :playsinline="true"
+                  v-if="list[0]"
                   >
     </video-player> 
     <div v-if="list[0]" class="animeDetail-tip">
@@ -67,7 +68,9 @@ export default {
       console.log(d.data.data);
       self.list=d.data.data;
       self.list.sort();
-      self.sele(self.list[0]);
+      setTimeout(function(){
+        self.sele(self.list[0]);        
+      },1000)
     }).catch((d)=>{
  
     })

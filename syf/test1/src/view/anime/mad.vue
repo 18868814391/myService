@@ -4,6 +4,7 @@
                   ref="videoPlayer"
                   :options="playerOptions"
                   :playsinline="true"
+                  v-if="list[0]"
                   >
     </video-player> 
     <div v-if="list[0]" class="animeDetail-tip">
@@ -66,13 +67,14 @@ export default {
       console.log(d.data.data);
       self.list=d.data.data;
       self.list.sort();
-      self.sele(self.list[0]);
+      setTimeout(function(){
+        self.sele(self.list[0]);        
+      },1000)
     }).catch((d)=>{
  
     })
   },
   methods:{
-    //http://118.31.62.251:8081
     sele(d){
       this.playerOptions.sources[0].src='/apis/syf/MAD/'+d;
       console.log(this.playerOptions.sources[0].src)

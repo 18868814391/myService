@@ -24,15 +24,14 @@
     <div @click="goIM">网易im接入demo</div>
     <p>---------------</p>
     <!-- <div @click="goMap">高德地图接入demo</div> -->
-
+    <div @click="goRead">novel</div>
+    <p>---------------</p> 
     <div @click="goMusic">Music</div>
     <p>---------------</p>
     <div @click="goMAD">MAD</div>
     <p>---------------</p>    
     <div @click="goAnime">Anime</div>
     <p>---------------</p>
-    <div @click="goRead">novel</div>
-    <p>---------------</p>    
     <div @click="goUpload">上传页面</div>
     <p>---------------</p>
     <div @click="goCommon">公共文件夹</div>
