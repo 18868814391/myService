@@ -1,11 +1,11 @@
 <template>
   <div id="app" class="app-page">
     <!-- 我的nav与路由 -->
-    <div class="app-head" v-if="!admin&&(this.$store.state.user.showTabNav)">
+    <div class="app-head" v-show="!admin&&(this.$store.state.user.showTabNav)">
       <div @click="goLogin">登陆</div>
       <div @click="goRegister">注册</div>      
     </div>
-    <div class="app-head" v-if="admin&&(this.$store.state.user.showTabNav)" style="fontSize:14px;">
+    <div class="app-head" v-show="admin&&(this.$store.state.user.showTabNav)" style="fontSize:14px;">
        欢迎你啊！{{Thename}}
        <span @click="golevel" style="fontSize:12px;">更多权限</span>
        <span style="fontSize:12px;" @click="logOut">退出</span>
@@ -129,12 +129,6 @@ export default {
         });
       },1000)      
 
-
-
-
-    // setInterval(function(){
-    //   self.changeColor();
-    // },5000)
     let moveDiv = document.querySelector("#pic");
     this.w = document.documentElement.clientWidth || document.body.clientWidth;
     this.h = document.documentElement.clientHeight || document.body.clientHeight;
@@ -205,7 +199,6 @@ export default {
       let rgb2=r2.toString(16)+g2.toString(16)+b2.toString(16);      
       document.body.style.backgroundImage=`linear-gradient( 135deg, #${rgb} 10%, #${rgb2} 100%)`;
       console.log(rgb)
-
     }      
   },
 }
@@ -224,7 +217,7 @@ body{
   .app-head{
     width: 100%;
     height: 50px;
-    background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
+    background-image: linear-gradient( 135deg, rgb(49,76,172) 10%, rgb(242,159,191) 100%);
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -242,7 +235,7 @@ body{
     text-align: center;
     line-height: 40px;
     box-sizing: border-box;
-    background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
+    background-image: linear-gradient( 135deg, rgb(49,76,172) 10%, rgb(242,159,191) 100%);
     z-index: 999999;
     box-shadow: 0 2px 2px 2px rgba(49, 49, 49, 0.2);
     div {

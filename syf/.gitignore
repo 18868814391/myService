@@ -2,6 +2,7 @@
 node_modules
 music
 video
+MAD
 /dist
 
 # local env files

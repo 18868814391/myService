@@ -184,7 +184,15 @@ const routes = [
     meta: {
       title: 'animeDetail'
     }
-  },      
+  }, 
+  {
+    path: '/mad',
+    name: 'mad',
+    component: () => import('@/view/anime/mad'),
+    meta: {
+      title: 'mad'
+    }
+  },        
   {
     path: '/login2',
     name: 'login2',
