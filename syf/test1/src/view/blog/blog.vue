@@ -36,6 +36,8 @@ export default {
       finished:false,
       firstEnter:false,
       keyword:'',
+      toast:'',
+      timer:'',      
     }
   },
   created(){
@@ -88,10 +90,31 @@ export default {
         Toast('请输入内容')
         return false
       }
-        Toast.loading({
-          mask: true,
-          message: '搜索中...'
-        })     
+
+
+      const toast = Toast.loading({
+        duration: 0,       // 持续展示 toast
+        forbidClick: true, // 禁用背景点击
+        loadingType: 'spinner',
+        message: 'loading... 3 秒'
+      });
+      let second = 3;
+
+      const timer = setInterval(() => {
+        second--;
+        if (second>=0) {
+          toast.message = `loading... ${second} 秒`;
+        } else if(second<0&&second>=-3){
+          toast.message = `好吧，我的服务器是捡来的`;
+        }else if(second<-3&&second>-6){
+          toast.message = `或许是你的网络问题，我关掉了嗷`;
+        }else if(second<=-6){
+          Toast.clear();
+          clearInterval(timer);          
+        }
+      }, 1000);    
+      
+      
       console.log(this.keyword);
       yiiBlogSearch({
         keyword:self.keyword,

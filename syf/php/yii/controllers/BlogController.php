@@ -64,6 +64,7 @@ class BlogController extends Controller
         $keyword=$postData['keyword'];
         $result=Blog::find()->where(['or',['like','title',$keyword],['like','content',$keyword]])->all();
         if($result){
+            $result = array_reverse($result);
             return ['errcode'=>0,'errmsg'=>'创建成功',
                 'data'=>$result];
         }else{
