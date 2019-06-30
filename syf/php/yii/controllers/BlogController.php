@@ -62,13 +62,13 @@ class BlogController extends Controller
         $postData = Yii::$app->request->post();
         $model = new Blog();
         $keyword=$postData['keyword'];
-        $result=Blog::find()->where(['or',['like','title',$keyword],['like','content',$keyword]])->all();
+        $result=Blog::find()->where(['or',['like','title',$keyword]])->all();
         if($result){
             $result = array_reverse($result);
             return ['errcode'=>0,'errmsg'=>'创建成功',
                 'data'=>$result];
         }else{
-            return ['errcode'=>0,'errmsg'=>'查询不到数据'];
+            return ['errcode'=>99,'errmsg'=>'查询不到数据'];
         }
 
     }

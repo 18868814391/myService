@@ -168,6 +168,15 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    input{
+      flex: 1;
+      width: 120px;
+    }
+    button{
+      width: 50px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
   }
   .blp-item{
     padding: 5px;
