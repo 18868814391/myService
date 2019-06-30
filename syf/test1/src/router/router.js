@@ -94,7 +94,7 @@ const routes = [
     name: 'blog',
     component: () => import('@/view/blog/blog'),
     meta: {
-      title: 'BLOG', noAnima: true
+      title: 'BLOG', noAnima: true,keepAlive: true
     }
   }, 
   {

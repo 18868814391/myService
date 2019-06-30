@@ -1,5 +1,10 @@
 <template>
   <div class="blog-page">
+    <div class="searchBox">
+      <input type="text" placeholder="请输入关键字" v-model="keyword">
+      <button @click="goSearch()">搜索</button>
+      <button @click="goList()" v-if="flag">返回列表</button>
+    </div>
   <van-list
     v-model="loading"
     :finished="finished"
@@ -14,7 +19,7 @@
   </div>
 </template>
 <script>
-import { BlogList } from '@/api';
+import { BlogList,yiiBlogSearch} from '@/api';
 import { Toast,List } from 'vant';
 export default {
   components: {
@@ -23,12 +28,14 @@ export default {
   },   
   data(){
     return{
+      flag:false,
       list:[],
       start_page:0,
       pages:25,
       loading:false,
       finished:false,
       firstEnter:false,
+      keyword:'',
     }
   },
   created(){
@@ -52,6 +59,55 @@ export default {
   methods:{
     goRead(d){
       this.$router.push({ path: '/readBlog',query:{id:d} }); 
+    },
+    goList(){
+      this.flag=false;
+      this.finished=false;
+      this.start_page=0;
+      this.list=[];
+      const self=this;
+      BlogList({
+        start_page:self.start_page,
+        pages:self.pages,
+      }).then((d)=>{
+        self.start_page++;
+        self.loading=false;
+        self.list=self.list.concat(d.data.data);
+        console.log('拼接后的数组',self.list)
+        if(self.list.length*1>=d.data.total_page*1){
+          self.finished=true;
+        }
+        self.firstEnter=true;
+      }).catch(()=>{
+
+      })       
+    },
+    goSearch(){
+      const self=this;
+      if(!this.keyword){
+        Toast('请输入内容')
+        return false
+      }
+        Toast.loading({
+          mask: true,
+          message: '搜索中...'
+        })     
+      console.log(this.keyword);
+      yiiBlogSearch({
+        keyword:self.keyword,
+      }).then((d)=>{
+        Toast.clear();
+        if(d.data.errcode==0){
+          self.flag=true;
+          self.finished=true;
+          self.list=d.data.data;
+          self.start_page=0;
+        }else{
+          Toast(d.data.errmsg)
+        }
+      }).catch((d)=>{
+        Toast(d.data.errmsg)
+      })
     },
     onLoad(){
       if(this.firstEnter){
@@ -81,6 +137,15 @@ export default {
   width: 100%;
   padding: 0 10px;
   box-sizing: border-box;
+  .searchBox{
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .blp-item{
     padding: 5px;
     box-sizing: border-box;

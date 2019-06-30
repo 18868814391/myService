@@ -57,8 +57,19 @@ class BlogController extends Controller
         )];
 
     }
-    public function actionIndex2(){
-        echo "Blog/index2";
+    public function actionSearch(){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $postData = Yii::$app->request->post();
+        $model = new Blog();
+        $keyword=$postData['keyword'];
+        $result=Blog::find()->where(['or',['like','title',$keyword],['like','content',$keyword]])->all();
+        if($result){
+            return ['errcode'=>0,'errmsg'=>'创建成功',
+                'data'=>$result];
+        }else{
+            return ['errcode'=>0,'errmsg'=>'查询不到数据'];
+        }
+
     }
     /**
      * {@inheritdoc}

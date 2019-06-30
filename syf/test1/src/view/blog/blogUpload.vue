@@ -67,6 +67,10 @@ export default {
       }else if(!self.adm){
         Toast('未获取到用户身份')
       }else{
+        Toast.loading({
+          mask: true,
+          message: '提交中...'
+        })          
         console.log(self.content)
         self.content=self.content.replace(new RegExp('\\+','g'),"%2B");
         yiiBlogAdd({

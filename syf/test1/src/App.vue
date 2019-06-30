@@ -10,9 +10,20 @@
        <span @click="golevel" style="fontSize:12px;">更多权限</span>
        <span style="fontSize:12px;" @click="logOut">退出</span>
     </div>
-    <transition name="fade">        
+    <!-- <keep-alive>
+      <router-view v-if="$route.meta.keepAlive" />
+    </keep-alive> -->
+    <transition name="fade" v-if="!$route.meta.keepAlive">        
         <router-view v-if="$route.meta.noAnima"></router-view>
     </transition>
+
+
+      <keep-alive>  
+        <transition name="fade" v-if="$route.meta.keepAlive"> 
+            <router-view v-if="$route.meta.noAnima"></router-view>
+        </transition>    
+      </keep-alive> 
+
 
 <!-- 网易云信的nav与路由 -->
       <nav-bar v-show="showNav"></nav-bar>

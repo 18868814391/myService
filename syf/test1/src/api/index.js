@@ -18,6 +18,7 @@ export function getAnime(params) { return request({ url: '/media/anime.php', met
 export function sendFoot(params) { return request({ url: '/interaction/footprint.php', method: 'post', data: params }) }// 发送留言
 export function getFoot(params) { return request({ url: '/interaction/footList.php', method: 'post', data: params }) }// 获取留言
 export function yiiBlogAdd(params) { return request({ url: '/yii/web/index.php?r=blog/more', method: 'post', data: params }) }// yii新增博客
+export function yiiBlogSearch(params) { return request({ url: '/yii/web/index.php?r=blog/search', method: 'post', data: params }) }// yii博客搜索
 export function yiiRegister(params) { return request({ url: '/yii/web/index.php?r=user/register', method: 'post', data: params }) }// yii注册
 export function yiiLogin(params) { return request({ url: '/yii/web/index.php?r=user/login', method: 'post', data: params }) }// yii登陆
 export function yiiSocketIn(params) { return request({ url: '/yii/web/index.php?r=socketdata/addmessage', method: 'post', data: params }) }// yii socket消息存入
