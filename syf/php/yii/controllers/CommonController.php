@@ -13,6 +13,13 @@ use app\models\User;//数据模型
 class CommonController extends Controller
 {
     public $enableCsrfValidation = false;
+    public function actionGetwxid()
+    {
+        header("Content-type: text/html; charset=utf-8");
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $getData = Yii::$app->request->get();
+        return $getData['echostr'];
+    }
     public function actionGetmad()
     {
         header("Content-type: text/html; charset=utf-8");
