@@ -1,6 +1,7 @@
 <?php
 header('content-type:text/html;charset=utf-8');
-echo "123";
+    echo $_GET['echostr'];
+//    return $_GET['echostr'];
 //$connect =new mysqli("localhost", "root", "syf","syf");
 //if(!$connect){
 //    die('数据库连接失败'.mysqli_error());
