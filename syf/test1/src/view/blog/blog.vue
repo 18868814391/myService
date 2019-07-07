@@ -173,9 +173,10 @@ export default {
       width: 120px;
     }
     button{
-      width: 50px;
+      min-width: 50px;
       font-size: 13px;
       white-space: nowrap;
+      margin-left:10px; 
     }
   }
   .blp-item{

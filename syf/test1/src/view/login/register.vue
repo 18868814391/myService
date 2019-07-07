@@ -57,14 +57,15 @@ export default {
           localStorage.setItem("isReg",'1');
           // alert(self.$store.state.user.admin)
           // alert(self.$store.state.user.Thename)
-          Dialog.confirm({
-            title: '提示',
-            message: `${self.Thename}，欢迎，您的账户是${self.admin}。部分网站功能需要特定权限，是否现在就去获得权限？`
-          }).then(() => {
-            self.$router.push({ path: '/level' });
-          }).catch(() => {
-            window.location.reload();
-          });
+          window.location.reload();
+          // Dialog.confirm({
+          //   title: '提示',
+          //   message: `${self.Thename}，欢迎，您的账户是${self.admin}。部分网站功能需要特定权限，是否现在就去获得权限？`
+          // }).then(() => {
+          //   self.$router.push({ path: '/level' });
+          // }).catch(() => {
+          //   window.location.reload();
+          // });
 
         }else{
           Toast(d.data.errmsg)

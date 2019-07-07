@@ -146,6 +146,14 @@ const routes = [
     }
   },
   {
+    path: '/game1',
+    name: 'game1',
+    component: () => import('@/view/game/game1'),
+    meta: {
+      title: 'game1', noAnima: true,keepAlive: true
+    }
+  },   
+  {
     path: '/im',
     name: 'im',
     component: () => import('@/view/im'),

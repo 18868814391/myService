@@ -7,7 +7,7 @@
     </div>
     <div class="app-head" v-show="admin&&(this.$store.state.user.showTabNav)" style="fontSize:14px;">
        欢迎你啊！{{Thename}}
-       <span @click="golevel" style="fontSize:12px;">更多权限</span>
+       <!-- <span @click="golevel" style="fontSize:12px;">更多权限</span> -->
        <span style="fontSize:12px;" @click="logOut">退出</span>
     </div>
     <!-- <keep-alive>

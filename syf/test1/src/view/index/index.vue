@@ -15,31 +15,27 @@
       <div class="liuyanban-t">聊天室</div>    
     </div>
     <br/>
-    <div @click="goBlog">
-      菜鸟博客
-    </div>
+    <navTBox :taber='"菜鸟博客"' :rout="'blog'" :sum='7' :ind='1'></navTBox>
     <br/>
-    <div @click="goBlogUpload">blog upload</div>
+    <navTBox :taber='"blog upload"' :rout="'blogUpload'" :sum='7' :ind='2'></navTBox>
     <br/>
-    <div @click="goIM">网易im接入demo</div>
-    <p>---------------</p>
+    <navTBox :taber='"网易im接入demo"' :rout="'session'" :sum='7' :ind='3'></navTBox>
+    <br/>
     <!-- <div @click="goMap">高德地图接入demo</div> -->
-    <div @click="goRead">novel</div>
-    <p>---------------</p> 
-    <div @click="goMusic">Music</div>
-    <p>---------------</p>
+    <navTBox :taber='"novel"' :rout="'read'" :sum='7' :ind='4'></navTBox>
+    <br/>
+    <navTBox :taber='"Music"' :rout="'music'" :sum='7' :ind='5'></navTBox>
+    <br/>
     <!-- <div @click="goMAD">MAD</div> -->
   
     <!-- <div @click="goAnime">Anime</div> -->
 
     <!-- <div @click="goUpload">上传页面</div> -->
-
-    <div @click="goCommon">公共文件夹</div>
-    <p>---------------</p>
+    <navTBox :taber='"公共文件夹"' :rout="'myfile'" :sum='7' :ind='6'></navTBox>
+    <br/>
     <!-- <div @click="gofootprint">留言板</div> -->
+    <navTBox :taber='"关于本站"' :rout="'aboutMe'" :sum='7' :ind='7'></navTBox>
 
-    <div @click="aboutMe">关于本站</div>
-    <p>---------------</p>
    </div> 
 
     <jumpBox class="jumpBox" v-if="!cavenFlag"></jumpBox>
@@ -49,10 +45,12 @@
 import { Toast} from 'vant';
 import { getThename,getadmin} from '@/utils/auth'
 import jumpBox from '@/components/jumpBox.vue'
+import navTBox from '@/components/navTBox.vue'
 export default {
   components: {
     [Toast.name]: Toast, 
     [jumpBox.name]: jumpBox,
+    [navTBox.name]: navTBox,
   },   
   data(){
     return{
@@ -203,7 +201,8 @@ export default {
     display:flex;
     flex-direction: column;
     align-items: center;
-    position: relative;    
+    position: relative;
+    padding-bottom:100px;   
   }
   .liuyanban2{
     width: 100px;
@@ -254,6 +253,52 @@ export default {
     bottom: 0;
     left: 0;
   }
+  .textBox{
+    // font-size:15px; 
+    // height:50px;
+    // position: relative;
+    // background: lawngreen;   
+  }
+  .textBox::before{
+    content: '';
+    height: 8px; width:100%; background: #000; opacity: .2; border-radius: 50%;
+    position: absolute;
+    top:60px;
+    // animation: shadow .5s linear infinite;
+  }
+  .textBox{
+    border-radius: 5px;
+    background: #fff;
+    // animation: rotate .5s linear infinite;
+    position: relative;
+    min-width: 50px;
+    height:50px;
+    text-align: center;
+    line-height: 50px;
+  }
+  @keyframes shadow {
+    0%, 100% {transform: scaleX(1);}
+    50% {transform: scaleX(1.2);}
+  }
+
+  @keyframes rotate {
+    0% {
+    transform: translateY(0) ;
+  }
+    25% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(20px) scale(1.1, 0.9);
+       
+    }
+    75% {
+        ransform: translateY(10px) ;
+    }
+    100% {
+        transform: translateY(0) ;
+    }
+  }  
 }
 </style>
 
