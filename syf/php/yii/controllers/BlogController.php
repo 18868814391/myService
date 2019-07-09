@@ -70,7 +70,19 @@ class BlogController extends Controller
         }else{
             return ['errcode'=>99,'errmsg'=>'查询不到数据'];
         }
-
+    }
+    public function actionTabs(){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $postData = Yii::$app->request->post();
+        $keyword=$postData['tab'];
+        $obj=[];
+        foreach ($keyword as &$value) {
+            $result=Blog::find()->where(['or',['like','title',$value]])->all();
+            $sum=count($result);
+            $obj[$value]=$sum;
+        }
+        return ['errcode'=>0,'errmsg'=>'获取成功',
+            'data'=>$obj];
     }
     /**
      * {@inheritdoc}

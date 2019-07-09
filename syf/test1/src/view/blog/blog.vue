@@ -3,7 +3,12 @@
     <div class="searchBox">
       <input type="text" placeholder="请输入关键字" v-model="keyword">
       <button @click="goSearch()">搜索</button>
-      <button @click="goList()" v-if="flag">返回列表</button>
+      <button @click="goList()" v-if="flag">返回全部</button>
+    </div>
+    <div class="tabCon">
+      <div class="tabCon-item" v-for="(ite,ind) in searchTab" :key="ind" @click="dSearch(ite)">
+        {{ite}}&nbsp;({{tabSum[ite]}})
+      </div>
     </div>
   <van-list
     v-model="loading"
@@ -19,7 +24,7 @@
   </div>
 </template>
 <script>
-import { BlogList,yiiBlogSearch} from '@/api';
+import { BlogList,yiiBlogSearch,yiiBlogTab} from '@/api';
 import { Toast,List } from 'vant';
 export default {
   components: {
@@ -37,11 +42,14 @@ export default {
       firstEnter:false,
       keyword:'',
       toast:'',
-      timer:'',      
+      timer:'', 
+      searchTab:['js','vue','php','yii','nginx','mysql'],
+      tabSum:'',   
     }
   },
   created(){
       const self=this;
+      self.getTab();
       BlogList({
         start_page:self.start_page,
         pages:self.pages,
@@ -61,6 +69,17 @@ export default {
   methods:{
     goRead(d){
       this.$router.push({ path: '/readBlog',query:{id:d} }); 
+    },
+    getTab(){
+      const self=this;
+      yiiBlogTab({
+        tab:self.searchTab,
+      }).then((d)=>{
+        self.tabSum=d.data.data;
+        console.log(self.tabSum)
+      }).catch((d)=>{
+
+      })
     },
     goList(){
       this.flag=false;
@@ -84,14 +103,16 @@ export default {
 
       })       
     },
+    dSearch(d){
+      this.keyword=d;
+      this.goSearch();
+    },
     goSearch(){
       const self=this;
       if(!this.keyword){
         Toast('请输入内容')
         return false
       }
-
-
       const toast = Toast.loading({
         duration: 0,       // 持续展示 toast
         forbidClick: true, // 禁用背景点击
@@ -119,6 +140,7 @@ export default {
       yiiBlogSearch({
         keyword:self.keyword,
       }).then((d)=>{
+        clearInterval(timer);
         Toast.clear();
         if(d.data.errcode==0){
           self.flag=true;
@@ -129,6 +151,7 @@ export default {
           Toast(d.data.errmsg)
         }
       }).catch((d)=>{
+        clearInterval(timer);
         Toast(d.data.errmsg)
       })
     },
@@ -188,6 +211,23 @@ export default {
     color: #1D1E1F;
     margin-top:10px;
     box-shadow: 0 2px 2px 2px rgba(49, 49, 49, 0.2);
+  }
+  .tabCon{
+    width: 100%;
+    padding:0 15px;
+    margin: 15px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    .tabCon-item{
+      color: rgb(102, 110, 184);
+      font-size: 12px;
+      padding: 3px;
+      border: 1px solid lightblue;
+      border-radius:3px; 
+      margin:5px 20px 5px 0; 
+    }
   }
 }
 </style>
