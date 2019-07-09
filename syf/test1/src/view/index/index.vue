@@ -6,13 +6,11 @@
 
 
   <div class="index-item" v-if="!cavenFlag">
-    <div class="liuyanban" @click="gofootprint">
-      <img src="../../img/liuyanban.png" alt="">
-      <div class="liuyanban-t">留言板</div>    
+    <div class="liuyanban">
+      <disappearBtn :title="'留言板'" :rout="'footprint'" :idn="'id1'"></disappearBtn>
     </div>
-    <div class="liuyanban2" @click="gochatRoom">
-      <img src="../../img/liuyanban.png" alt="">
-      <div class="liuyanban-t">聊天室</div>    
+    <div class="liuyanban2">
+      <disappearBtn :title="'聊天室'" :rout="'chatRoom'" :idn="'id2'"></disappearBtn>  
     </div>
     <br/>
     <navTBox :taber='"菜鸟博客"' :rout="'blog'" :sum='7' :ind='1'></navTBox>
@@ -46,11 +44,13 @@ import { Toast} from 'vant';
 import { getThename,getadmin} from '@/utils/auth'
 import jumpBox from '@/components/jumpBox.vue'
 import navTBox from '@/components/navTBox.vue'
+import disappearBtn from '@/components/disappearBtn.vue'
 export default {
   components: {
     [Toast.name]: Toast, 
     [jumpBox.name]: jumpBox,
     [navTBox.name]: navTBox,
+    [disappearBtn.name]: disappearBtn,
   },   
   data(){
     return{
@@ -82,10 +82,10 @@ export default {
     L2Dwidget.init({
       pluginRootPath: "../../../public/live2dw/",
       pluginJsPath: "lib/",
-      pluginModelPath: "live2d-widget-model-wanko/assets/",
+      pluginModelPath: "live2d-widget-model-hijiki/assets/",
       tagMode: false,
       debug: false,
-      model: { jsonPath: "/live2dw/live2d-widget-model-wanko/assets/wanko.model.json" },
+      model: { jsonPath: "/live2dw/live2d-widget-model-hijiki/assets/hijiki.model.json" },
       display: { position: "right", width: 120, height: 120 },
       mobile: { show: true },
       log: false
@@ -196,16 +196,28 @@ export default {
   overflow: hidden;
   canvas {
     background-color:#020;
-  }  
+  }
+  .liuyanban{
+    canvas {
+      background-color:transparent;
+    }        
+  }
+  .liuyanban2{
+    canvas {
+      background-color:transparent;
+    }      
+  }
   .index-item{
     display:flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-bottom:100px;   
+    padding-bottom:100px;
+
   }
   .liuyanban2{
-    width: 100px;
+    margin-top:5px; 
+    width: 80px;
     position: absolute;
     top:0px;
     right:10px;
@@ -227,7 +239,8 @@ export default {
     }    
   }
   .liuyanban{
-    width: 100px;
+    margin-top:5px; 
+    width: 80px;
     position: absolute;
     top:0px;
     left:10px;

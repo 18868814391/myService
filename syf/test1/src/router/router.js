@@ -174,7 +174,7 @@ const routes = [
     name: 'music',
     component: () => import('@/view/music/music'),
     meta: {
-      title: 'music'
+      title: 'music',
     }
   }, 
   {

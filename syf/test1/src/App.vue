@@ -109,18 +109,9 @@ export default {
   },
   mounted() {
     const self=this;
-
-      const s1 = document.createElement('script');
-      s1.type = 'text/javascript';
-      s1.src = 'http://118.31.62.251/apis/syf/staticJS/jquery-2.1.1.min.js';
-      document.body.appendChild(s1);
-      setTimeout(function(){
-        const s2 = document.createElement('script');
-        s2.src = 'http://118.31.62.251/apis/syf/staticJS/jquery.gradientify.min.js';
-        document.body.appendChild(s2);
-      },3000)
-      setTimeout(function(){
-          $(document).ready(function() {
+    self.loadAsyncScript('http://118.31.62.251/apis/syf/staticJS/jquery-2.1.1.min.js',function(){
+      self.loadAsyncScript('http://118.31.62.251/apis/syf/staticJS/jquery.gradientify.min.js',function(){
+        $(document).ready(function() {
           $(".app-head").gradientify({
             gradients: [
               { start: [49,76,172], stop: [242,159,191] },
@@ -129,8 +120,6 @@ export default {
             ]
           });
         });
-      },5000)
-      setTimeout(function(){
           $(document).ready(function() {
           $(".app-home").gradientify({
             gradients: [
@@ -139,8 +128,14 @@ export default {
               { start: [33,229,241], stop: [235,236,117] }
             ]
           });
-        });
-      },5000)      
+        });        
+      })
+    })
+      // const s1 = document.createElement('script');
+      // s1.type = 'text/javascript';
+      // s1.src = 'http://118.31.62.251/apis/syf/staticJS/jquery-2.1.1.min.js';
+      // document.body.appendChild(s1);
+
 
     let moveDiv = document.querySelector("#pic");
     this.w = document.documentElement.clientWidth || document.body.clientWidth;
@@ -151,6 +146,27 @@ export default {
     moveDiv.addEventListener('touchmove', this.move, { passive: false })
   },  
   methods:{
+    loadAsyncScript(url, callback) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        if (script.readyState) {
+            // 兼容IE浏览器
+            // 脚本加载完成事件
+            script.onreadystatechange = function () {
+                if (script.readyState === 'complete' || script.readyState === 'loaded') {
+                    callback();
+                }
+            }
+        } else {
+            // Chrome, Safari, FireFox, Opera可执行
+            // 脚本加载完成事件
+            script.onload = function () {
+                callback();
+            }
+        }
+        script.src = url; //将src属性放在后面，保证监听函数能够起作用
+        document.head.appendChild(script);
+    },    
     goLogin(){
       this.$router.push({path: '/login'});  
     },

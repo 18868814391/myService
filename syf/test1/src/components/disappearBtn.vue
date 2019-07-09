@@ -1,23 +1,45 @@
 <template>
-  <div class="test1-page">
-      <div class="divbtn" style="width:20vw">
-        <div id="btn" style="width:20vw">测试</div>
-      </div>
+  <div class="disappearBtn-page">
+    <div class="divbtn cake" style="width:80px" @click="goRoute">
+      <div id="btn" style="width:80px" ref="doom">{{title}}</div>
+    </div>
   </div>
 </template>
 <script>
 export default {
+  name: 'disappearBtn',
   data(){
     return{
 
     }
   },
+  props:{
+    title: {
+      type: String,
+      default() {
+        return '默认'
+      }
+    },
+    rout: {
+      type: String,
+      default() {
+        return 'b'
+      }
+    }, 
+    idn: {
+      type: String,
+      default() {
+        return ''
+      }
+    }, 
+  },  
   mounted(){
     const self=this;
+    this.$refs.doom.classList.add(`${self.idn}`);
     this.loadAsyncScript('http://118.31.62.251/apis/syf/staticJS/anime.min.js',function(){
       self.loadAsyncScript('http://118.31.62.251/apis/syf/staticJS/particles.js',function(){
-          var particles = new Particles('#btn');
-            $("#btn").click(function() {
+          var particles = new Particles(`.${self.idn}`);
+            $(`.${self.idn}`).click(function() {
                 // Disintegrate the button into particles
                 //启动粒子特效
                 particles.disintegrate();
@@ -29,9 +51,14 @@ export default {
                 }, 4000);
             }) 
       })
-    })
+    })    
   },
   methods:{
+    goRoute(){
+      setTimeout(()=>{
+        this.$router.push({ path: `/${this.rout}` }); 
+      },2000)
+    },
     loadAsyncScript(url, callback) {
         var script = document.createElement('script');
         script.type = 'text/javascript';
@@ -57,7 +84,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.test1-page{
+.disappearBtn-page{
   #btn{
     text-align: center;
     height: 50px;
@@ -65,7 +92,81 @@ export default {
     border-radius:10px;
     background:rgba(44,193,254,1);
     color: white; 
-  }
+	}
+	.cake{
+		animation:move 3s 0s infinite;-webkit-animation:move 3s 0s infinite;transform-origin:bottom;-webkit-transform-origin:bottom;
+	}
+@keyframes move
+{
+    0%, 65%{ 
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+    70% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    75% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    80% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    85% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    90% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    95% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    100% {  
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+}
+
+@-webkit-keyframes move
+{
+    0%, 65%{ 
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+    70% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    75% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    80% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    85% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    90% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    95% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    100% {  
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+}	
 /* Page Loader */
 .js .loading::before {
 	content: '';
