@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-use app\models\User;//数据模型
+use app\models\Dood;//数据模型
 
 class CommonController extends Controller
 {
@@ -35,6 +35,20 @@ class CommonController extends Controller
         closedir($handler);
         sort($audioList);
         return ['errcode'=>0,'errmsg'=>'获取成功','data'=>$audioList];
+        die();
+    }
+    public function actionSavedood()
+    {
+        header("Content-type: text/html; charset=utf-8");
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $postData = Yii::$app->request->post();
+        $model = new Dood();
+        $model->content = $postData['content'];
+        $model->msg= $postData['msg'];
+        $model->Thename = $postData['Thename'];
+        $model->updataTime= $postData['updataTime'];
+        $model->save();
+        return ['errcode'=>0,'errmsg'=>'创建成功'];
         die();
     }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="test1-page">
+  <div class="boob-page">
 		  <div class="inner draw" @mousemove="beginPath($event)">
 					<div class="wrap">
 						<canvas 
@@ -388,7 +388,7 @@ import { Toast,Popup } from 'vant';
   }
 </script>
 <style lang="scss">
-.test1-page{
+.boob-page{
 		#img-box2{
 			display: none;
 		}	

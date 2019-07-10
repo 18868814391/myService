@@ -34,6 +34,14 @@ const routes = [
     }
   },  
   {
+    path: '/boobBrand',
+    name: 'boobBrand',
+    component: () => import('@/view/Interaction/boobBrand'),
+    meta: {
+      title: '涂鸦板', noAnima: true
+    }
+  },   
+  {
     path: '/aboutMe',
     name: 'aboutMe',
     component: () => import('@/view/index/aboutMe'),
