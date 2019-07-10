@@ -33,13 +33,14 @@
 
 
     <div class="app-home" @click="$router.push('/index')" id="pic">
-      <div>首页</div>
+      <div><intrestTxt></intrestTxt></div>
     </div>      
   </div>
 </template>
 
 <script>
 import { getThename,getadmin} from '@/utils/auth'
+import intrestTxt from '@/components/intrestTxt.vue'
 import Loading from './pages/components/Loading'
 import FullscreenImg from './pages/components/FullscreenImg'
 import Vue from 'vue'
@@ -50,6 +51,10 @@ import pageUtil from './utils/page'
 const sessionHistory = window.sessionStorage
 export default {
   name: 'app',
+  components: {
+    NavBar,
+    [intrestTxt.name]:intrestTxt,
+  },   
   data(){
     return{
       admin:getadmin(),
@@ -93,9 +98,6 @@ export default {
     // 提交sdk连接请求
     // this.$store.dispatch('connect')
     // this.$store.dispatch('updateRefreshState')
-  },
-  components: {
-    NavBar,
   },
   computed: {
     // 是否显示导航条

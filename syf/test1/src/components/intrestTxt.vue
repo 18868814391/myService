@@ -1,10 +1,10 @@
 <template>
-  <div class="test1-page">
+  <div class="intresTxt-page">
 			<div class="textcontainer">
-					<span class="particletext bubbles"><span class="text">我这个事镖旗</span></span>
+					<span class="particletext bubbles"><span class="text">首页</span></span>
 			</div>
 
-			<div class="textcontainer">
+			<!-- <div class="textcontainer">
 					<span class="particletext lines"><span class="text">Lines</span></span>
 			</div>
 
@@ -18,11 +18,26 @@
 
 			<div class="textcontainer">
 					<span class="particletext sunbeams"><span class="text">Beams?</span></span>
-			</div>
+			</div> -->
   </div>
 </template>
 <script>
 export default {
+  name: 'intrestTxt',
+  props:{
+    title: {
+      type: String,
+      default() {
+        return '默认'
+      }
+    },
+    kinds: {
+      type: String,
+      default() {
+        return '0'
+      }
+    }, 
+  },    
   data(){
     return{
 
@@ -62,14 +77,14 @@ export default {
 }
 </script>
 <style lang="scss">
-.test1-page{
+.intresTxt-page{
 	.textcontainer {
 			padding:5px 0;
 			text-align: center;
 	}
 	.particletext {
 			text-align: center;
-			font-size:20px;
+			font-size:12px;
 			position: relative;
 	}
 	.particletext.bubbles > .particle {
@@ -352,4 +367,5 @@ export default {
 	}
 }
 </style>
+
 

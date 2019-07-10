@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-  name: 'navTBox',
+  name: 'navTBox',  
   props:{
     rout: {
       type: String,
