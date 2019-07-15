@@ -17,6 +17,7 @@
 import { Icon, Toast,Dialog,Field,Progress,Popup } from 'vant';
 import { quillEditor } from 'vue-quill-editor'
 import { BlogRichTxt,yiiBlogAdd } from '@/api';
+import Cookies from 'js-cookie'
 import moment from 'moment'
 export default {
   components: {
