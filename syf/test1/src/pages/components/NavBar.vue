@@ -1,9 +1,9 @@
 <template>
   <div class="session-nav g-header">
-    <!-- <div><router-link :to="{ name: 'session' }">最近会话</router-link></div>
+    <div><router-link :to="{ name: 'session' }">最近会话</router-link></div>
     <div><router-link :to="{ name: 'contacts' }">通讯录</router-link></div>
     <div><router-link :to="{ name: 'room' }">直播间</router-link></div>
-    <div><router-link :to="{ name: 'general' }">设置</router-link></div> -->
+    <div><router-link :to="{ name: 'general' }">设置</router-link></div>
   </div>
 </template>
 

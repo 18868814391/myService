@@ -2,15 +2,13 @@
   <div id="app" class="app-page">
     <!-- 我的nav与路由 -->
     <div class="app-head" v-show="!admin&&(this.$store.state.user.showTabNav)">
-      syf的前端学习日记
-      <!-- <div @click="goLogin">登陆</div>
-      <div @click="goRegister">注册</div>       -->
+      <div @click="goLogin">登陆</div>
+      <div @click="goRegister">注册</div>      
     </div>
     <div class="app-head" v-show="admin&&(this.$store.state.user.showTabNav)" style="fontSize:14px;">
-        syf的前端学习日记
-       <!-- {{Thename}} -->
+       欢迎你啊！{{Thename}}
        <!-- <span @click="golevel" style="fontSize:12px;">更多权限</span> -->
-       <!-- <span style="fontSize:12px;" @click="logOut">退出</span> -->
+       <span style="fontSize:12px;" @click="logOut">退出</span>
     </div>
     <!-- <keep-alive>
       <router-view v-if="$route.meta.keepAlive" />

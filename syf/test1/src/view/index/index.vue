@@ -2,44 +2,42 @@
   <div class="indexPage">
 
  
-  <!-- <canvas id="testCanvas" width="550" height="500" @click="closeCaven" v-if="cavenFlag"></canvas> -->
+  <canvas id="testCanvas" width="550" height="500" @click="closeCaven" v-if="cavenFlag"></canvas>
 
 
-  <!-- <div class="index-item" v-if="!cavenFlag"> -->
-  <div class="index-item" v-if="1">  
-    <!-- <div class="liuyanban">
+  <div class="index-item" v-if="!cavenFlag">
+    <div class="liuyanban">
       <disappearBtn :title="'留言板'" :rout="'footprint'" :idn="'id1'"></disappearBtn>
-    </div> -->
-    <!-- <div class="liuyanban2">
+    </div>
+    <div class="liuyanban2">
       <disappearBtn :title="'聊天室'" :rout="'chatRoom'" :idn="'id2'"></disappearBtn>  
-    </div> -->
-    <div class="liuyanban3 liuyanban">
+    </div>
+    <div class="liuyanban3">
       <disappearBtn :title="'涂鸦板'" :rout="'boobBrand'" :idn="'id3'"></disappearBtn>  
     </div>
     <br/>
     <navTBox :taber='"前端学习日记"' :rout="'blog'" :sum='7' :ind='1'></navTBox>
     <br>
-    <!-- <navTBox :taber='"blog upload"' :rout="'blogUpload'" :sum='7' :ind='2'></navTBox> -->
-
-    <!-- <navTBox :taber='"网易im接入demo"' :rout="'session'" :sum='7' :ind='3'></navTBox> -->
-
+    <navTBox :taber='"blog upload"' :rout="'blogUpload'" :sum='7' :ind='2'></navTBox>
+    <br>
+    <navTBox :taber='"网易im接入demo"' :rout="'session'" :sum='7' :ind='3'></navTBox>
+    <br>
     <!-- <div @click="goMap">高德地图接入demo</div> -->
-    <!-- <navTBox :taber='"novel"' :rout="'read'" :sum='7' :ind='4'></navTBox> -->
-
-    <!-- <navTBox :taber='"Music"' :rout="'music'" :sum='7' :ind='5'></navTBox> -->
-
+    <navTBox :taber='"novel"' :rout="'read'" :sum='7' :ind='4'></navTBox>
+    <br>
+    <navTBox :taber='"Music"' :rout="'music'" :sum='7' :ind='5'></navTBox>
+    <br>
     <!-- <div @click="goMAD">MAD</div> -->
   
     <!-- <div @click="goAnime">Anime</div> -->
 
     <!-- <div @click="goUpload">上传页面</div> -->
-    <!-- <navTBox :taber='"本站相关效果代码"' :rout="'myfile'" :sum='7' :ind='6'></navTBox> -->
+    <navTBox :taber='"文件夹"' :rout="'myfile'" :sum='7' :ind='6'></navTBox>
     <br/>
     <!-- <div @click="gofootprint">留言板</div> -->
     <navTBox :taber='"关于本站"' :rout="'aboutMe'" :sum='7' :ind='7'></navTBox>
-
    </div>
-   <div style="textAlign:center">
+   <div class="bottom-govBox">
      <a href="http://www.beian.miit.gov.cn/">浙ICP备19028592号</a>
    </div> 
     
@@ -79,12 +77,12 @@ export default {
   },
   mounted(){
     const self=this;
-    // if(!(sessionStorage.getItem('noClovers'))){
-    //   const s = document.createElement('script');
-    //   s.type = 'text/javascript';
-    //   s.src = 'http://118.31.62.251/apis/syf/staticJS/clover.js';
-    //   document.body.appendChild(s);
-    // }
+    if(!(sessionStorage.getItem('noClovers'))){
+      const s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = 'http://118.31.62.251/apis/syf/staticJS/clover.js';
+      document.body.appendChild(s);
+    }
 
     L2Dwidget.init({
       pluginRootPath: "../../../public/live2dw/",
@@ -346,6 +344,12 @@ export default {
     100% {
         transform: translateY(0) ;
     }
+  }
+  .bottom-govBox{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
   }  
 }
 </style>
