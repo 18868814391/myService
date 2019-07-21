@@ -1,10 +1,18 @@
 
 <?php
-    $appId = 'wx3352249676449b29';
-    $appSecret = '97598b593cca4fb58c631a494c6413c7';
-    $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$appSecret;
-    $html = file_get_contents($url);
-    echo $html;
+$appId = 'wx3352249676449b29';
+$appSecret = '97598b593cca4fb58c631a494c6413c7';
+$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$appSecret;
+$fp = fopen($url, 'r');
+stream_get_meta_data($fp);
+while(!feof($fp)) {
+    $result .= fgets($fp, 1024);
+}
+echo "url body: $result";
+fclose($fp);
+
+//    $html = file_get_contents($url);
+//    echo $html;
 //请求url地址
 //    $appId = 'wx3352249676449b29';
 //    $appSecret = '97598b593cca4fb58c631a494c6413c7';
