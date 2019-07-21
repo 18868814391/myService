@@ -37,6 +37,12 @@
     <!-- <div @click="gofootprint">留言板</div> -->
     <navTBox :taber='"关于本站"' :rout="'aboutMe'" :sum='7' :ind='7'></navTBox>
    </div>
+       <div style="textAlign:center;marginTop:20px;">
+          <a href="http://www.beian.miit.gov.cn/">浙ICP备19028592号</a>
+        </div> 
+    		<div style="width:300px;margin:0 auto; padding:20px 0;">
+		 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010402003945" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../../../src/img/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33010402003945号</p></a>
+		 	</div>     
     
     <!-- <jumpBox class="jumpBox" v-if="!cavenFlag"></jumpBox> -->
   </div>
@@ -219,7 +225,7 @@ export default {
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-bottom:100px;
+    // padding-bottom:100px;
 
   }
   .liuyanban3{
