@@ -1,41 +1,22 @@
 
 <?php
-public function https_request($url,$type,$res,$arr){
-    $ch = curl_init();
-
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-    if($type == 'post'){    //type可以为“get”或“post”
-        curl_setopt($ch,CURLOPT_POST,1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $arr);
+//请求url地址
+    $appId = 'wx3352249676449b29';
+    $appSecret = '97598b593cca4fb58c631a494c6413c7';
+    $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$appSecret;
+    //初始化curl
+    $ch = curl_init($url);
+    //3.设置参数
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//跳过证书验证
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);  // 从证书中检查SSL加密算法是否存在
+    //4.调用接口
+    $res = curl_exec($ch);
+    if(curl_errno($ch)){
+        var_dump(curl_error($ch));
     }
-
-    $output = curl_exec($ch);
+    $resArr = json_decode($res,1);
+    var_dump($resArr);
+    //5.关闭curl
     curl_close($ch);
-
-    if($res == 'json'){    //res可以是“json”或"xml"
-        return json_decode($output,true);
-    }
-}
-public function getAccessToken(){
-    if($_SESSION['access_token'] && $_SESSION['expire_time']>time()){
-        return $_SESSION['access_token'];
-    }
-    else{  //appid,appsecret,url分别见上面的图
-        $appid = 'wx3352249676449b29';
-        $appsecret = '97598b593cca4fb58c631a494c6413c7';
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
-        $res = $this->https_request($url,'get','json','');    //调用上面的http_request()获取网页数据
-        $access_token = $res['access_token'];
-
-        $_SESSION['access_token'] = $access_token;
-        $_SESSION['expire_time'] = time()+7200;
-
-        return $access_token;
-    }
-}
-getAccessToken();
 ?>
