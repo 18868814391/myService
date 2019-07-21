@@ -4,12 +4,11 @@ $appId = 'wx3352249676449b29';
 $appSecret = '97598b593cca4fb58c631a494c6413c7';
 $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$appSecret;
 
-$content= file_get_contents($url);
-if($content){
-    echo 'GET 请求发送成功！';
-}else{
-    echo 'shibai';
-}
+$opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
+$context = stream_context_create($opts);
+$header = file_get_contents($url,false,$context);
+//$header = file_get_contents('http://www.polama.com/faq.jsp');
+echo $header;
 
 //    $html = file_get_contents($url);
 //    echo $html;
