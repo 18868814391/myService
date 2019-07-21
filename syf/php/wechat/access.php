@@ -1,34 +1,18 @@
 
 <?php
-public function getAccessToken($appid,$secret){
-    $appid='wx3352249676449b29';
-    $secret='97598b593cca4fb58c631a494c6413c7';
-    $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$secret}";
-    $res = $this->curl_get($url);
-    $res = json_decode($res,1);
-    if($res['errcode']!=0) throw new Exception($res['errmsg']);
-    return $res['access_token'];
+$appId = 'wx3352249676449b29';
+$appSecret = '97598b593cca4fb58c631a494c6413c7';//虚拟的，不要用
+$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$appSecret;
+$ch = curl_init();//初始化curl
+curl_setopt($ch, CURLOPT_URL,$url); //要访问的地址
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//跳过证书验证
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // 从证书中检查SSL加密算法是否存在
+$data = json_decode(curl_exec($ch));
+if(curl_errno($ch)){
+    var_dump(curl_error($ch)); //若错误打印错误信息
 }
-public function curl_get($url) {
-    $headers = array('User-Agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36');
-    $oCurl = curl_init();
-    if(stripos($url,"https://")!==FALSE){
-        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, FALSE);
-        curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
-    }
-    curl_setopt($oCurl, CURLOPT_TIMEOUT, 20);
-    curl_setopt($oCurl, CURLOPT_URL, $url);
-    curl_setopt($oCurl, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
-    $sContent = curl_exec($oCurl);
-    $aStatus = curl_getinfo($oCurl);
-    curl_close($oCurl);
-    if(intval($aStatus["http_code"])==200){
-        return $sContent;
-    }else{
-        return false;
-    }
-}
-getAccessToken();
+var_dump($data); //打印信息
+
+curl_close($ch);//关闭curl
 ?>
