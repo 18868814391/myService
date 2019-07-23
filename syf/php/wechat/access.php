@@ -16,19 +16,10 @@ header('content-type:text/html;charset=utf-8');
         var_dump(curl_error($ch));
     }
     $resArr = json_decode($res,1);
-//    echo($resArr);
-    echo urldecode(json_encode($resArr));
-
-//$arr = array (
-//    'errcode'=>0,
-//    'errmsg'=>urlencode('登陆成功'),
-//    'data'=>array(
-//        'adm'=>$j['admin'],
-//        'Thename'=>$Thename,
-//    )
-//);
-//echo urldecode(json_encode($arr));
-
-    //5.关闭curl
+//    echo urldecode(json_encode($resArr));
+    echo $resArr['access_token'];
+    var_dump($resArr['access_token']);
     curl_close($ch);
+
+
 ?>
