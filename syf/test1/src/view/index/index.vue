@@ -86,7 +86,7 @@ export default {
     const self=this;
     wxsign({
     }).then((d)=>{
-      alert(123)
+      alert(location.href.split('#')[0])
       self.sign=d.data.data
       console.log(self.sign);
       wx.config({
