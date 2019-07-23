@@ -37,7 +37,7 @@
     <!-- <div @click="gofootprint">留言板</div> -->
     <navTBox :taber='"关于本站"' :rout="'aboutMe'" :sum='7' :ind='7'></navTBox>
    </div>
-       <div style="textAlign:center;marginTop:20px;">
+       <div style="textAlign:center;marginTop:20px;" @click="sweep()">
           <a href="http://www.beian.miit.gov.cn/">浙ICP备19028592号</a>
         </div> 
     		<div style="width:300px;margin:0 auto; padding:20px 0;">
@@ -54,6 +54,7 @@ import { wxsign } from '@/api';
 import jumpBox from '@/components/jumpBox.vue'
 import navTBox from '@/components/navTBox.vue'
 import disappearBtn from '@/components/disappearBtn.vue'
+import wx from 'weixin-js-sdk';
 export default {
   components: {
     [Toast.name]: Toast, 
@@ -86,10 +87,17 @@ export default {
     }).then((d)=>{
       self.sign=d.data.data
       console.log(self.sign);
+      wx.config({
+        debug: true, // 开启调试模式,
+        appId: 'wx3352249676449b29', // 必填，企业号的唯一标识，此处填写企业号corpid
+        timestamp: self.sign.data.timestamp, // 必填，生成签名的时间戳
+        nonceStr: self.sign.data.noncestr, // 必填，生成签名的随机串
+        signature: self.sign.data.signature,// 必填，签名，见附录1
+        jsApiList: ['checkJsApi','getLocation','scanQRCode','openLocation','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+      });
     }).catch((d)=>{
 
     })
-
 
     if(!(sessionStorage.getItem('noClovers'))){
       const s = document.createElement('script');
@@ -165,6 +173,21 @@ export default {
     gochatRoom(){
       this.$router.push({ path: '/chatRoom' });   
     },
+    sweep() {
+      const self=this;
+      return new Promise((resolve, reject) => {
+        wx.ready(function() {
+          wx.scanQRCode({
+            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            success: function(res) {
+              var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+            }
+          })
+        })
+        resolve()
+      })    
+    },    
     down(){
       let moveDiv = document.querySelector(".live2d-widget-container");
       var touch;
