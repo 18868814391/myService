@@ -4,7 +4,7 @@
     $appId = 'wx3352249676449b29';
     $appSecret = '97598b593cca4fb58c631a494c6413c7';
     $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$appSecret;
-    $url="https://www.baidu.com";
+//    $url="https://www.baidu.com";
     $ch = curl_init($url);
 
     //3.设置参数
