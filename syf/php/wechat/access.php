@@ -42,4 +42,18 @@ header('content-type:text/html;charset=utf-8');
     echo "\r\n";
     echo $resArr2['ticket'];
     curl_close($ch2);
+    $ticket=$resArr2['ticket'];  //获取到了ticket
+
+    $noncestr="syf";
+    $jsapi_ticket=$ticket;
+    $timestamp=1414587457;
+    $url="http://www.shenyifan.top";
+//jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url=http://mp.weixin.qq.com?params=value
+    $string1="jsapi_ticket=".$jsapi_ticket."noncestr=syf&timestamp=1414587457&url=http://www.shenyifan.top";
+    $signature=sha1($string1);
+echo "\r\n";
+    echo "签名";
+echo "\r\n";
+    echo $signature;
+
 ?>
