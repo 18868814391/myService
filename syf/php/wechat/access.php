@@ -55,5 +55,17 @@ echo "\r\n";
     echo "签名";
 echo "\r\n";
     echo $signature;
+echo "\r\n";
+$arr = array (
+    'errcode'=>0,
+    'errmsg'=>urlencode('成功'),
+    'data'=>array(
+        'noncestr'=>$noncestr,
+        'timestamp'=>$timestamp,
+        'url'=>$url,
+        'signature'=>$signature
+    )
+);
+echo urldecode(json_encode($arr));
 
 ?>
