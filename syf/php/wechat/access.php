@@ -1,12 +1,11 @@
 
 <?php
+header('content-type:text/html;charset=utf-8');
 //请求url地址
     $appId = 'wx3352249676449b29';
     $appSecret = '97598b593cca4fb58c631a494c6413c7';
     $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appId."&secret=".$appSecret;
-//    $url="https://www.baidu.com";
     $ch = curl_init($url);
-
     //3.设置参数
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//跳过证书验证
@@ -17,7 +16,18 @@
         var_dump(curl_error($ch));
     }
     $resArr = json_decode($res,1);
-    var_dump($resArr);
+    echo($resArr);
+
+//$arr = array (
+//    'errcode'=>0,
+//    'errmsg'=>urlencode('登陆成功'),
+//    'data'=>array(
+//        'adm'=>$j['admin'],
+//        'Thename'=>$Thename,
+//    )
+//);
+//echo urldecode(json_encode($arr));
+
     //5.关闭curl
     curl_close($ch);
 ?>
