@@ -86,7 +86,7 @@ export default {
     const self=this;
     wxsign({
     }).then((d)=>{
-      alert(JSON.stringify(d))
+      alert(JSON.stringify(d.data.data))
       self.sign=d.data.data
       console.log(self.sign);
       wx.config({
