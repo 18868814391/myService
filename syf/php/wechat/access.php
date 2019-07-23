@@ -16,7 +16,8 @@ header('content-type:text/html;charset=utf-8');
         var_dump(curl_error($ch));
     }
     $resArr = json_decode($res,1);
-    echo($resArr);
+//    echo($resArr);
+    echo urldecode(json_encode($resArr));
 
 //$arr = array (
 //    'errcode'=>0,
