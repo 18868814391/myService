@@ -16,9 +16,12 @@ header('content-type:text/html;charset=utf-8');
         var_dump(curl_error($ch));
     }
     $resArr = json_decode($res,1);
-//    echo urldecode(json_encode($resArr));
+    echo urldecode(json_encode($resArr));
+    echo "\r\n";
     echo $resArr['access_token'];
+    echo "\r\n";
     var_dump($resArr['access_token']);
+    echo "\r\n";
     curl_close($ch);
 
 
