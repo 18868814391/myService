@@ -37,7 +37,8 @@
     <!-- <div @click="gofootprint">留言板</div> -->
     <navTBox :taber='"关于本站"' :rout="'aboutMe'" :sum='7' :ind='7'></navTBox>
    </div>
-       <div style="textAlign:center;marginTop:20px;" @click="sweep()">
+   <div @click="sweep()">扫一扫</div>
+       <div style="textAlign:center;marginTop:20px;">
           <a href="http://www.beian.miit.gov.cn/">浙ICP备19028592号</a>
         </div> 
     		<div style="width:300px;margin:0 auto; padding:20px 0;">
