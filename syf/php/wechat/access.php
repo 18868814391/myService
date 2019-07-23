@@ -16,12 +16,6 @@ header('content-type:text/html;charset=utf-8');
         var_dump(curl_error($ch));
     }
     $resArr = json_decode($res,1);
-    echo urldecode(json_encode($resArr));
-    echo "\r\n";
-    echo $resArr['access_token'];
-    echo "\r\n";
-    var_dump($resArr['access_token']);
-    echo "\r\n";
     $accToken=$resArr['access_token'];  //获取到了accessToken
     curl_close($ch);
 
@@ -36,11 +30,6 @@ header('content-type:text/html;charset=utf-8');
         var_dump(curl_error($ch2));
     }
     $resArr2 = json_decode($res2,1);
-    echo "签名算法";
-    echo "\r\n";
-    echo urldecode(json_encode($resArr2));
-    echo "\r\n";
-    echo $resArr2['ticket'];
     curl_close($ch2);
     $ticket=$resArr2['ticket'];  //获取到了ticket
 
@@ -51,11 +40,6 @@ header('content-type:text/html;charset=utf-8');
 //jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg&noncestr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url=http://mp.weixin.qq.com?params=value
     $string1="jsapi_ticket=".$jsapi_ticket."noncestr=syf&timestamp=1414587457&url=http://www.shenyifan.top";
     $signature=sha1($string1);
-echo "\r\n";
-    echo "签名";
-echo "\r\n";
-    echo $signature;
-echo "\r\n";
 $arr = array (
     'errcode'=>0,
     'errmsg'=>urlencode('成功'),
