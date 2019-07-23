@@ -104,7 +104,7 @@ export default {
     if(!(sessionStorage.getItem('noClovers'))){
       const s = document.createElement('script');
       s.type = 'text/javascript';
-      s.src = 'http://118.31.62.251/apis/syf/staticJS/clover.js';
+      s.src = 'https://118.31.62.251/apis/syf/staticJS/clover.js';
       document.body.appendChild(s);
     }
 
