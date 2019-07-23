@@ -111,8 +111,8 @@ export default {
   },
   mounted() {
     const self=this;
-    self.loadAsyncScript('http://118.31.62.251/apis/syf/staticJS/jquery-2.1.1.min.js',function(){
-      self.loadAsyncScript('http://118.31.62.251/apis/syf/staticJS/jquery.gradientify.min.js',function(){
+    self.loadAsyncScript('https://www.shenyifan.top/apis/syf/staticJS/jquery-2.1.1.min.js',function(){
+      self.loadAsyncScript('https://www.shenyifan.top/apis/syf/staticJS/jquery.gradientify.min.js',function(){
         $(document).ready(function() {
           $(".app-head").gradientify({
             gradients: [
@@ -136,7 +136,7 @@ export default {
     
       const s2 = document.createElement('script');
       s2.type = 'text/javascript';
-      s2.src = 'http://118.31.62.251/apis/syf/staticJS/loveheart.js';
+      s2.src = 'https://www.shenyifan.top/apis/syf/staticJS/loveheart.js';
       document.body.appendChild(s2);
 
 

@@ -36,8 +36,8 @@ export default {
   mounted(){
     const self=this;
     this.$refs.doom.classList.add(`${self.idn}`);
-    this.loadAsyncScript('https://118.31.62.251/apis/syf/staticJS/anime.min.js',function(){
-      self.loadAsyncScript('https://118.31.62.251/apis/syf/staticJS/particles.js',function(){
+    this.loadAsyncScript('https://www.shenyifan.top/apis/syf/staticJS/anime.min.js',function(){
+      self.loadAsyncScript('https://www.shenyifan.top/apis/syf/staticJS/particles.js',function(){
           var particles = new Particles(`.${self.idn}`);
             $(`.${self.idn}`).click(function() {
                 // Disintegrate the button into particles

@@ -45,8 +45,8 @@ export default {
   },
   mounted(){
     const self=this;
-    this.loadAsyncScript('https://118.31.62.251/apis/syf/staticJS/jquery-2.1.1.min.js',function(){
-			self.loadAsyncScript('https://118.31.62.251/apis/syf/staticJS/bubbler.js',function(){
+    this.loadAsyncScript('https://www.shenyifan.top/apis/syf/staticJS/jquery-2.1.1.min.js',function(){
+			self.loadAsyncScript('https://www.shenyifan.top/apis/syf/staticJS/bubbler.js',function(){
 
 			})
     })
