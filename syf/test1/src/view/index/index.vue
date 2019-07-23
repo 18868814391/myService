@@ -50,6 +50,7 @@
 <script>
 import { Toast} from 'vant';
 import { getThename,getadmin} from '@/utils/auth'
+import { wxsign } from '@/api';
 import jumpBox from '@/components/jumpBox.vue'
 import navTBox from '@/components/navTBox.vue'
 import disappearBtn from '@/components/disappearBtn.vue'
@@ -62,6 +63,7 @@ export default {
   },   
   data(){
     return{
+      sign:'',//微信签名相关
       admin:getadmin(),
       Thename:getThename(), 
       cavenFlag:false,
@@ -80,6 +82,15 @@ export default {
   },
   mounted(){
     const self=this;
+    wxsign({
+    }).then((d)=>{
+      self.sign=d.data.data
+      console.log(self.sign);
+    }).catch((d)=>{
+
+    })
+
+
     if(!(sessionStorage.getItem('noClovers'))){
       const s = document.createElement('script');
       s.type = 'text/javascript';

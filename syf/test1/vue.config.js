@@ -7,6 +7,7 @@ module.exports = {
     //http://118.31.62.251/syf/php
     //http://localhost/phpdemo/syf/php
     //http://118.31.62.251/apis/syf/php
+    //http://www.shenyifan.top/wechat/
     proxy: 'http://localhost/phpdemo/syf/php' 
   },
   outputDir: 'dist',
