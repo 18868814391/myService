@@ -26,7 +26,7 @@ header('content-type:text/html;charset=utf-8');
     curl_close($ch);
 
     $url2="https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$accToken."&type=jsapi";
-    $ch2 = curl_init($url);
+    $ch2 = curl_init($url2);
     curl_setopt($ch2,CURLOPT_RETURNTRANSFER,1);
     curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);//跳过证书验证
     curl_setopt($ch2, CURLOPT_SSL_VERIFYHOST, false);  // 从证书中检查SSL加密算法是否存在
