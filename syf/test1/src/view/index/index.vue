@@ -18,6 +18,9 @@
     <div class="liuyanban liuyanpos4">
       <disappearBtn :title="'1024'" :rout="'game1'" :idn="'id4'"></disappearBtn>  
     </div>
+    <div class="liuyanban liuyanpos5" @click="sweep()">
+      <disappearBtn :title="'扫一扫'" :idn="'id5'"></disappearBtn>  
+    </div>
     <br/>
     <navTBox :taber='"syf笔记"' :rout="'blog'" :sum='7' :ind='1'></navTBox>
     <br>
@@ -40,7 +43,6 @@
     <!-- <div @click="gofootprint">留言板</div> -->
     <navTBox :taber='"关于本站"' :rout="'aboutMe'" :sum='7' :ind='7'></navTBox>
    </div>
-   <div @click="sweep()">扫一扫</div>
        <div style="textAlign:center;marginTop:20px;">
           <a href="http://www.beian.miit.gov.cn/">浙ICP备19028592号</a>
         </div> 
@@ -93,7 +95,7 @@ export default {
       self.sign=d.data.data
       console.log(self.sign);
       wx.config({
-        debug: true, // 开启调试模式,
+        debug: false, // 开启调试模式,
         appId: 'wx3352249676449b29', // 必填，企业号的唯一标识，此处填写企业号corpid
         timestamp: self.sign.timestamp, // 必填，生成签名的时间戳
         nonceStr: self.sign.noncestr, // 必填，生成签名的随机串
@@ -305,6 +307,14 @@ export default {
     top:0px;
     left:10px;
     height: 75px;    
+  }
+  .liuyanpos5{
+    margin-top:280px; 
+    width: 80px;
+    position: absolute;
+    top:0px;
+    left:10px;
+    height: 75px;      
   }
   .jumpBox{
     position: fixed;

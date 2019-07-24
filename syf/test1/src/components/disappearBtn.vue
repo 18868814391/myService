@@ -55,6 +55,9 @@ export default {
   },
   methods:{
     goRoute(){
+			if(this.rout=='b'){
+				return false;
+			}
       setTimeout(()=>{
         this.$router.push({ path: `/${this.rout}` }); 
       },2000)

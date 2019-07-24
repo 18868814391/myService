@@ -28,7 +28,10 @@
     <div class="chat-page-bottom">
       <textarea type="text" name="" id="" v-model="con"></textarea>
       <div class="sendop">
-        <div class="sendop-b1" @click="show=!show">颜艺</div>
+        <div class="sendop-b1">
+          <button @click="show=!show">颜艺</button>
+          <button @click="startRecord">{{isRecording?'录音中...':'点击录音'}}</button>
+        </div>
         <button @click="send">发送</button>          
       </div>
     </div>
@@ -48,6 +51,7 @@ import {Toast,Popup } from 'vant';
 import {yiiSocketIn,yiiSocketmsg} from '@/api';
 import { getThename,getadmin} from '@/utils/auth'
 import moment from 'moment'
+import wx from 'weixin-js-sdk';
 export default {
   components: {
     [Toast.name]: Toast,
@@ -67,6 +71,9 @@ export default {
       ws:null,
       hub:'',//数据暂存,过长的数据socket会截断返回
       noAdm:'',//匿名用户代号
+      isRecording:false,//正在录音中
+      localId:'',//本地录音的id
+      serverId:'',//本地录音上传后的服务端id
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -160,6 +167,27 @@ export default {
       this.con=this.con+d;
       this.show=false;
     },
+    startRecord(){
+      const self=this;
+      if(this.isRecording){//正在录音中,下面要结束录音
+          this.isRecording=false;
+          wx.stopRecord({
+              success: function (res) {
+              self.localId = res.localId;
+              wx.uploadVoice({
+                  localId: self.localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                  isShowProgressTips: 1, // 默认为1，显示进度提示
+                  success: function (res) {
+                    self.serverId = res.serverId; // 返回音频的服务器端ID
+                }
+              });
+            }
+          });
+      }else{//未开始录音，下面要开始录音
+        this.isRecording=true;
+        wx.startRecord();
+      }
+    }
   },
 }
 </script>
@@ -213,7 +241,11 @@ export default {
         width: 100%;
         text-align: center;
         line-height: 40px;
-        background: lightpink;
+        display: flex;
+        justify-content: space-between;
+        button{
+          width:45%;
+        }
       }
       button{
         height: 40px;
