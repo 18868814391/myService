@@ -86,7 +86,7 @@ export default {
     }
     self.getlatest();
     //this.ws=new WebSocket("wss://118.31.62.251:4000");
-    this.ws=new WebSocket("wss://118.31.62.251:4000");
+    this.ws=new WebSocket("wss://www.shenyifan.top:4000");
     this.ws.onopen = function(){
       console.log("握手成功");
     };
