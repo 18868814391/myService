@@ -48,7 +48,8 @@ $arr = array (
         'timestamp'=>$timestamp,
         'url'=>$url,
         'signature'=>$signature,
-        'ticket'=>$jsapi_ticket
+        'ticket'=>$jsapi_ticket,
+        'access'=>$accToken
     )
 );
 echo urldecode(json_encode($arr));
