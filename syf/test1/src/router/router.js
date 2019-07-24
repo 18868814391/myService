@@ -40,7 +40,15 @@ const routes = [
     meta: {
       title: '涂鸦板', noAnima: true
     }
-  },   
+  }, 
+  {
+    path: '/boobMore',
+    name: 'boobMore',
+    component: () => import('@/view/Interaction/boobMore'),
+    meta: {
+      title: '涂鸦板', noAnima: true
+    }
+  },     
   {
     path: '/aboutMe',
     name: 'aboutMe',

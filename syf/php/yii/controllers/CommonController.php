@@ -51,6 +51,16 @@ class CommonController extends Controller
         return ['errcode'=>0,'errmsg'=>'创建成功'];
         die();
     }
-
+    public function actionGetdood()
+    {
+        header("Content-type: text/html; charset=utf-8");
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $postData = Yii::$app->request->post();
+        $model = new Dood();
+        $rest=Dood::findBySql("SELECT * FROM dood order by id desc")->asArray()->all();
+        $result=array();
+        $result=array_slice($rest,$postData['start']*4,4);
+        return ['errcode'=>0,'errmsg'=>'获取成功','data'=>$result];
+    }
 
 }

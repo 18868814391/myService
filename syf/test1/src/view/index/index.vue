@@ -6,17 +6,20 @@
 
 
   <div class="index-item" v-if="!cavenFlag">
-    <div class="liuyanban">
+    <div class="liuyanban liuyanpos1">
       <disappearBtn :title="'留言板'" :rout="'footprint'" :idn="'id1'"></disappearBtn>
     </div>
-    <div class="liuyanban2">
+    <div class="liuyanban liuyanpos2">
       <disappearBtn :title="'聊天室'" :rout="'chatRoom'" :idn="'id2'"></disappearBtn>  
     </div>
-    <div class="liuyanban3">
+    <div class="liuyanban liuyanpos3">
       <disappearBtn :title="'涂鸦板'" :rout="'boobBrand'" :idn="'id3'"></disappearBtn>  
     </div>
+    <div class="liuyanban liuyanpos4">
+      <disappearBtn :title="'1024'" :rout="'game1'" :idn="'id4'"></disappearBtn>  
+    </div>
     <br/>
-    <navTBox :taber='"前端学习日记"' :rout="'blog'" :sum='7' :ind='1'></navTBox>
+    <navTBox :taber='"syf笔记"' :rout="'blog'" :sum='7' :ind='1'></navTBox>
     <br>
     <navTBox :taber='"blog upload"' :rout="'blogUpload'" :sum='7' :ind='2'></navTBox>
     <br>
@@ -246,16 +249,6 @@ export default {
       background-color:transparent;
     }        
   }
-  .liuyanban2{
-    canvas {
-      background-color:transparent;
-    }      
-  }
-  .liuyanban3{
-    canvas {
-      background-color:transparent;
-    }      
-  }
   .index-item{
     display:flex;
     flex-direction: column;
@@ -264,13 +257,7 @@ export default {
     // padding-bottom:100px;
 
   }
-  .liuyanban3{
-    margin-top:100px; 
-    width: 80px;
-    position: absolute;
-    top:0px;
-    left:10px;
-    height: 75px;
+  .liuyanban{
     img{
       width: 100px;
       position: absolute;
@@ -285,53 +272,39 @@ export default {
       color: white;
       font-size: 18px;
       font-weight: 600;
-    }    
-  }  
-  .liuyanban2{
+    }
+  }
+  .liuyanpos1{
+    margin-top:5px; 
+    width: 80px;
+    position: absolute;
+    top:0px;
+    left:10px;
+    height: 75px;
+  }
+  .liuyanpos2{
     margin-top:5px; 
     width: 80px;
     position: absolute;
     top:0px;
     right:10px;
-    height: 75px;
-    img{
-      width: 100px;
-      position: absolute;
-      top:0;
-      left: 0;
-    }
-    .liuyanban-t{
-      text-align: center;
-      margin-top:40px; 
-      position: relative;
-      z-index: 10;
-      color: white;
-      font-size: 18px;
-      font-weight: 600;
-    }    
+    height: 75px;    
   }
-  .liuyanban{
-    margin-top:5px; 
+  .liuyanpos3{
+    margin-top:100px; 
     width: 80px;
     position: absolute;
     top:0px;
     left:10px;
-    height: 75px;
-    img{
-      width: 100px;
-      position: absolute;
-      top:0;
-      left: 0;
-    }
-    .liuyanban-t{
-      text-align: center;
-      margin-top:40px; 
-      position: relative;
-      z-index: 10;
-      color: white;
-      font-size: 18px;
-      font-weight: 600;
-    }
+    height: 75px;    
+  }
+  .liuyanpos4{
+    margin-top:190px; 
+    width: 80px;
+    position: absolute;
+    top:0px;
+    left:10px;
+    height: 75px;    
   }
   .jumpBox{
     position: fixed;

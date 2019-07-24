@@ -93,6 +93,9 @@
 					</div>
 				</van-popup>
 
+    <div class="others">
+      <button @click="goMore">查看更多</button>
+    </div>
   </div>
 </template>
 <script>
@@ -179,6 +182,9 @@ import { Toast,Popup } from 'vant';
       }
     },
     methods: {
+      goMore(){
+        this.$router.push({ path: '/boobMore'}); 
+      },
       isPc () {
         const userAgentInfo = navigator.userAgent
         const Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod']
@@ -555,6 +561,12 @@ import { Toast,Popup } from 'vant';
 			justify-content: space-between; 
 		}
 	}
+  .others{
+    width: 100%;
+    margin-top:20px;
+    display: flex;
+    justify-content: space-around; 
+  }
 }
 </style>
 

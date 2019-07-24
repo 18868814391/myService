@@ -26,6 +26,7 @@ export function yiiSocketmsg(params) { return request({ url: '/yii/web/index.php
 export function yiiMad(params) { return request({ url: '/yii/web/index.php?r=common/getmad', method: 'post', data: params }) }// yii 获取MAD
 export function yiiBlogTab(params) { return request({ url: '/yii/web/index.php?r=blog/tabs', method: 'post', data: params }) }// yii 获取blog标签数
 export function yiiSaveDood(params) { return request({ url: '/yii/web/index.php?r=common/savedood', method: 'post', data: params }) }// yii 涂鸦保存
+export function yiiGetDood(params) { return request({ url: '/yii/web/index.php?r=common/getdood', method: 'post', data: params }) }// yii 获取涂鸦
 export function wxsign(params) { return request({ url: '/wechat/access.php', method: 'post', data: params }) }// 微信签名
 //http://www.shenyifan.top/apis/syf/php/wechat/access.php
 
