@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import {Toast,Popup } from 'vant';
+import {Toast,Popup,Dialog } from 'vant';
 import {yiiSocketIn,yiiSocketmsg} from '@/api';
 import { getThename,getadmin} from '@/utils/auth'
 import moment from 'moment'
@@ -56,7 +56,7 @@ export default {
   components: {
     [Toast.name]: Toast,
     [Popup.name]: Popup,
-
+    [Dialog.name]:Dialog,
   },   
   data(){
     return{
@@ -179,6 +179,14 @@ export default {
                   isShowProgressTips: 1, // 默认为1，显示进度提示
                   success: function (res) {
                     self.serverId = res.serverId; // 返回音频的服务器端ID
+                    Dialog.confirm({
+                      title: '提示',
+                      message:'音频上传好了，是否发送呢？'
+                    }).then(() => {
+                      
+                    }).catch(() => {
+                      
+                    });
                 }
               });
             }
