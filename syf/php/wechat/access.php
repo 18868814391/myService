@@ -47,7 +47,8 @@ $arr = array (
         'noncestr'=>$noncestr,
         'timestamp'=>$timestamp,
         'url'=>$url,
-        'signature'=>$signature
+        'signature'=>$signature,
+        'ticket'=>$jsapi_ticket
     )
 );
 echo urldecode(json_encode($arr));
