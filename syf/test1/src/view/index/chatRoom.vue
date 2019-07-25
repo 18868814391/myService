@@ -81,6 +81,7 @@ export default {
       localId:'',//本地录音的id
       serverId:'',//本地录音上传后的服务端id
       openVoice:'',//下载下来要被播放的本地音频
+      signature:'',
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -133,15 +134,18 @@ export default {
   },
   mounted(){
     const self=this;
-    let signature=sessionStorage.getItem('wxsignature');
+    self.signature=sessionStorage.getItem('wxsignature');
+    if(self.signature){
       wx.config({
         debug: false, // 开启调试模式,
         appId: 'wx3352249676449b29', // 必填，企业号的唯一标识，此处填写企业号corpid
         timestamp:'1414587457', // 必填，生成签名的时间戳 self.sign.timestamp
         nonceStr:'syf', // 必填，生成签名的随机串 self.sign.noncestr
-        signature:signature,// 必填，签名，见附录1
+        signature:self.signature,// 必填，签名，见附录1
         jsApiList: ['checkJsApi','getLocation','scanQRCode','openLocation','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-      });    
+      }); 
+    }
+   
     wx.onVoiceRecordEnd({
       // 录音时间超过一分钟没有停止的时候会执行 complete 回调
       complete: function (res) {
