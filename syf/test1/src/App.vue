@@ -119,6 +119,7 @@ export default {
       self.sign=d.data.data
       console.log(self.sign);
       sessionStorage.setItem('wxsignature',self.sign)
+      console.log(8888,sessionStorage.getItem('wxsignature'))
       wx.config({
         debug: false, // 开启调试模式,
         appId: 'wx3352249676449b29', // 必填，企业号的唯一标识，此处填写企业号corpid
