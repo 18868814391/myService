@@ -60,7 +60,7 @@ import { getThename,getadmin} from '@/utils/auth'
 import jumpBox from '@/components/jumpBox.vue'
 import navTBox from '@/components/navTBox.vue'
 import disappearBtn from '@/components/disappearBtn.vue'
-// import wx from 'weixin-js-sdk';
+import wx from 'weixin-js-sdk';
 export default {
   components: {
     [Toast.name]: Toast, 
