@@ -89,6 +89,17 @@ export default {
   },
   mounted(){
     const self=this;
+    setTimeout(function(){
+    let signature=sessionStorage.getItem('wxsignature');
+      wx.config({
+        debug: false, // 开启调试模式,
+        appId: 'wx3352249676449b29', // 必填，企业号的唯一标识，此处填写企业号corpid
+        timestamp:'1414587457', // 必填，生成签名的时间戳 self.sign.timestamp
+        nonceStr:'syf', // 必填，生成签名的随机串 self.sign.noncestr
+        signature:signature,// 必填，签名，见附录1
+        jsApiList: ['checkJsApi','getLocation','scanQRCode','openLocation','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+      });  
+    },1000)
     // wxsign({
     // }).then((d)=>{
     //   // alert(JSON.stringify(d.data.data))
