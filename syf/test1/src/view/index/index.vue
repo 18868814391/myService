@@ -92,6 +92,7 @@ export default {
     const self=this;
     setTimeout(function(){
     self.signature=sessionStorage.getItem('wxsignature');
+    alert(JSON.stringify(self.signature))
     if(self.signature){
       wx.config({
         debug: false, // 开启调试模式,
