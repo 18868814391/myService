@@ -178,30 +178,34 @@ export default {
   },
   methods:{
     send(){
-      if(!this.con){
-        Toast('请输入点什么')
-        return false;
-      }
       const self=this;
-      let ddd=moment().format('MMMM Do YYYY, h:mm:ss a'); 
-      let obj={
-        adm:self.admin,
-        Thename:self.Thename,
-        content:String(self.con),
-        'updataTime':ddd,
+      if(self.isRecording){ //正在录音中
+          self.endAndSend();
+      }else{
+        if(!this.con){
+          Toast('请输入点什么')
+          return false;
+        }
+        let ddd=moment().format('MMMM Do YYYY, h:mm:ss a'); 
+        let obj={
+          adm:self.admin,
+          Thename:self.Thename,
+          content:String(self.con),
+          'updataTime':ddd,
+        }
+        // yiiSocketIn({ //上传每一条对话信息
+        //   'admin':self.admin,
+        //   'content':self.con,
+        //   'Thename':self.Thename,
+        //   'updataTime':ddd,
+        // }).then((d)=>{
+
+        // }).catch((d)=>{
+
+        // })
+        this.ws.send(JSON.stringify(obj));
+        this.con='';
       }
-      // yiiSocketIn({ //上传每一条对话信息
-      //   'admin':self.admin,
-      //   'content':self.con,
-      //   'Thename':self.Thename,
-      //   'updataTime':ddd,
-      // }).then((d)=>{
-
-      // }).catch((d)=>{
-
-      // })
-      this.ws.send(JSON.stringify(obj));
-      this.con='';
     },
     getlatest(){
       const self=this;
@@ -222,6 +226,27 @@ export default {
     startRecord(){
       const self=this;
       if(this.isRecording){//正在录音中,下面要结束录音
+          self.endAndSend();
+      }else{//未开始录音，下面要开始录音
+        this.isRecording=true;
+        wx.startRecord();
+      }
+    },
+    startVoice(d){
+      const self=this;
+        wx.downloadVoice({
+            serverId:d, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+              self.openVoice = res.localId; // 返回音频的本地ID
+              wx.playVoice({
+                localId: self.openVoice // 需要播放的音频的本地ID，由stopRecord接口获得
+              });
+          }
+        }); 
+    },
+    endAndSend(){ //终止录音并上传
+      const self=this;
           this.isRecording=false;
           wx.stopRecord({
               success: function (res) {
@@ -250,25 +275,7 @@ export default {
                 }
               });
             }
-          });
-      }else{//未开始录音，下面要开始录音
-        this.isRecording=true;
-        wx.startRecord();
-      }
-    },
-    startVoice(d){
-      const self=this;
-        wx.downloadVoice({
-            serverId:d, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
-            isShowProgressTips: 1, // 默认为1，显示进度提示
-            success: function (res) {
-              self.openVoice = res.localId; // 返回音频的本地ID
-              wx.playVoice({
-                localId: self.openVoice // 需要播放的音频的本地ID，由stopRecord接口获得
-              });
-          }
-        }); 
-
+          });      
     },
   },
 }
