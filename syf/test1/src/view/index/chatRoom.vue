@@ -131,6 +131,37 @@ export default {
       self.ws.send(JSON.stringify(obj));
     },2000)
   },
+  mounted(){
+    wx.onVoiceRecordEnd({
+      // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+      complete: function (res) {
+              self.localId = res.localId;
+              wx.uploadVoice({
+                  localId: self.localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                  isShowProgressTips: 1, // 默认为1，显示进度提示
+                  success: function (res) {
+                    self.serverId = res.serverId; // 返回音频的服务器端ID
+                    Dialog.confirm({
+                      title: '提示',
+                      message:'音频上传好了，是否发送呢？'
+                    }).then(() => {
+                          let ddd=moment().format('MMMM Do YYYY, h:mm:ss a'); 
+                          let obj={
+                            adm:self.admin,
+                            Thename:self.Thename,
+                            content:'',
+                            'updataTime':ddd,
+                            'voice':self.serverId,
+                          }
+                          self.ws.send(JSON.stringify(obj));                      
+                    }).catch(() => {
+                      
+                    });
+                }
+              });
+      }
+    });
+  },
   methods:{
     send(){
       if(!this.con){

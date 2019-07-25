@@ -48,6 +48,8 @@ import NavBar from './pages/components/NavBar'
 import cookie from './utils/cookie'
 import Cookies from 'js-cookie'
 import pageUtil from './utils/page'
+import wx from 'weixin-js-sdk';
+import { wxsign } from '@/api';
 const sessionHistory = window.sessionStorage
 export default {
   name: 'app',
@@ -111,6 +113,22 @@ export default {
   },
   mounted() {
     const self=this;
+    wxsign({
+    }).then((d)=>{
+      // alert(JSON.stringify(d.data.data))
+      self.sign=d.data.data
+      console.log(self.sign);
+      wx.config({
+        debug: false, // 开启调试模式,
+        appId: 'wx3352249676449b29', // 必填，企业号的唯一标识，此处填写企业号corpid
+        timestamp: self.sign.timestamp, // 必填，生成签名的时间戳
+        nonceStr: self.sign.noncestr, // 必填，生成签名的随机串
+        signature: self.sign.signature,// 必填，签名，见附录1
+        jsApiList: ['checkJsApi','getLocation','scanQRCode','openLocation','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+      });
+    }).catch((d)=>{
+
+    })
     self.loadAsyncScript('https://www.shenyifan.top/apis/syf/staticJS/jquery-2.1.1.min.js',function(){
       self.loadAsyncScript('https://www.shenyifan.top/apis/syf/staticJS/jquery.gradientify.min.js',function(){
         $(document).ready(function() {
