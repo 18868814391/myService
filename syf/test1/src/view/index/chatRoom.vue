@@ -106,7 +106,7 @@ export default {
     };
     this.ws.onmessage = function(e){
       console.log("message:" + e.data);
-      if(JSON.parse(e.data).content){
+      if(JSON.parse(e.data).content||JSON.parse(e.data).voice){
         self.chatList.push(JSON.parse(e.data));
         self.$nextTick(function(){
           var msg_box = document.getElementById('msg_box');
