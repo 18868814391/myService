@@ -18,11 +18,17 @@
       <div v-for="(item,index) in chatList" :key="index" class="chatMsg">
         <div class="chatMsg-t1" v-if="item.adm!=admin">{{item.Thename}}说：</div>
         <div class="chatMsg-t2" v-if="item.adm!=admin">{{item.updataTime}}</div>
-        <div class="chatMsg-t3" v-if="item.adm!=admin">{{item.content}}</div>
+        <div class="chatMsg-t3" v-if="item.adm!=admin">
+          <span v-if="item.content">{{item.content}}</span>
+          <span v-if="item.voice" @click="startVoice(item.voice)">[点击播放语音]</span>
+        </div>
 
         <div class="chatMsg-t1 al gb" v-if="item.adm==admin">{{item.Thename}}说：</div>
         <div class="chatMsg-t2 al gb" v-if="item.adm==admin">{{item.updataTime}}</div>
-        <div class="chatMsg-t3 al gb" v-if="item.adm==admin">{{item.content}}</div>
+        <div class="chatMsg-t3 al gb" v-if="item.adm==admin">
+          <span v-if="item.content">{{item.content}}</span>
+          <span v-if="item.voice" @click="startVoice(item.voice)">[点击播放语音]</span>
+        </div>
       </div>
     </div>
     <div class="chat-page-bottom">
@@ -74,6 +80,7 @@ export default {
       isRecording:false,//正在录音中
       localId:'',//本地录音的id
       serverId:'',//本地录音上传后的服务端id
+      openVoice:'',//下载下来要被播放的本地音频
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -183,7 +190,15 @@ export default {
                       title: '提示',
                       message:'音频上传好了，是否发送呢？'
                     }).then(() => {
-                      
+                          let ddd=moment().format('MMMM Do YYYY, h:mm:ss a'); 
+                          let obj={
+                            adm:self.admin,
+                            Thename:self.Thename,
+                            content:'',
+                            'updataTime':ddd,
+                            'voice':self.serverId,
+                          }
+                          self.ws.send(JSON.stringify(obj));                      
                     }).catch(() => {
                       
                     });
@@ -195,7 +210,21 @@ export default {
         this.isRecording=true;
         wx.startRecord();
       }
-    }
+    },
+    startVoice(d){
+      const self=this;
+        wx.downloadVoice({
+            serverId:d, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+              self.openVoice = res.localId; // 返回音频的本地ID
+              wx.playVoice({
+                localId: self.openVoice // 需要播放的音频的本地ID，由stopRecord接口获得
+              });
+          }
+        }); 
+
+    },
   },
 }
 </script>
