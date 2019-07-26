@@ -234,11 +234,13 @@ export default {
     },
     startVoice(d){
       const self=this;
+      Toast('录音下载中...')
         wx.downloadVoice({
             serverId:d, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
             isShowProgressTips: 1, // 默认为1，显示进度提示
             success: function (res) {
               self.openVoice = res.localId; // 返回音频的本地ID
+              Toast('录音播放中，请开大音量:D')
               wx.playVoice({
                 localId: self.openVoice // 需要播放的音频的本地ID，由stopRecord接口获得
               });
