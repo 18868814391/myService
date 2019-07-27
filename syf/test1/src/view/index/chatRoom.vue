@@ -193,16 +193,16 @@ export default {
           content:String(self.con),
           'updataTime':ddd,
         }
-        // yiiSocketIn({ //上传每一条对话信息
-        //   'admin':self.admin,
-        //   'content':self.con,
-        //   'Thename':self.Thename,
-        //   'updataTime':ddd,
-        // }).then((d)=>{
+        yiiSocketIn({ //上传每一条对话信息
+          'admin':self.admin,
+          'content':self.con,
+          'Thename':self.Thename,
+          'updataTime':ddd,
+        }).then((d)=>{
 
-        // }).catch((d)=>{
+        }).catch((d)=>{
 
-        // })
+        })
         this.ws.send(JSON.stringify(obj));
         this.con='';
       }
