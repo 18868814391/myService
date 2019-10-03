@@ -22,7 +22,7 @@
         <transition name="fade" v-if="$route.meta.keepAlive"> 
             <router-view v-if="$route.meta.noAnima"></router-view>
         </transition>    
-      </keep-alive> 
+      </keep-alive>
 
 
 <!-- 网易云信的nav与路由 -->
