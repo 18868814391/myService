@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import request2 from '@/utils/request2'
 
 export function register(params) { return request({ url: '/login/register.php', method: 'post', data: params }) }// 注册
 export function loginIN(params) { return request({ url: '/login/login.php', method: 'post', data: params }) }// 登陆
@@ -27,6 +28,7 @@ export function yiiMad(params) { return request({ url: '/yii/web/index.php?r=com
 export function yiiBlogTab(params) { return request({ url: '/yii/web/index.php?r=blog/tabs', method: 'post', data: params }) }// yii 获取blog标签数
 export function yiiSaveDood(params) { return request({ url: '/yii/web/index.php?r=common/savedood', method: 'post', data: params }) }// yii 涂鸦保存
 export function yiiGetDood(params) { return request({ url: '/yii/web/index.php?r=common/getdood', method: 'post', data: params }) }// yii 获取涂鸦
+export function nodeMad(params) { return request({ url: '/node/mad', method: 'post', data: params }) }// nodeMad
 export function wxsign(params) { return request({ url: '/wechat/access.php', method: 'post', data: params }) }// 微信签名
 //http://www.shenyifan.top/apis/syf/php/wechat/access.php
 

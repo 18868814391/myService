@@ -21,7 +21,7 @@
 <script>
 import 'video.js/dist/video-js.css'
 import { videoPlayer } from 'vue-video-player'
-import {yiiMad} from '@/api';
+import {yiiMad,nodeMad} from '@/api';
 export default {
   components: {
     videoPlayer
@@ -62,7 +62,7 @@ export default {
     const self=this;
     this.id=this.$route.query.id;
     console.log(this.id);
-    yiiMad({
+    nodeMad({
     }).then((d)=>{
       console.log(d.data.data);
       self.list=d.data.data;
