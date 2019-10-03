@@ -1,5 +1,5 @@
 const {app,pool,Result}=require('./connect');
-const login=require('./api.js');
+const api=require('./api.js');
 
 app.all('*',(req,res,next)=>{
   next();
@@ -12,6 +12,6 @@ app.all('/',(req,res)=>{
   })
 })
 
-app.use('/login',login);
+app.use('/node',api);
 
 app.listen(8085,()=>console.log('syf服务启动'))

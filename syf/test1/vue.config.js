@@ -8,6 +8,8 @@ module.exports = {
     //http://localhost/phpdemo/syf/php
     //http://118.31.62.251/apis/syf/php
     //http://www.shenyifan.top/wechat/
+    //https://www.shenyifan.top/apis/syf/php/novel/lightNovelList.php
+    //https://www.shenyifan.top/apis/syf/php/yii/web/index.php?r=socketdata/getmessage
     proxy: 'http://localhost/phpdemo/syf/php' 
   },
   outputDir: 'dist',
