@@ -137,7 +137,7 @@ function startConnection(){
 		navigator._getUserMedia(
 			{
 				video: true,
-				audio: true
+				audio: false
 			},
 			function(myStream){
 				stream = myStream;
