@@ -18,8 +18,11 @@ loginButton.addEventListener('click', function(){
 	}
 });
  
- 
-var connection = new WebSocket('wss://'+'118.31.62.251'+':8087');
+ if(window.location.host.indexOf('shenyifan')==-1){
+	 var connection = new WebSocket('ws://'+document.domain+':8087'); //本地代码
+ }else{
+	var connection = new WebSocket('wss://www.shenyifan.top/nodeLive/'); //线上代码
+ }
 connection.onopen = function(){
 	console.log('Connected.');
 };
