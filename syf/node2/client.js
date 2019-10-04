@@ -19,7 +19,7 @@ loginButton.addEventListener('click', function(){
 });
  
  
-var connection = new WebSocket('wss://'+document.domain+':8087');
+var connection = new WebSocket('wss://'+'118.31.62.251'+':8087');
 connection.onopen = function(){
 	console.log('Connected.');
 };
