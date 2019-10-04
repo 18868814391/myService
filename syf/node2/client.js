@@ -114,7 +114,7 @@ function onLeave(){
 };
  
 function hasUserMedia(){
-	return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia || navigator.mediaDevices.getUserMedia || navigator.mozGetUserMedia);
+	return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia || (navigator.mediaDevices&&navigator.mediaDevices.getUserMedia) || navigator.mozGetUserMedia);
 }
  
 function hasRTCPeerConnection(){
