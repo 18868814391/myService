@@ -21,6 +21,9 @@
     <div class="liuyanban liuyanpos5" @click="sweep()">
       <disappearBtn :title="'扫一扫'" :idn="'id5'"></disappearBtn>  
     </div>
+    <div class="liuyanban liuyanpos6" @click="goLive()">
+      <disappearBtn :title="'视频聊天'" :idn="'id6'"></disappearBtn>  
+    </div>
     <br/>
     <navTBox :taber='"syf笔记"' :rout="'blog'" :sum='7' :ind='1'></navTBox>
     <br>
@@ -194,6 +197,9 @@ export default {
         })
         resolve()
       })    
+    },
+    goLive(){
+      window.location.href='https://www.shenyifan.top/live/'
     },    
     down(){
       let moveDiv = document.querySelector(".live2d-widget-container");
@@ -283,6 +289,14 @@ export default {
     top:0px;
     left:10px;
     height: 75px;
+  }
+  .liuyanpos6{
+    margin-top:100px; 
+    width: 80px;
+    position: absolute;
+    top:0px;
+    right:10px;
+    height: 75px;    
   }
   .liuyanpos2{
     margin-top:5px; 
