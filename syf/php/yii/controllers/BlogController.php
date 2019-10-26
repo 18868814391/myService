@@ -58,7 +58,7 @@ class BlogController extends Controller
 
     }
     public function actionSearch(){
-        // \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $postData = Yii::$app->request->post();
         $model = new Blog();
         $keyword=$postData['keyword'];
@@ -72,8 +72,8 @@ class BlogController extends Controller
                     'title'=>$result[$i]['title'],
                 );
             }
-            return ["errcode"=>0,"errmsg"=>"创建成功11",
-            "data"=>$arr];
+            return json_encode(["errcode"=>0,"errmsg"=>"创建成功113",
+            "data"=>$arr]);
         }else{
             return ["errcode"=>99,"errmsg"=>"查询不到数据"];
         }
