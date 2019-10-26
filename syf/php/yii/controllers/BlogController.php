@@ -50,7 +50,7 @@ class BlogController extends Controller
         $model->updataTime = $postData['updataTime'];
         $model->state= $postData['adm'];
         $model->save();
-        return ['errcode'=>0,'errmsg'=>'创建成功',
+        return ["errcode"=>0,'errmsg'=>'创建成功',
             'data'=>array(
             'title'=>$postData['title'],
             'content'=>$postData['content']
@@ -72,10 +72,10 @@ class BlogController extends Controller
                     'title'=>$result[$i]['title'],
                 );
             }
-            return ['errcode'=>0,'errmsg'=>'创建成功',
-                'data'=>$arr];
+            return ["errcode"=>0,"errmsg"=>"创建成功11",
+            "data"=>$arr];
         }else{
-            return ['errcode'=>99,'errmsg'=>'查询不到数据'];
+            return ["errcode"=>99,"errmsg"=>"查询不到数据"];
         }
     }
     public function actionTabs(){
