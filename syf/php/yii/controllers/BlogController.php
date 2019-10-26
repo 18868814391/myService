@@ -68,7 +68,7 @@ class BlogController extends Controller
             $result = array_reverse($result);
             for($i=0;$i<count($result);$i++){
                 $arr[$i]=array(
-                    'id'=>$result[$i]['id'],
+                    'id'=>strval($result[$i]['id']),
                     'title'=>$result[$i]['title'],
                 );
             }
