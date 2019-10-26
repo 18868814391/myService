@@ -72,8 +72,8 @@ class BlogController extends Controller
                     'title'=>$result[$i]['title'],
                 );
             }
-            return json_encode(["errcode"=>0,"errmsg"=>"创建成功113",
-            "data"=>$arr]);
+            return urldecode(json_encode(["errcode"=>0,"errmsg"=>"创建成功113",
+            "data"=>$arr]));
         }else{
             return ["errcode"=>99,"errmsg"=>"查询不到数据"];
         }
