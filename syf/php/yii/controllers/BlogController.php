@@ -73,7 +73,7 @@ class BlogController extends Controller
                 );
             }
             return urldecode(json_encode(["errcode"=>0,"errmsg"=>"创建成功113",
-            "data"=>$arr]));
+            "data"=>$arr],JSON_UNESCAPED_UNICODE));
         }else{
             return ["errcode"=>99,"errmsg"=>"查询不到数据"];
         }
