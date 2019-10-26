@@ -63,10 +63,17 @@ class BlogController extends Controller
         $model = new Blog();
         $keyword=$postData['keyword'];
         $result=Blog::find()->where(['or',['like','title',$keyword]])->all();
+        $arr=array();
         if($result){
             $result = array_reverse($result);
+            for($i=0;$i<count($result);$i++){
+                $arr[$i]=array(
+                    'id'=>$result[$i]['id'],
+                    'title'=>$result[$i]['title'],
+                );
+            }
             return ['errcode'=>0,'errmsg'=>'创建成功',
-                'data'=>$result];
+                'data'=>$arr];
         }else{
             return ['errcode'=>99,'errmsg'=>'查询不到数据'];
         }
