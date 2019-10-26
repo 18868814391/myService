@@ -58,7 +58,7 @@ class BlogController extends Controller
 
     }
     public function actionSearch(){
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        // \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $postData = Yii::$app->request->post();
         $model = new Blog();
         $keyword=$postData['keyword'];
