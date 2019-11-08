@@ -43,7 +43,7 @@ export default {
       keyword:'',
       toast:'',
       timer:'', 
-      searchTab:['js','vue','php','yii','nginx','mysql','nuxt','linux','node'],
+      searchTab:['js','vue','php','yii','nginx','mysql','nuxt','linux','node','flutter'],
       tabSum:'',   
     }
   },
