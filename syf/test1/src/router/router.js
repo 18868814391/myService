@@ -216,6 +216,14 @@ const routes = [
     meta: {
       title: 'mad'
     }
+  },   
+  {
+    path: '/album',
+    name: 'album',
+    component: () => import('@/view/test/album'),
+    meta: {
+      title: 'album'
+    }
   },        
   {
     path: '/login2',
