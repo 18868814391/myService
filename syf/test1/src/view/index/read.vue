@@ -17,7 +17,7 @@
       {{item.title}}
     </div>
     <div @click="goRead2" class="novelItem">
-      <img src="../../img/mircle.png" alt="">
+      <img src="../../img/mircle11.png" alt="">
       有关奇迹的设定
     </div>
   </div>
