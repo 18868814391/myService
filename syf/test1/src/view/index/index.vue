@@ -24,6 +24,9 @@
     <div class="liuyanban liuyanpos6" @click="goLive()">
       <disappearBtn :title="'视频聊天'" :idn="'id6'"></disappearBtn>  
     </div>
+    <div class="liuyanban liuyanpos7" @click="goCoco()">
+      <disappearBtn :title="'cocos'" :idn="'id7'"></disappearBtn>  
+    </div>
     <br/>
     <navTBox :taber='"syf笔记"' :rout="'blog'" :sum='7' :ind='1'></navTBox>
     <br>
@@ -174,6 +177,9 @@ export default {
     goAnime(){
       this.$router.push({ path: '/anime' });       
     },
+    goCoco(){
+      this.$router.push({ path: '/cocos' });      
+    },
     gofootprint(){
       this.$router.push({ path: '/footprint' });       
     },
@@ -298,6 +304,14 @@ export default {
     right:10px;
     height: 75px;    
   }
+  .liuyanpos7{
+    margin-top:190px; 
+    width: 80px;
+    position: absolute;
+    top:0px;
+    right:10px;
+    height: 75px;    
+  }  
   .liuyanpos2{
     margin-top:5px; 
     width: 80px;

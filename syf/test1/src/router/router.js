@@ -48,7 +48,15 @@ const routes = [
     meta: {
       title: '涂鸦板', noAnima: true
     }
-  },     
+  },  
+  {
+    path: '/cocos',
+    name: 'cocos',
+    component: () => import('@/view/index/cocos'),
+    meta: {
+      title: 'coco游戏', noAnima: true
+    }
+  },  
   {
     path: '/aboutMe',
     name: 'aboutMe',
