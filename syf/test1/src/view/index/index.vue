@@ -32,8 +32,8 @@
     <br>
     <navTBox :taber='"blog upload"' :rout="'blogUpload'" :sum='7' :ind='2'></navTBox>
     <br>
-    <navTBox :taber='"网易im接入demo"' :rout="'session'" :sum='7' :ind='3'></navTBox>
-    <br>
+    <!-- <navTBox :taber='"网易im接入demo"' :rout="'session'" :sum='7' :ind='3'></navTBox>
+    <br> -->
     <!-- <div @click="goMap">高德地图接入demo</div> -->
     <navTBox :taber='"novel"' :rout="'read'" :sum='7' :ind='4'></navTBox>
     <br>
