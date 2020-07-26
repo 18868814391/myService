@@ -10,7 +10,8 @@ module.exports = {
     //http://www.shenyifan.top/wechat/
     //https://www.shenyifan.top/apis/syf/php/novel/lightNovelList.php
     //https://www.shenyifan.top/apis/syf/php/yii/web/index.php?r=socketdata/getmessage
-    proxy: 'http://localhost/phpdemo/syf/php' 
+    //http://localhost/phpdemo/syf/php
+    proxy: 'https://www.shenyifan.top/apis/syf/php'
   },
   outputDir: 'dist',
   baseUrl: process.env.NODE_ENV === 'production' ? './' : './',

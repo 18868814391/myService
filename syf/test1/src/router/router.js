@@ -58,6 +58,14 @@ const routes = [
     }
   },  
   {
+    path: '/myprojects',
+    name: 'myprojects',
+    component: () => import('@/view/index/myprojects'),
+    meta: {
+      title: 'myprojects', noAnima: true
+    }
+  },   
+  {
     path: '/aboutMe',
     name: 'aboutMe',
     component: () => import('@/view/index/aboutMe'),
